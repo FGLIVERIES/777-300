@@ -1,0 +1,225 @@
+<!--
+
+Boeing 777-300 ER YASim
+=======================
+
+The Boeing 777-300 is a stretched version of the 777, powered by the most powerful turbofan engines, seating 328 to 394 passengers in a typical three class seating arrangement or 550 passengers in a single economy class arrangement.
+This aircraft is the latest derivative of the 777 family and the first airplane was given to Cathay Pacific in May 1998. 60 aircraft were sent and production is complete.
+The stretched 777-300 is designed as a substitute for early generation 747s (747-100s and 200s). Compared to the older 747s the stretched 777 has similar passenger capacity and range, but burns one third less fuel and present 40% lower maintenance costs.
+
+Specs:
+
+777-300 - Either 
+2 400kN (90,000lb) Pratt and Whitney PW-4090 turbofans, or 
+2 436kN (98,000lb) PW-4098s, or 
+2 409kN (92,000lb) Rolls-Royce Trent 892s, or 
+2 409kN (92,000lb) General Electric GE90-92Bs.
+
+777-300ER - 512 kN (115,300lb) General Electric GE90-115B
+
+Typical Cruise = 0.84 Mach / 35000 ft
+Max Speed = 0.87 / 35000 ft
+
+777-300 - Typical cruising speed 893km/h (482kt). Range with 386 three class passengers 10,595km (5720nm).
+777-300ER - Range with 365 passengers 13,427km (7,250nm).
+
+Wing span: 60.93m
+Length: 63.73 m
+Tail Height: 18.51m
+Diameter : 6.19 m
+Wing Area: 427.8m2
+Max Fuel :45,220 US gal
+Max TO weight: 656,000 lbs
+
+TO speed : 145 kt
+Landing speed : 131 kt
+
+Leading edge MAC = -3.132
+
+Vr 137
+V2 147
+
+Datum 92.5 in forward of nose - 2.3495 m
+MAC 278.51 in - 7.074154 m
+
+References : 
+
+http://www.airliners.net/aircraft-data/stats.main?id=107
+http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/41C1737B7489C19186256DF1005A6B52?OpenDocument
+http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgAD.nsf/0/5b0fbcca3e2e9fc48625768c005904c9!OpenDocument&Click=
+http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
+
+-->
+<airplane mass="353600">
+
+<!-- Approach configuration 
+ Reference : 
+ 
+ Airport Reference Code and Approach Speeds for Boeings Airplanes
+ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
+ 
+ 772ER FG default + reference difference.
+-->
+<approach speed="145" aoa="3" fuel="0.8">
+    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.35"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.35"/>
+    <control-setting axis="/controls/flight/flaps" value="1"/>
+    <control-setting axis="/surface-positions/slats" value="1"/>
+    <control-setting axis="/controls/gear/gear-down" value="1"/>
+    <solve-weight idx="0" weight="350"/>
+    <solve-weight idx="1" weight="45000"/>
+</approach>
+
+<!-- Cruise configuration -->
+<cruise speed="512" alt="35000" fuel="0.8">
+    <control-setting axis="/controls/engines/engine[0]/throttle-lever" value="0.95"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle-lever" value="0.95"/>
+    <control-setting axis="/controls/flight/flaps" value="0.0"/>
+    <control-setting axis="/controls/flight/elevator-trim" value="0"/>
+    <control-setting axis="/controls/gear/gear-down" value="0"/>
+    <solve-weight idx="0" weight="350"/>
+    <solve-weight idx="1" weight="45000"/>
+</cruise>
+
+<!-- Cockpit position -->
+<cockpit x="28.0381" y="0.5" z="0.75"/>
+
+<!-- Fuselage -->
+<fuselage ax="30.5981" ay="0" az="-0.64" bx="-24.7003" by="0.00" bz="0.0"
+    width="6.2" taper="0.0" midpoint="1.0"/>
+<fuselage ax="21.4691" ay="0" az="0" bx="-24.7003" by="0.00" bz="0.0"
+    width="6.2" taper="1.0" midpoint="0.5"/>
+<fuselage ax="-24.7003" ay="0" az="0" bx="-41.7003" by="0.00" bz="1.2"
+    width="6.2" taper="0.0" midpoint="0.0"/>
+
+<!-- Engines body -->
+<fuselage ax="4.0" ay="9.8" az="-3" bx="-1.8" by="9.8" bz="-3"
+    width="3.8" taper="1.0"/>
+<fuselage ax="4.0" ay="-9.8" az="-3" bx="-1.8" by="-9.8" bz="-3"
+    width="3.8" taper="1.0"/>
+
+<!-- Wings -->
+<wing x="-1.4" y="3.095" z="-1.66" length="30.6" chord="10.0" sweep="28.7"
+      taper="0.15" dihedral="7" camber="0.05" incidence="0">
+    <stall aoa="12" width="12" peak="1.5"/>
+    <flap0 start="0" end=".56" lift="1.5" drag="1.8"/>
+    <flap1 start=".64" end=".88" lift="1.4" drag="1.2"/>
+    <slat start="0" end="1" aoa="2" drag="1.2"/>
+    <spoiler start="0.2" end="0.6" lift="0.2" drag="2.0"/>
+    <control-input axis="/controls/flight/flaps" control="FLAP0"/>
+    <control-input axis="/surface-positions/flap-pos-norm" control="SLAT"
+    src0="0.5" dst0="0" src1="1.0" dst1="1.0"/>
+    <control-output control="FLAP0" prop="/surface-positions/flap-pos-norm"/>
+    <control-output control="SLAT" prop="/surface-positions/slats"/>
+    <control-speed control="FLAP0" transition-time="10"/>
+    <control-input axis="/controls/flight/speedbrake" control="SPOILER"/>
+    <control-output control="SPOILER" prop="/surface-positions/speedbrake-norm"/>
+    <control-speed control="SPOILER" transition-time="5"/>
+    <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
+    <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>
+    <control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm"/>
+    <control-output control="FLAP1" side="right" prop="/surface-positions/right-aileron-pos-norm"/>
+</wing>
+
+<hstab x="-35.7003" y="1.5" z="1.0" chord="6.0" length="10.84" taper=".20"
+       sweep="28" dihedral="7" effectiveness="2.5" camber="-0.01">
+  <stall aoa="15" width="5" peak="1.5"/>
+  <flap0 start="0" end="1" lift="1.6" drag="1.2"/>
+  <control-input axis="/controls/flight/elevator" control="FLAP0"/>
+  <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+  <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+</hstab>
+
+<vstab x="-34.7003" y="0.00" z="2.7" chord="8.0" length="12.2" taper="0.3"
+       sweep="33">
+  <stall aoa="14" width="5" peak="1.5"/>
+  <flap0 start="0" end="1" lift="1.5" drag="1.2"/>
+  <control-input axis="/controls/flight/rudder" control="FLAP0" invert="true"/>
+  <control-input axis="/controls/flight/rudder-trim" control="FLAP0" invert="true"/>
+  <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm"
+          min="1" max="-1"/>
+</vstab>
+
+<!-- GE90-115B -->
+<jet x="1.16" y="9.89"  z="-2.995" mass="17400" thrust="115540" spool-time="3"
+egt="825" tsfc="0.16 " n1-idle="45" n1-max="110.5" n2-idle="70" n2-max="121">
+  <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
+  <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
+    <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
+    <control-speed control="REVERSE_THRUST" transition-time="3"/>
+<actionpt x="-2.7" y="9.89" z="-2.995"/>
+</jet>
+
+<jet x="1.16" y="-9.89"  z="2.995" mass="17400" thrust="115540" spool-time="3"
+egt="825" tsfc="0.16 " n1-idle="45" n1-max="110.5" n2-idle="70" n2-max="121">
+  <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
+  <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
+    <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
+    <control-speed control="REVERSE_THRUST" transition-time="3"/>
+<actionpt x="-2.7" y="-9.89" z="-2.995"/>
+</jet>
+
+<!-- nose -->
+<gear x="24.5181"  y="0.00" z="-5.55"
+      compression="0.7" spring="1.2" damp="1" sfric="1.5" dfric="1.0">
+  <control-input axis="/controls/flight/rudder" control="STEER" square="true"/>
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[0]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="7"/>
+</gear>
+
+<gear x="-6.39" y="5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.9">
+  <control-input axis="/autopilot/autobrake/left-brake-output" control="BRAKE"/>
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[1]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="8"/>
+</gear>
+
+<gear x="-6.39" y="-5.6" z="-5.7" compression="0.8" spring="1.0" sfric="1" dfric="0.9">
+  <control-input axis="/autopilot/autobrake/right-brake-output" control="BRAKE"/>
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[2]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="8"/>
+</gear>
+
+<gear x="-7.8" y="5.6" z="-6.22" compression="3.0" spring="1.2" >
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[3]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="8"/>
+</gear>
+
+<gear x="-7.8" y="-5.6" z="-6.22" compression="3.0" spring="1.2">
+  <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+  <control-output control="EXTEND" prop="/gear/gear[4]/position-norm"/>
+  <control-speed control="EXTEND" transition-time="8"/>
+</gear>
+
+<!-- 
+Reference : http://en.wikipedia.org/wiki/Boeing_777
+            http://www.aerospaceweb.org/aircraft/jetliner/b777/
+
+Fuel Capacity 	
+(777-200) 212,040 lb (96,345 kg) in 31,000 gal (117,350 L) wing tanks
+(777-200ER) 309,275 lb (140,285 kg) in 45,215 gal (171,160 L) wing tanks
+(777-200LR) 365,520 lb (165,795 kg) in 53,440 gal (202,285 L) wing tanks
+(777F) 327,565 lb (140,300 kg) in 47,890 gal (181,280 L) wing tanks
+(777-300) 309,305 lb (140,300 kg) in 45,200 gal (171,175 L) wing tanks
+(777-300ER) 327,565 lb (140,300 kg) in 47,890 gal (181,280 L) fuselage and wing tanks 
+-->
+<tank x="-4.3" y="5" z="-1.5" jet="true" capacity="81891.25"/>
+<tank x="-4.3" y="0" z="-2.5" jet="true" capacity="163782.5"/>
+<tank x="-4.3" y="-5" z="-1.5" jet="true" capacity="81891.25"/>
+
+<weight x="27.2381" y="0" z="0" mass-prop="/sim/weight[0]/weight-lb"/>
+<weight x="-9.0003" y="0" z="0" mass-prop="/sim/weight[1]/weight-lb"/>
+
+<ballast x="-34.7003" y="0" z="4" mass="-15500"/>
+
+<thruster x="24.5181"  y="0.00" z="-5.55" vx="1" vy="0" vz="0" thrust="20000">
+  <control-input axis="/sim/model/pushback/target-speed-fps" control="THROTTLE"
+  src0="-1" src1="1" dst0="-1" dst1="1"/>
+  </thruster>
+
+</airplane>

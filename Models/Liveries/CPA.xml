@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Cathay Pacific</name>
+            <texture>Liveries/CPA.png</texture>
+        </livery>
+        <lights>
+            <texture>Liveries/CPA-lights.png</texture>
+        </lights>
+    </model>
+</sim>
+</PropertyList>

@@ -1,4 +1,4 @@
-# 777-300 systems
+# 777-200 systems
 #Syd Adams
 #
 

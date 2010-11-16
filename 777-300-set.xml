@@ -1,19 +1,19 @@
 <PropertyList>
 
     <sim>
-        <description>Boeing 777-300ER</description>
+        <description>Boeing 777-300</description>
         <author>Justin Smithies, Syd Adams, Isaias Prestes</author>
         <status>Development</status>
         <aircraft-version>20101111</aircraft-version>
         <flight-model>yasim</flight-model>
-        <aero>777-300ER</aero>
+        <aero>777-300</aero>
         <fuel-fraction>0.75</fuel-fraction>
         <startup>
-            <splash-texture>Aircraft/777-300/splash_ER.png</splash-texture>
+            <splash-texture>Aircraft/777-300/splash.png</splash-texture>
         </startup>
 
         <model>
-            <path>Aircraft/777-300/Models/777-300ER.xml</path>
+            <path>Aircraft/777-300/Models/777-300.xml</path>
             <livery>
                 <file type="string">TAM</file>
             </livery>
@@ -132,7 +132,7 @@
         <allow-toggle-cockpit>true</allow-toggle-cockpit>
 
         <help>
-            <title>777-300ER</title>
+            <title>777-300</title>
             <key>
                 <name>Delete</name>
                 <desc>toggle thrust reversers</desc>
@@ -164,7 +164,7 @@
                     </item>
                 </menu>
                 <menu n="100">
-                    <label>777-300ER</label>
+                    <label>777-300</label>
                     <enabled type="bool">true</enabled>
                     <item>
                         <label>Autostart</label>

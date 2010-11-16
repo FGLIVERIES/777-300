@@ -1,6 +1,6 @@
 <!--
 
-Boeing 777-300 ER YASim
+Boeing 777-300 YASim
 =======================
 
 The Boeing 777-300 is a stretched version of the 777, powered by the most powerful turbofan engines, seating 328 to 394 passengers in a typical three class seating arrangement or 550 passengers in a single economy class arrangement.
@@ -13,7 +13,7 @@ Specs:
 2 400kN (90,000lb) Pratt and Whitney PW-4090 turbofans, or 
 2 436kN (98,000lb) PW-4098s, or 
 2 409kN (92,000lb) Rolls-Royce Trent 892s, or 
-2 409kN (92,000lb) General Electric GE90-92Bs.
+2 409kN (93,700lb) General Electric GE90-92Bs.
 
 777-300ER - 512 kN (115,300lb) General Electric GE90-115B
 
@@ -45,12 +45,11 @@ MAC 278.51 in - 7.074154 m
 References : 
 
 http://www.airliners.net/aircraft-data/stats.main?id=107
-http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/41C1737B7489C19186256DF1005A6B52?OpenDocument
-http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgAD.nsf/0/5b0fbcca3e2e9fc48625768c005904c9!OpenDocument&Click=
+http://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/0ba575940677fa2d8525670c00685612/$FILE/E00049en.PDF
 http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
 
 -->
-<airplane mass="353600">
+<airplane mass="353800">
 
 <!-- Approach configuration 
  Reference : 
@@ -99,7 +98,7 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
     width="3.8" taper="1.0"/>
 
 <!-- Wings -->
-<wing x="-1.4" y="3.095" z="-1.66" length="30.6" chord="10.0" sweep="28.7"
+<wing x="-1.4" y="3.095" z="-1.66" length="34.5" chord="10.0" sweep="28.7"
       taper="0.15" dihedral="7" camber="0.05" incidence="0">
     <stall aoa="12" width="12" peak="1.5"/>
     <flap0 start="0" end=".56" lift="1.5" drag="1.8"/>
@@ -140,9 +139,12 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
           min="1" max="-1"/>
 </vstab>
 
-<!-- GE90-115B -->
-<jet x="1.16" y="9.89"  z="-2.995" mass="19315" thrust="115540" spool-time="3"
-egt="825" tsfc="0.324 " n1-idle="45" n1-max="110.5" n2-idle="70" n2-max="121">
+<!-- General Electric GE90-92B 
+
+GEN ELEC-GE 90-85B Thrust=90000 lb Mass=16644 lb Cruise SFC 0.545 (lb/hr/lb) ??
+-->
+<jet x="1.16" y="9.89"  z="-2.995" mass="17400" thrust="95930" spool-time="3"
+egt="825" tsfc="0.545" n1-idle="45" n1-max="109" n2-idle="70" n2-max="117">
   <control-input axis="/controls/engines/engine[0]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
   <control-input axis="/controls/engines/engine[0]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[0]"/>
@@ -150,8 +152,8 @@ egt="825" tsfc="0.324 " n1-idle="45" n1-max="110.5" n2-idle="70" n2-max="121">
 <actionpt x="-2.7" y="9.89" z="-2.995"/>
 </jet>
 
-<jet x="1.16" y="-9.89"  z="2.995" mass="19315" thrust="115540" spool-time="3"
-egt="825" tsfc="0.324 " n1-idle="45" n1-max="110.5" n2-idle="70" n2-max="121">
+<jet x="1.16" y="-9.89"  z="-2.995" mass="17400" thrust="95930" spool-time="3"
+egt="825" tsfc="0.545" n1-idle="45" n1-max="109" n2-idle="70" n2-max="117">
   <control-input axis="/controls/engines/engine[1]/throttle-lever" control="THROTTLE" src0="0.2" dst0="0" src1="1" dst1="1"/>
   <control-input axis="/controls/engines/engine[1]/reverser" control="REVERSE_THRUST"/>
     <control-output control="REVERSE_THRUST" prop="/surface-positions/reverser-norm[1]"/>
@@ -208,9 +210,10 @@ Fuel Capacity
 (777-300) 309,305 lb (140,300 kg) in 45,200 gal (171,175 L) wing tanks
 (777-300ER) 327,565 lb (140,300 kg) in 47,890 gal (181,280 L) fuselage and wing tanks 
 -->
-<tank x="-4.3" y="5" z="-1.5" jet="true" capacity="81891.25"/>
-<tank x="-4.3" y="0" z="-2.5" jet="true" capacity="163782.5"/>
-<tank x="-4.3" y="-5" z="-1.5" jet="true" capacity="81891.25"/>
+309305
+<tank x="-4.3" y="5" z="-1.5" jet="true" capacity="77326.25"/>
+<tank x="-4.3" y="0" z="-2.5" jet="true" capacity="154652.5"/>
+<tank x="-4.3" y="-5" z="-1.5" jet="true" capacity="77326.25"/>
 
 <weight x="27.2381" y="0" z="0" mass-prop="/sim/weight[0]/weight-lb"/>
 <weight x="-9.0003" y="0" z="0" mass-prop="/sim/weight[1]/weight-lb"/>

@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Cathay Pacific</name>
-            <texture>CPA-paint.png</texture>
+            <name type="string">TAM</name>
+            <texture>TAM-paint.png</texture>
         </livery>
         <lights>
-            <texture>CPA-lights.png</texture>
+            <texture>TAM-lights.png</texture>
         </lights>
     </model>
 </sim>

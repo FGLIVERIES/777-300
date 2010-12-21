@@ -15,10 +15,10 @@
         <model>
             <path>Aircraft/777-300/Models/777-300ER.xml</path>
             <livery>
-                <file type="string">TAM</file>
+                <file type="string">AFR</file>
             </livery>
             <lights>
-                <file type="string">TAM</file>
+                <file type="string">AFR</file>
             </lights>
             <armrest type="double">0</armrest>
         </model>
@@ -463,7 +463,7 @@
         <b777>
             <file>Aircraft/777-300/Nasal/Electrical.nas</file>
             <file>Aircraft/777-300/Nasal/flightdirector.nas</file>
-            <file>Aircraft/777-300/Nasal/systems.nas</file>
+            <file>Aircraft/777-300/Nasal/systems-ER.nas</file>
             <file>Aircraft/777-300/Nasal/AFDS.nas</file>
             <file>Aircraft/777-300/Nasal/tyresmoke.nas</file>
         </b777>

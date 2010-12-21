@@ -15,10 +15,10 @@
         <model>
             <path>Aircraft/777-300/Models/777-300.xml</path>
             <livery>
-                <file type="string">TAM</file>
+                <file type="string">CPA</file>
             </livery>
             <lights>
-                <file type="string">TAM</file>
+                <file type="string">CPA</file>
             </lights>
             <armrest type="double">0</armrest>
         </model>

@@ -698,7 +698,7 @@ name "Wings_1"
 loc -2.38419e-007 2.98023e-008 0
 data 8
 Mesh.860
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 279
 16.3106 2.0784 -30.7969
@@ -3217,7 +3217,7 @@ name "Wings_1"
 loc -2.38419e-007 2.98023e-008 0
 data 8
 Mesh.860
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 25
 16.5323 2.09211 -31.0683
@@ -3408,7 +3408,7 @@ name "cabinlighting"
 loc -1.73604 -0.429678 -0.0201563
 data 9
 Plane.185
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 162
 11.9639 1.21632 3.02939
@@ -4021,7 +4021,7 @@ name "cabinlighting"
 loc -1.73604 -0.429678 -0.0201563
 data 9
 Plane.185
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 14
 -10.6925 1.21632 3.02939
@@ -4080,7 +4080,7 @@ name "cabinlighting"
 loc -1.73604 -0.429678 -0.0201563
 data 9
 Plane.185
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 1088
 28.9325 0.848503 -2.97369
@@ -8831,7 +8831,7 @@ name "Engines"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.015
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 834
 -0.157825 -0.943222 9.91401
@@ -19800,7 +19800,7 @@ name "FrtWheel"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.002
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 60.000000
 numvert 356
 -23.4169 -4.62738 0.476664
@@ -22790,7 +22790,7 @@ name "Fuselage"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.007
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 1355
 6.50088 -1.50113 3.1047
@@ -32988,7 +32988,7 @@ name "Fuselage.001"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.870
-texture "lights1.png"
+texture "AFR-lights1.png"
 crease 45.000000
 numvert 18
 -26.9479 -1.83663 -0.460061
@@ -34106,7 +34106,7 @@ name "Fuselage.004"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.006
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 43
 6.50508 -1.20363 -3.04461
@@ -34391,7 +34391,7 @@ name "FuselageL"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.941
-texture "lights1.png"
+texture "AFR-lights1.png"
 crease 45.000000
 numvert 54
 -3.94023 2.15421 2.61098
@@ -34735,7 +34735,7 @@ name "FuselageR"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.942
-texture "lights1.png"
+texture "AFR-lights1.png"
 crease 45.000000
 numvert 54
 -3.94023 -2.15124 -1.71448
@@ -35228,7 +35228,7 @@ name "Inlets"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.021
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 258
 -2.70371 -1.74888 -8.65405
@@ -37804,7 +37804,7 @@ name "LFdoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.877
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 12
 -24.7501 -2.28909 0.0170059
@@ -37896,7 +37896,7 @@ name "LFdoor.001"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.878
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 6
 -24.7548 -2.26822 0.548815
@@ -40804,7 +40804,7 @@ name "LHelevator"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.018
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 46
 38.8149 1.6359 1.04471
@@ -41103,7 +41103,7 @@ name "LHstab"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.020
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 27
 43.9822 2.95593 10.0908
@@ -41321,7 +41321,7 @@ name "LHwheel.1"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.022
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 50.000000
 numvert 356
 5.81323 -4.67039 6.56953
@@ -44311,7 +44311,7 @@ name "LHwheel.2"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.025
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 50.000000
 numvert 356
 7.30077 -4.67038 6.56907
@@ -47301,7 +47301,7 @@ name "LHwheel.3"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.029
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 50.000000
 numvert 356
 8.79445 -4.67038 6.57412
@@ -50291,7 +50291,7 @@ name "LRdoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.880
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 8
 -24.7506 -2.28878 0.0170588
@@ -51082,7 +51082,7 @@ name "Laileron_1"
 loc -2.38419e-007 2.98023e-008 0
 data 8
 Mesh.826
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 8
 16.9362 1.8988 29.5584
@@ -52820,7 +52820,7 @@ name "Lbrake"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.884
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 8
 8.65604 -0.144811 8.38333
@@ -52880,7 +52880,7 @@ name "Lbrake1"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.885
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 40
 11.2199 0.747689 16.7725
@@ -53140,7 +53140,7 @@ name "Lfan"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.886
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 353
 -2.56075 -2.56406 9.91415
@@ -55813,7 +55813,7 @@ name "Lflap1"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.004
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 17
 8.68951 -0.231103 7.88189
@@ -55970,7 +55970,7 @@ name "Lflap2"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.003
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 17
 9.45311 -0.494251 7.89233
@@ -56127,7 +56127,7 @@ name "Lflap4"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.889
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 12
 8.37547 -0.0593073 11.1117
@@ -56239,7 +56239,7 @@ name "Lgear"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.019
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 71
 7.30365 -3.12863 5.29454
@@ -63659,7 +63659,7 @@ name "Lmain.geardoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.936
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 34
 8.27474 -1.52004 3.06721
@@ -63930,7 +63930,7 @@ name "Lramdoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.945
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 10
 7.07683 -1.69043 3.07933
@@ -64269,7 +64269,7 @@ name "Lwing.geardoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.023
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 8
 7.82263 -1.23585 5.21827
@@ -65018,7 +65018,7 @@ name "RFdoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.896
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 13
 -24.7501 -2.23846 -0.505661
@@ -65111,7 +65111,7 @@ name "RFdoor.001"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.897
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 6
 -24.7548 -2.31884 0.0200538
@@ -68275,7 +68275,7 @@ name "RHelevator"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.836
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 46
 38.8149 1.6359 -1.0046
@@ -68574,7 +68574,7 @@ name "RHengmount"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.899
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 188
 8.11344 -0.728879 9.83999
@@ -69916,7 +69916,7 @@ name "RHstab"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.838
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 27
 43.938 2.94178 -9.93508
@@ -70134,7 +70134,7 @@ name "RHwheel.1"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.840
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 50.000000
 numvert 356
 5.81323 -4.67038 -4.6657
@@ -73124,7 +73124,7 @@ name "RHwheel.2"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.842
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 50.000000
 numvert 356
 7.30077 -4.67038 -4.66563
@@ -76114,7 +76114,7 @@ name "RHwheel.3"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.844
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 50.000000
 numvert 356
 8.79445 -4.67038 -4.668
@@ -79104,7 +79104,7 @@ name "RRdoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.900
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 8
 -24.7506 -2.23815 -0.505713
@@ -79845,7 +79845,7 @@ name "Raileron_1"
 loc -2.38419e-007 2.98023e-008 0
 data 8
 Mesh.846
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 8
 16.9362 1.89888 -29.5183
@@ -81404,7 +81404,7 @@ name "Rbrake"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.903
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 8
 8.65544 -0.848638 -3.25013
@@ -81464,7 +81464,7 @@ name "Rbrake1"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.031
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 36
 11.5889 0.989923 -18.6918
@@ -81688,7 +81688,7 @@ name "Reversers"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.905
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 576
 0.150352 -0.882049 -10.569
@@ -85858,7 +85858,7 @@ name "Rfan"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.906
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 353
 -2.59309 -2.56406 -9.87391
@@ -88531,7 +88531,7 @@ name "Rflap1"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.907
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 17
 8.68951 -0.231103 -7.84178
@@ -88688,7 +88688,7 @@ name "Rflap2"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.908
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 17
 9.45311 -0.494251 -7.85222
@@ -88845,7 +88845,7 @@ name "Rflap4"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.909
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 12
 8.37547 -0.0593073 -11.0716
@@ -89075,7 +89075,7 @@ name "Rgear"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.850
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 65
 7.30365 -0.832682 -5.40823
@@ -96196,7 +96196,7 @@ name "Rmain.geardoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.935
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 34
 8.27053 -1.52094 -3.02703
@@ -96467,7 +96467,7 @@ name "Rramdoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.947
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 10
 7.07683 -1.69043 -3.03922
@@ -96806,7 +96806,7 @@ name "Rudder"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.856
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 266
 41.6224 12.7875 0.0200458
@@ -98640,7 +98640,7 @@ name "Rudder.001"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.912
-texture "lights1.png"
+texture "AFR-lights1.png"
 crease 45.000000
 numvert 16
 41.6632 12.6816 -0.102622
@@ -98708,7 +98708,7 @@ name "Rwing.geardoor"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.949
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 8
 7.82263 -1.23585 -5.17816
@@ -98940,7 +98940,7 @@ name "Tail"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.918
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 45.000000
 numvert 38
 42.0249 12.4115 -0.00353515
@@ -99228,7 +99228,7 @@ name "Tail.001"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.919
-texture "lights1.png"
+texture "AFR-lights1.png"
 crease 45.000000
 numvert 20
 36.8625 2.98662 -0.174355
@@ -99544,7 +99544,7 @@ name "Wings.002"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.946
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 48
 8.32434 -0.956642 -3.24993
@@ -99857,7 +99857,7 @@ name "hinge1"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.922
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 82
 9.30071 -1.07571 7.75305
@@ -100479,7 +100479,7 @@ name "hinge2"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.923
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 82
 8.56689 -0.204684 -14.4396
@@ -101087,7 +101087,7 @@ name "hinge3"
 loc -0.897064 -0.429678 -0.0201563
 data 8
 Mesh.924
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 82
 11.3484 0.486105 -19.776
@@ -102799,7 +102799,7 @@ name "cabinlighting"
 loc -1.73604 -0.429678 -0.0201563
 data 9
 Plane.185
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 180
 5.57925 1.15439 3.0464
@@ -103479,7 +103479,7 @@ name "cabinlighting"
 loc -1.73604 -0.429678 -0.0201563
 data 9
 Plane.185
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 20
 16.3961 1.21632 3.02939
@@ -103569,7 +103569,7 @@ name "Wings_1"
 loc -2.38419e-007 2.98023e-008 0
 data 8
 Mesh.860
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 25
 16.4147 2.06496 31.1046
@@ -104023,7 +104023,7 @@ name "Wings_1"
 loc -2.38419e-007 2.98023e-008 0
 data 8
 Mesh.860
-texture "paint1.png"
+texture "AFR-paint1.png"
 crease 30.000000
 numvert 279
 16.7396 2.13493 31.0405

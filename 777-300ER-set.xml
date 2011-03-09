@@ -2,7 +2,7 @@
 
     <sim>
         <description>Boeing 777-300ER</description>
-        <author>Justin Smithies, Syd Adams, Isaias Prestes</author>
+        <author>Justin Smithies, Syd Adams</author>
         <status>Development</status>
         <aircraft-version>20101111</aircraft-version>
         <flight-model>yasim</flight-model>
@@ -15,10 +15,10 @@
         <model>
             <path>Aircraft/777-300/Models/777-300ER.xml</path>
             <livery>
-                <file type="string">AFR</file>
+                <file type="string">TAM</file>
             </livery>
             <lights>
-                <file type="string">AFR</file>
+                <file type="string">TAM</file>
             </lights>
             <armrest type="double">0</armrest>
         </model>

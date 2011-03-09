@@ -84,7 +84,7 @@ http://www.boeing.com/commercial/airports/faqs/arcandapproachspeeds.pdf
 <cockpit x="28.0381" y="0.5" z="0.75"/>
 
 <!-- Fuselage -->
-<fuselage ax="30.5981" ay="0" az="-0.64" bx="21.4691" by="0.00" bz="0.0"
+<fuselage ax="30.5981" ay="0" az="-0.64" bx="-24.7003" by="0.00" bz="0.0"
     width="6.2" taper="0.0" midpoint="1.0"/>
 <fuselage ax="21.4691" ay="0" az="0" bx="-24.7003" by="0.00" bz="0.0"
     width="6.2" taper="1.0" midpoint="0.5"/>

@@ -26,6 +26,14 @@ Syd Adams
             <property>instrumentation/nav/nav-loc</property>
         </condition>
     </animation>
+	
+    <animation>
+        <type>select</type>
+        <object-name>sbind</object-name>
+        <condition>
+            <property>controls/flight/speedbrake</property>
+        </condition>
+    </animation>
 
     <animation>
         <type>select</type>
@@ -880,6 +888,7 @@ Syd Adams
         <object-name>ALTdigits</object-name>
         <object-name>PITCH arm</object-name>
         <object-name>ROLL arm</object-name>
+        <object-name>sbind</object-name>
         <emission>
             <red>0.7</red>
             <green>0.7</green>

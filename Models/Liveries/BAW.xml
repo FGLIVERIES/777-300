@@ -4,11 +4,11 @@
 <sim>
     <model>
         <livery>
-            <name type="string">Air France</name>
-            <texture>AFR.png</texture>
+            <name type="string">British Airways</name>
+            <texture>BAW.png</texture>
         </livery>
         <lights>
-            <texture>AFR-lights.png</texture>
+            <texture>BAW-lights.png</texture>
         </lights>
     </model>
 </sim>

@@ -105762,7 +105762,7 @@ name "Wings"
 loc -0.897064 -0.429678 -0.0201563
 kids 1
 OBJECT poly
-name "Laileron_int_1"
+name "Lflaperon"
 data 8
 Mesh.860
 texture "paint1.png"
@@ -105899,7 +105899,7 @@ name "Wings"
 loc -0.897064 -0.429678 -0.0201563
 kids 1
 OBJECT poly
-name "Raileron_int_1"
+name "Rflaperon"
 data 8
 Mesh.860
 texture "paint1.png"

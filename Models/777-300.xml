@@ -30,13 +30,13 @@ Syd Adams
         <object-name>Reversers</object-name>
         <object-name>Wings</object-name>
         <object-name>Laileron</object-name>
-        <object-name>Laileron_int_1</object-name>
+        <object-name>Lflaperon</object-name>
         <object-name>Lflap4</object-name>
         <object-name>Lflap2</object-name>
         <object-name>Rflap2</object-name>
         <object-name>Rflap4</object-name>
         <object-name>Raileron</object-name>
-        <object-name>Raileron_int_1</object-name>
+        <object-name>Rflaperon</object-name>
         <object-name>Tail</object-name>
         <object-name>Rudder</object-name>
         <object-name>RHstab</object-name>
@@ -319,7 +319,7 @@ Syd Adams
 	
     <animation>
         <type>rotate</type>
-        <object-name>Raileron_int_1</object-name>
+        <object-name>Rflaperon</object-name>
         <property>surface-positions/right-aileron-pos-norm</property>
 		<interpolation>
 			<entry> 
@@ -347,7 +347,7 @@ Syd Adams
 	
     <animation>
         <type>rotate</type>
-        <object-name>Raileron_int_1</object-name>
+        <object-name>Rflaperon</object-name>
         <property>surface-positions/flap-pos-norm</property>
 		<interpolation>
 			<entry>  
@@ -653,7 +653,7 @@ Outboard Aileron Lockout Schedule
 -->
     <animation>
         <type>rotate</type>
-        <object-name>Laileron_int_1</object-name>
+        <object-name>Lflaperon</object-name>
         <property>surface-positions/left-aileron-pos-norm</property>
 		<interpolation>
 			<entry> 
@@ -681,7 +681,7 @@ Outboard Aileron Lockout Schedule
 
     <animation>
         <type>rotate</type>
-        <object-name>Laileron_int_1</object-name>
+        <object-name>Lflaperon</object-name>
         <property>surface-positions/flap-pos-norm</property>
 		<interpolation>
 			<entry>  

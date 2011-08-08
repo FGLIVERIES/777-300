@@ -30,13 +30,13 @@ Syd Adams
         <object-name>Reversers</object-name>
         <object-name>Wings</object-name>
         <object-name>Laileron</object-name>
-        <object-name>Lflaperon</object-name>
+        <object-name>Laileron_int_1</object-name>
         <object-name>Lflap4</object-name>
         <object-name>Lflap2</object-name>
         <object-name>Rflap2</object-name>
         <object-name>Rflap4</object-name>
         <object-name>Raileron</object-name>
-        <object-name>Rflaperon</object-name>
+        <object-name>Raileron_int_1</object-name>
         <object-name>Tail</object-name>
         <object-name>Rudder</object-name>
         <object-name>RHstab</object-name>
@@ -319,7 +319,7 @@ Syd Adams
 	
     <animation>
         <type>rotate</type>
-        <object-name>Rflaperon</object-name>
+        <object-name>Raileron_int_1</object-name>
         <property>surface-positions/right-aileron-pos-norm</property>
 		<interpolation>
 			<entry> 
@@ -347,7 +347,7 @@ Syd Adams
 	
     <animation>
         <type>rotate</type>
-        <object-name>Rflaperon</object-name>
+        <object-name>Raileron_int_1</object-name>
         <property>surface-positions/flap-pos-norm</property>
 		<interpolation>
 			<entry>  
@@ -653,7 +653,7 @@ Outboard Aileron Lockout Schedule
 -->
     <animation>
         <type>rotate</type>
-        <object-name>Lflaperon</object-name>
+        <object-name>Laileron_int_1</object-name>
         <property>surface-positions/left-aileron-pos-norm</property>
 		<interpolation>
 			<entry> 
@@ -681,7 +681,7 @@ Outboard Aileron Lockout Schedule
 
     <animation>
         <type>rotate</type>
-        <object-name>Lflaperon</object-name>
+        <object-name>Laileron_int_1</object-name>
         <property>surface-positions/flap-pos-norm</property>
 		<interpolation>
 			<entry>  
@@ -826,6 +826,23 @@ Outboard Aileron Lockout Schedule
 
     <animation>
         <type>select</type>
+        <object-name>LHLND.spot</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[4]</property>
+                    <value>5</value>
+                </greater-than>
+                <greater-than>
+                    <property>/sim/time/sun-angle-rad</property>
+                    <value>1.55</value>
+                </greater-than>
+            </and>
+        </condition>
+    </animation>
+	
+    <animation>
+        <type>select</type>
         <object-name>RHLND.flare</object-name>
         <object-name>FuselageR</object-name>
         <condition>
@@ -833,6 +850,23 @@ Outboard Aileron Lockout Schedule
                 <property>sim/multiplay/generic/int[6]</property>
                 <value>5</value>
             </greater-than>
+        </condition>
+    </animation>
+	
+    <animation>
+        <type>select</type>
+        <object-name>RHLND.spot</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[6]</property>
+                    <value>5</value>
+                </greater-than>
+                <greater-than>
+                    <property>/sim/time/sun-angle-rad</property>
+                    <value>1.55</value>
+                </greater-than>
+            </and>
         </condition>
     </animation>
 
@@ -849,6 +883,27 @@ Outboard Aileron Lockout Schedule
                     <property>gear/gear[0]/position-norm</property>
                     <value>1.0</value>
                 </equals>
+            </and>
+        </condition>
+    </animation>
+	
+    <animation>
+        <type>select</type>
+        <object-name>CTRLND.spot</object-name>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>sim/multiplay/generic/int[5]</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>gear/gear[0]/position-norm</property>
+                    <value>1.0</value>
+                </equals>
+                <greater-than>
+                    <property>/sim/time/sun-angle-rad</property>
+                    <value>1.55</value>
+                </greater-than>
             </and>
         </condition>
     </animation>
@@ -1189,10 +1244,13 @@ Outboard Aileron Lockout Schedule
         <type>select</type>
         <object-name>cabinlighting</object-name>
         <condition>
-                <greater-than>
-                    <property>sim/time/sun-angle-rad</property>
-                    <value>1.55</value>
-                </greater-than>
+                <and>
+                    <greater-than>
+                        <property>/sim/time/sun-angle-rad</property>
+                        <value>1.55</value>
+                    </greater-than>
+                    <property>sim/multiplay/generic/int[8]</property>
+                </and>
         </condition>
     </animation>
 
@@ -2066,6 +2124,24 @@ Outboard Aileron Lockout Schedule
         </center>
     </animation>
 
+    <!-- rear axle steering -->
+    <animation>
+        <type>rotate</type>
+        <object-name>RHwheel.3</object-name>
+        <property>/controls/gear/maingear-steering-cmd-norm</property>
+        <factor>-8</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <center>
+            <x-m>7.897</x-m>
+            <y-m>5.617</y-m>
+            <z-m>-5.100</z-m>
+        </center>
+    </animation>
+
     <animation>
         <type>spin</type>
         <object-name>RHwheel.3</object-name>
@@ -2164,5 +2240,50 @@ Outboard Aileron Lockout Schedule
   <z-m>-5.70</z-m>
  </offsets>
 </model>
+
+<model>
+ <name>Pushback</name>
+ <path>Models/Airport/Pushback/Douglas.xml</path>
+ <offsets>
+  <x-m>-19.284</x-m>
+  <y-m>0.0</y-m>
+  <z-m>-5.4</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>Firetruck1</name>
+ <path>Models/Airport/hoskosh-ti-1500.xml</path>
+ <offsets>
+  <x-m>60.0</x-m>
+  <y-m>10.0</y-m>
+  <z-m>-5.4</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>Firetruck2</name>
+ <path>Models/Airport/hoskosh-ti-1500.xml</path>
+ <offsets>
+  <x-m>80.0</x-m>
+  <y-m>-8.0</y-m>
+  <z-m>-5.4</z-m>
+ </offsets>
+</model>
+
+<animation>
+    <type>select</type>
+    <object-name>Firetruck1</object-name>
+    <object-name>Firetruck2</object-name>
+    <condition>
+        <and>
+            <property>sim/animation/fire-services</property>
+            <less-than>
+                <property>velocities/airspeed-kt</property>
+                <value>40</value>
+            </less-than>
+        </and>
+    </condition>
+</animation>
 
 </PropertyList>

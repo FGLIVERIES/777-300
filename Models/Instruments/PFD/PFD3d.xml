@@ -1,12 +1,11 @@
 <!--
 Syd Adams
-777-200 PFD 
+777-300 PFD 
 -->
 
 <PropertyList>
 
  <path>PFD3d.ac</path>
-
 
     <animation>
         <type>select</type>
@@ -24,14 +23,6 @@ Syd Adams
         <object-name>locscale</object-name>
         <condition>
             <property>instrumentation/nav/nav-loc</property>
-        </condition>
-    </animation>
-	
-    <animation>
-        <type>select</type>
-        <object-name>sbind</object-name>
-        <condition>
-            <property>controls/flight/speedbrake</property>
         </condition>
     </animation>
 
@@ -58,7 +49,10 @@ Syd Adams
         <type>select</type>
         <object-name>gspointer</object-name>
         <condition>
-            <property>instrumentation/nav/gs-in-range</property>
+            <and>
+                <property>instrumentation/nav/gs-in-range</property>
+                <property>instrumentation/nav/has-gs</property>
+            </and>
         </condition>
     </animation>
 
@@ -156,10 +150,32 @@ Syd Adams
     </animation>
 
     <animation>
+        <object-name>StallSpeedInd</object-name>
+        <property>instrumentation/pfd/stallspeed-diff</property>
+        <type>translate</type>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <factor>0.000646</factor>
+    </animation>
+    <animation>
+        <type>select</type>
+        <object-name>StallSpeedInd</object-name>
+        <condition>
+            <greater-than>
+                <property>velocities/airspeed-kt</property>
+                <value>40</value>
+            </greater-than>
+        </condition>
+    </animation>
+
+    <animation>
         <type>translate</type>
         <object-name>locpointer</object-name>
         <property>instrumentation/nav/heading-needle-deflection-norm</property>
-        <factor>0.0272</factor>
+        <factor>-0.0272</factor>
         <axis>
             <x>0</x>
             <y>-1</y>
@@ -858,6 +874,7 @@ Syd Adams
         <object-name>INHG</object-name>
         <object-name>KPA</object-name>
         <object-name>MAG-annun</object-name>
+        <object-name>mins</object-name>
         <emission>
             <red>0</red>
             <green>0.8</green>
@@ -888,7 +905,6 @@ Syd Adams
         <object-name>ALTdigits</object-name>
         <object-name>PITCH arm</object-name>
         <object-name>ROLL arm</object-name>
-        <object-name>sbind</object-name>
         <emission>
             <red>0.7</red>
             <green>0.7</green>
@@ -995,7 +1011,7 @@ Syd Adams
             <and>
                 <equals>
                     <property>instrumentation/afds/ap-modes/speed-mode</property>
-                    <value>THR</value>
+                    <value>SPD</value>
                 </equals>
                 <not>
                     <property>instrumentation/afds/inputs/ias-mach-selected</property>
@@ -1011,7 +1027,7 @@ Syd Adams
             <and>
                 <equals>
                     <property>instrumentation/afds/ap-modes/speed-mode</property>
-                    <value>THR</value>
+                    <value>SPD</value>
                 </equals>
                 <property>instrumentation/afds/inputs/ias-mach-selected</property>
             </and>
@@ -1022,11 +1038,123 @@ Syd Adams
         <type>select</type>
         <object-name>ALT-annun</object-name>
         <condition>
+          <or>
             <equals>
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>
                 <value>ALT</value>
             </equals>
+            <equals>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                <value>FLCH SPD</value>
+            </equals>
+          </or>
         </condition>
+    </animation>
+
+    <!-- TCW display (time critical warnings) from GPWS -->
+    <text>
+        <name>tcws</name>
+        <offsets>
+            <x-m>0.014</x-m>
+            <y-m>-0.01</y-m>
+            <z-m>-0.044</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/mk-viii/outputs/warning</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.017</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">64</width>
+            <height type="int">64</height>
+        </font-resolution>
+    </text>
+    <animation>
+        <type>material</type>
+        <object-name>tcws</object-name>
+        <emission> <!--red-->
+            <red>0.8</red>
+            <green>0</green>
+            <blue>0</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
+    </animation>
+
+    <text>
+        <name>mins</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.03</y-m>
+            <z-m>-0.054</z-m>
+        </offsets>
+        <alignment>right-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">text-value</type>
+        <property>instrumentation/efis/minimums-mode-text</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.006</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+    <text>
+        <name>mins</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.03</y-m>
+            <z-m>-0.06</z-m>
+        </offsets>
+        <alignment>right-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%3.0f</format>
+        <property>instrumentation/efis/minimums</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <animation>
+        <object-name>speedtrend.up</object-name>
+        <property>instrumentation/pfd/speed-trend-up</property>
+        <type>textranslate</type>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+        <factor>1</factor> <!-- 0.048/+70knots-->
+    </animation>
+    <animation>
+        <object-name>speedtrend.down</object-name>
+        <property>instrumentation/pfd/speed-trend-down</property>
+        <type>textranslate</type>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+        <factor>1</factor> <!-- 0.048/+70knots-->
     </animation>
 
 </PropertyList>

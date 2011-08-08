@@ -1,10 +1,9 @@
-# 777-200 systems
+# 777-300 systems
 #Syd Adams
 #
 
-
 var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
-var FHmeter = aircraft.timer.new("/instrumentation/clock/flight-meter-sec", 10).stop();
+var chronometer = aircraft.timer.new("/instrumentation/clock/ET-sec",1);
 var fuel_density =0;
 aircraft.livery.init("Aircraft/777-300/Models/Liveries");
 
@@ -13,12 +12,8 @@ aircraft.livery.init("Aircraft/777-300/Models/Liveries");
 var EFIS = {
     new : func(prop1){
         m = { parents : [EFIS]};
+        m.radio_list=["instrumentation/comm/frequencies","instrumentation/comm[1]/frequencies","instrumentation/nav/frequencies","instrumentation/nav[1]/frequencies"];
         m.mfd_mode_list=["APP","VOR","MAP","PLAN"];
-        m.eicas_msg=[];
-        m.eicas_msg_red=[];
-        m.eicas_msg_green=[];
-        m.eicas_msg_blue=[];
-        m.eicas_msg_alpha=[];
 
         m.efis = props.globals.initNode(prop1);
         m.mfd = m.efis.initNode("mfd");
@@ -33,7 +28,8 @@ var EFIS = {
         m.fpv = m.efis.initNode("inputs/fpv",0,"BOOL");
         m.nd_centered = m.efis.initNode("inputs/nd-centered",0,"BOOL");
         m.mins_mode = m.efis.initNode("inputs/minimums-mode",0,"BOOL");
-        m.minimums = m.efis.initNode("minimums",200,"INT");
+        m.mins_mode_txt = m.efis.initNode("minimums-mode-text","RADIO","STRING");
+        m.minimums = m.efis.initNode("minimums",250,"INT");
         m.mk_minimums = props.globals.getNode("instrumentation/mk-viii/inputs/arinc429/decision-height");
         m.wxr = m.efis.initNode("inputs/wxr",0,"BOOL");
         m.range = m.efis.initNode("inputs/range",0);
@@ -46,15 +42,18 @@ var EFIS = {
         m.rh_vor_adf = m.efis.initNode("inputs/rh-vor-adf",0,"INT");
         m.lh_vor_adf = m.efis.initNode("inputs/lh-vor-adf",0,"INT");
 
+        m.radio = m.efis.getNode("radio-mode",1);
+        m.radio.setIntValue(0);
+        m.radio_selected = m.efis.getNode("radio-selected",1);
+        m.radio_selected.setDoubleValue(getprop("instrumentation/comm/frequencies/selected-mhz"));
+        m.radio_standby = m.efis.getNode("radio-standby",1);
+        m.radio_standby.setDoubleValue(getprop("instrumentation/comm/frequencies/standby-mhz"));
+
         m.kpaL = setlistener("instrumentation/altimeter/setting-inhg", func m.calc_kpa());
 
-        for(var i=0; i<11; i+=1) {
-        append(m.eicas_msg,m.eicas.initNode("msg["~i~"]/text"," ","STRING"));
-        append(m.eicas_msg_red,m.eicas.initNode("msg["~i~"]/red",0.1 *i));
-        append(m.eicas_msg_green,m.eicas.initNode("msg["~i~"]/green",0.8));
-        append(m.eicas_msg_blue,m.eicas.initNode("msg["~i~"]/blue",0.8));
-        append(m.eicas_msg_alpha,m.eicas.initNode("msg["~i~"]/alpha",1.0));
-        }
+        m.eicas_msg_alert   = m.eicas.initNode("msg/alert"," ","STRING");
+        m.eicas_msg_caution = m.eicas.initNode("msg/caution"," ","STRING");
+        m.eicas_msg_info    = m.eicas.initNode("msg/info"," ","STRING");
 
     return m;
     },
@@ -72,8 +71,54 @@ var EFIS = {
         }
         me.temp.setValue(tmp);
     },
+#### swap radio freq ####
+    swap_freq : func(){
+        var tmpsel = me.radio_selected.getValue();
+        var tmpstb = me.radio_standby.getValue();
+        me.radio_selected.setValue(tmpstb);
+        me.radio_standby.setValue(tmpsel);
+        me.update_frequencies();
+    },
+#### copy efis freq to radios ####
+    update_frequencies : func(){
+        var fq = me.radio.getValue();
+        setprop(me.radio_list[fq]~"/selected-mhz",me.radio_selected.getValue());
+        setprop(me.radio_list[fq]~"/standby-mhz",me.radio_standby.getValue());
+    },
+#### modify efis radio standby freq ####
+    set_freq : func(fdr){
+        var rd = me.radio.getValue();
+        var frq =me.radio_standby.getValue();
+        var frq_step =0;
+        if(rd >=2){
+            if(fdr ==1)frq_step = 0.05;
+            if(fdr ==-1)frq_step = -0.05;
+            if(fdr ==10)frq_step = 1.0;
+            if(fdr ==-10)frq_step = -1.0;
+            frq += frq_step;
+            if(frq > 118.000)frq -= 10.000;
+            if(frq<108.000) frq += 10.000;
+        }else{
+            if(fdr ==1)frq_step = 0.025;
+            if(fdr ==-1)frq_step = -0.025;
+            if(fdr ==10)frq_step = 1.0;
+            if(fdr ==-10)frq_step = -1.0;
+            frq += frq_step;
+            if(frq > 136.000)frq -= 18.000;
+            if(frq<118.000) frq += 18.000;
+        }
+        me.radio_standby.setValue(frq);
+        me.update_frequencies();
+    },
+
+    set_radio_mode : func(rm){
+        me.radio.setIntValue(rm);
+        me.radio_selected.setDoubleValue(getprop(me.radio_list[rm]~"/selected-mhz"));
+        me.radio_standby.setDoubleValue(getprop(me.radio_list[rm]~"/standby-mhz"));
+    },
 ######### Controller buttons ##########
     ctl_func : func(md,val){
+        controls.click(3);
         if(md=="range")
         {
             var rng =getprop("instrumentation/radar/range");
@@ -102,14 +147,23 @@ var EFIS = {
         {
             var num =me.minimums.getValue();
             if(val==0){
-                num=200;
+                num=250;
             }else{
                 num+=val;
                 if(num<0)num=0;
                 if(num>1000)num=1000;
             }
-        me.minimums.setValue(num);
-        me.mk_minimums.setValue(num);
+            me.minimums.setValue(num);
+            me.mk_minimums.setValue(num);
+        }
+        elsif(md=="mins")
+        {
+            mode = me.mins_mode.getValue();
+            me.mins_mode.setValue(1-mode);
+            if (mode)
+                me.mins_mode_txt.setValue("RADIO");
+            else
+                me.mins_mode_txt.setValue("BARO");
         }
         elsif(md=="display")
         {
@@ -174,6 +228,30 @@ var EFIS = {
             me.nd_centered.setValue(num);
             setprop("instrumentation/radar/font/size",fnt[num]);
         }
+    },
+#### update EICAS messages ####
+    update_eicas : func(alertmsgs,cautionmsgs,infomsgs) {
+        var msg="";
+        var spacer="";
+        for(var i=0; i<size(alertmsgs); i+=1)
+        {
+            msg = msg ~ alertmsgs[i] ~ "\n";
+            spacer = spacer ~ "\n";
+        }
+        me.eicas_msg_alert.setValue(msg);
+        msg=spacer;
+        for(var i=0; i<size(cautionmsgs); i+=1)
+        {
+            msg = msg ~ cautionmsgs[i] ~ "\n";
+            spacer = spacer ~ "\n";
+        }
+        me.eicas_msg_caution.setValue(msg);
+        msg=spacer;
+        for(var i=0; i<size(infomsgs); i+=1)
+        {
+            msg = msg ~ infomsgs[i] ~ "\n";
+        }
+        me.eicas_msg_info.setValue(msg);
     },
 };
 ##############################################
@@ -292,31 +370,46 @@ var Wiper = {
 var Efis = EFIS.new("instrumentation/efis");
 var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
-    var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
-
+var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
 
 setlistener("/sim/signals/fdm-initialized", func {
     SndOut.setDoubleValue(0.15);
-    setprop("/instrumentation/clock/flight-meter-hour",0);
-    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
-    settimer(update_systems,2);
+    chronometer.stop();
+    props.globals.initNode("/instrumentation/clock/ET-display",0,"INT");
+    props.globals.initNode("/instrumentation/clock/time-display",0,"INT");
+    props.globals.initNode("/instrumentation/clock/time-knob",0,"INT");
+    props.globals.initNode("/instrumentation/clock/et-knob",0,"INT");
+    props.globals.initNode("/instrumentation/clock/set-knob",0,"INT");
+#    setprop("/instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
+    Shutdown();
+    settimer(start_updates,1);
 });
 
+var start_updates = func {
+    if (getprop("position/gear-agl-ft")>30)
+    {
+        # airborne startup
+        Startup();
+        setprop("/controls/gear/brake-parking",0);
+        controls.gearDown(-1);
+    }
+    update_systems();
+}
+                           
 setlistener("/sim/signals/reinit", func {
     SndOut.setDoubleValue(0.15);
-    setprop("/instrumentation/clock/flight-meter-hour",0);
     Shutdown();
 });
 
-setlistener("/autopilot/route-manager/route/num", func(wp){
-    var wpt= wp.getValue() -1;
-
-    if(wpt>-1){
-    setprop("instrumentation/groundradar/id",getprop("autopilot/route-manager/route/wp["~wpt~"]/id"));
-    }else{
-    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
-    }
-},1,0);
+#setlistener("/autopilot/route-manager/route/num", func(wp){
+#    var wpt= wp.getValue() -1;
+#
+#    if(wpt>-1){
+#    setprop("instrumentation/groundradar/id",getprop("autopilot/route-manager/route/wp["~wpt~"]/id"));
+#    }else{
+#    setprop("instrumentation/groundradar/id",getprop("sim/tower/airport-id"));
+#    }
+#},1,0);
 
 setlistener("/sim/current-view/internal", func(vw){
     if(vw.getValue()){
@@ -335,6 +428,68 @@ setlistener("/sim/model/start-idling", func(idle){
     }
 },0,0);
 
+setlistener("/instrumentation/clock/et-knob", func(et){
+    var tmp = et.getValue();
+    if(tmp == -1){
+	    chronometer.reset();
+   	}elsif(tmp==0){
+	    chronometer.stop();
+    }elsif(tmp==1){
+    	chronometer.start();
+    }
+},0,0);
+
+setlistener("instrumentation/transponder/mode-switch", func(transponder_switch){
+    var mode = transponder_switch.getValue();
+    var tcas_mode = 1;
+    if (mode == 3) tcas_mode = 2;
+    if (mode == 4) tcas_mode = 3;
+    setprop("instrumentation/tcas/inputs/mode",tcas_mode);
+},0,0);
+
+setlistener("instrumentation/tcas/outputs/traffic-alert", func(traffic_alert){
+    var alert = traffic_alert.getValue();
+    # any TCAS alert enables the traffic display
+    if (alert) setprop("instrumentation/radar/switch","on");
+},0,0);
+
+setlistener("controls/flight/speedbrake", func(spd_brake){
+    var brake = spd_brake.getValue();
+    # do not update lever when in AUTO position
+    if ((brake==0)and(getprop("controls/flight/speedbrake-lever")==2))
+    {
+        setprop("controls/flight/speedbrake-lever",0);
+    }
+    elsif ((brake==1)and(getprop("controls/flight/speedbrake-lever")==0))
+    {
+        setprop("controls/flight/speedbrake-lever",2);
+    }
+},0,0);
+
+setlistener("controls/flight/speedbrake-lever", func(spd_lever){
+    var lever = spd_lever.getValue();
+    controls.click(7);
+    # do not set speedbrake property unless changed (avoid revursive updates)
+    if ((lever==0)and(getprop("controls/flight/speedbrake")!=0))
+    {
+        setprop("controls/flight/speedbrake",0);
+    }
+    elsif ((lever==2)and(getprop("controls/flight/speedbrake")!=1))
+    {
+        setprop("controls/flight/speedbrake",1);
+    }
+},0,0);
+
+controls.toggleAutoSpoilers = func() {
+    # 0=spoilers retracted, 1=auto, 2=extended
+    if (getprop("controls/flight/speedbrake-lever")!=1)
+        setprop("controls/flight/speedbrake-lever",1);
+    else
+        setprop("controls/flight/speedbrake-lever",2*getprop("controls/flight/speedbrake"));
+}
+
+setlistener("controls/flight/flaps", func { controls.click(6) } );
+setlistener("/controls/gear/gear-down", func { controls.click(8) } );
 controls.gearDown = func(v) {
     if (v < 0) {
         if(!getprop("gear/gear[1]/wow"))setprop("/controls/gear/gear-down", 0);
@@ -343,27 +498,16 @@ controls.gearDown = func(v) {
     }
 }
 
-stall_horn = func{
-    var alert=0;
-    var kias=getprop("velocities/airspeed-kt");
-    if(kias>150){setprop("sim/sound/stall-horn",alert);return;};
-    var wow1=getprop("gear/gear[1]/wow");
-    var wow2=getprop("gear/gear[2]/wow");
-    if(!wow1 or !wow2){
-        var grdn=getprop("controls/gear/gear-down");
-        var flap=getprop("controls/flight/flaps");
-        if(kias<100){
-            alert=1;
-        }elsif(kias<120){
-            if(!grdn )alert=1;
-        }else{
-            if(flap==0)alert=1;
-        }
-    }
-    setprop("sim/sound/stall-horn",alert);
+controls.toggleLandingLights = func()
+{
+    var state = getprop("controls/lighting/landing-light[1]");
+    setprop("controls/lighting/landing-light[0]",!state);
+    setprop("controls/lighting/landing-light[1]",!state);
+    setprop("controls/lighting/landing-light[2]",!state);
 }
 
 var Startup = func{
+setprop("sim/model/armrest",1);
 setprop("controls/electric/engine[0]/generator",1);
 setprop("controls/electric/engine[1]/generator",1);
 setprop("controls/electric/engine[0]/bus-tie",1);
@@ -380,7 +524,9 @@ setprop("controls/lighting/wing-lights",1);
 setprop("controls/lighting/taxi-lights",1);
 setprop("controls/lighting/logo-lights",1);
 setprop("controls/lighting/cabin-lights",1);
-setprop("controls/lighting/landing-lights",1);
+setprop("controls/lighting/landing-light[0]",1);
+setprop("controls/lighting/landing-light[1]",1);
+setprop("controls/lighting/landing-light[2]",1);
 setprop("controls/engines/engine[0]/cutoff",0);
 setprop("controls/engines/engine[1]/cutoff",0);
 setprop("controls/fuel/tank/boost-pump",1);
@@ -389,9 +535,15 @@ setprop("controls/fuel/tank[1]/boost-pump",1);
 setprop("controls/fuel/tank[1]/boost-pump[1]",1);
 setprop("controls/fuel/tank[2]/boost-pump",1);
 setprop("controls/fuel/tank[2]/boost-pump[1]",1);
+setprop("controls/flight/elevator-trim",0);
+setprop("controls/flight/aileron-trim",0);
+setprop("controls/flight/rudder-trim",0);
+if (getprop("/sim/model/start-idling")==0) setprop("/sim/model/start-idling",1);
+setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
 }
 
 var Shutdown = func{
+setprop("/controls/gear/brake-parking",1);
 setprop("controls/electric/engine[0]/generator",0);
 setprop("controls/electric/engine[1]/generator",0);
 setprop("controls/electric/engine[0]/bus-tie",0);
@@ -408,7 +560,11 @@ setprop("controls/lighting/wing-lights",0);
 setprop("controls/lighting/taxi-lights",0);
 setprop("controls/lighting/logo-lights",0);
 setprop("controls/lighting/cabin-lights",0);
-setprop("controls/lighting/landing-lights",0);
+setprop("controls/lighting/landing-light[0]",0);
+setprop("controls/lighting/landing-light[1]",0);
+setprop("controls/lighting/landing-light[2]",0);
+setprop("controls/lighting/strobe",0);
+setprop("controls/lighting/beacon",0);
 setprop("controls/engines/engine[0]/cutoff",1);
 setprop("controls/engines/engine[1]/cutoff",1);
 setprop("controls/fuel/tank/boost-pump",0);
@@ -417,7 +573,22 @@ setprop("controls/fuel/tank[1]/boost-pump",0);
 setprop("controls/fuel/tank[1]/boost-pump[1]",0);
 setprop("controls/fuel/tank[2]/boost-pump",0);
 setprop("controls/fuel/tank[2]/boost-pump[1]",0);
+setprop("sim/model/armrest",0);
+if (getprop("/sim/model/start-idling")) setprop("/sim/model/start-idling",0);
+setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
 }
+
+var click_reset = func(propName) {
+    setprop(propName,0);
+}
+controls.click = func(button) {
+    if (getprop("sim/freeze/replay-state"))
+        return;
+    var propName="sim/sound/click"~button;
+    setprop(propName,1);
+    settimer(func { click_reset(propName) },0.4);
+}
+
 
 var update_systems = func {
     Efis.calc_kpa();
@@ -425,13 +596,18 @@ var update_systems = func {
     LHeng.update();
     RHeng.update();
     wiper.active();
-    stall_horn();
     if(getprop("controls/gear/gear-down")){
-    setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
-    setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
-    setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
-   
-    var kias=getprop("velocities/airspeed-kt");
+        setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
+        setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
+        setprop("sim/multiplay/generic/float[2]",getprop("gear/gear[2]/compression-m"));
     }
+    var et_tmp = getprop("/instrumentation/clock/ET-sec");
+   
+    var et_min = int(et_tmp * 0.0166666666667);
+    var et_hr = int(et_min * 0.0166666666667) * 100;
+    et_tmp = et_hr+et_min;
+    setprop("instrumentation/clock/ET-display",et_tmp);
+    
     settimer(update_systems,0);
 }
+

@@ -1,4 +1,4 @@
-<!-- 777-200
+<!-- 777-300
 Justin Smithies
 Syd Adams
 -->
@@ -6,6 +6,10 @@ Syd Adams
 <PropertyList>
 
     <path>flightdeck.ac</path>
+
+    <model>
+        <path>Models/Aircraft/marker.xml</path>
+    </model>
 
     <model>
         <name>Pedestal</name>
@@ -150,6 +154,38 @@ Syd Adams
             <pitch-deg>-10</pitch-deg>
         </offsets>
     </model>
+
+    <effect>
+	<inherits-from>Effects/lightmap</inherits-from>
+	<parameters>
+		<texture n="1">
+			<image>Aircraft/777-300/Models/Effects/lightmap-C1.png</image>
+		</texture>
+	</parameters>
+	<object-name>cockpit</object-name>
+ </effect>
+
+    <effect>
+	<inherits-from>Effects/lightmap</inherits-from>
+	<parameters>
+		<texture n="1">
+			<image>Aircraft/777-300/Models/Effects/lightmap-C2.png</image>
+		</texture>
+	</parameters>
+	<object-name>Panel.main</object-name>
+	<object-name>Panel.Rwall</object-name>
+	<object-name>Panel.Lwall</object-name>
+	<object-name>Panel.center</object-name>
+	<object-name>Pseat</object-name>
+	<object-name>Pseat.armrest</object-name>
+	<object-name>Cseat</object-name>
+	<object-name>Cseat.armrest</object-name>
+	<object-name>Seats</object-name>
+	<object-name>Tray</object-name>
+	<object-name>Yokeshaft</object-name>
+	<object-name>Yoke</object-name>
+	<object-name>Yoke.001</object-name>
+    </effect>
 
 <!--2d PFD-->
     <!--model>
@@ -297,6 +333,39 @@ Syd Adams
                 <property>sim/model/armrest</property>
             </binding>
         </action>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>Mstr.Warning</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Weu.mute_warnings();</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>Mstr.Warning.001</object-name>
+        <condition>
+            <or>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-warning</property>
+                <property>instrumentation/mk-viii/outputs/discretes/gpws-alert</property>
+                <property>instrumentation/weu/light/master-warning</property>
+            </or>
+        </condition>
+    </animation>
+    
+    <animation>
+        <type>select</type>
+        <object-name>Mstr.Caution.001</object-name>
+        <condition>
+            <property>instrumentation/weu/light/master-caution</property>
+        </condition>
     </animation>
 
 </PropertyList>

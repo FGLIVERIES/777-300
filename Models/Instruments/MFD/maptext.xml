@@ -47,7 +47,7 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>95</offset>
+                    <offset>80</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
@@ -81,7 +81,7 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>95</offset>
+                    <offset>80</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
@@ -116,7 +116,7 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>95</offset>
+                    <offset>80</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
@@ -565,10 +565,13 @@
 
         <layer>
             <condition>
-                <equals>
-                    <property>instrumentation/efis/inputs/lh-vor-adf</property>
-                    <value>1</value>
-                </equals>
+                <and>
+                    <equals>
+                        <property>instrumentation/efis/inputs/lh-vor-adf</property>
+                        <value>1</value>
+                    </equals>
+                    <property>instrumentation/nav/dme-in-range</property>
+                </and>
             </condition>
             <name>L VOR dme</name>
             <type>text</type>
@@ -671,10 +674,13 @@
 
         <layer>
             <condition>
-                <equals>
-                    <property>instrumentation/efis/inputs/rh-vor-adf</property>
-                    <value>1</value>
-                </equals>
+                <and>
+                    <equals>
+                        <property>instrumentation/efis/inputs/rh-vor-adf</property>
+                        <value>1</value>
+                    </equals>
+                    <property>instrumentation/nav[1]/dme-in-range</property>
+                </and>
             </condition>
             <name>R VOR dme</name>
             <type>text</type>
@@ -841,6 +847,37 @@
                 <transformation>
                     <type>y-shift</type>
                     <offset>-110</offset>
+                </transformation>
+            </transformations>
+        </layer>
+
+        <layer>
+            <condition>
+                <property>instrumentation/tcas/outputs/traffic-alert</property>
+            </condition>
+            <name>TRAFFIC</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>7</point-size>
+            <color>
+                <red>1.0</red>
+                <green>0.5</green>
+                <blue>0.0</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>literal</type>
+                    <text>TRAFFIC</text>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>85</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>-5</offset>
                 </transformation>
             </transformations>
         </layer>

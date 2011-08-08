@@ -5,7 +5,7 @@
     <model>
         <livery>
             <name type="string">TAM</name>
-            <texture>TAM-paint.png</texture>
+            <texture>TAM.png</texture>
         </livery>
         <lights>
             <texture>TAM-lights.png</texture>

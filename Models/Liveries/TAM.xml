@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<!-- 777-200ER Livery by Michael Smith <mdsmith2@highland.net> -->
+
 <PropertyList>
 <sim>
     <model>
         <livery>
             <name type="string">TAM</name>
-            <texture>TAM-Livery.png</texture>
+            <texture>TAM.png</texture>
         </livery>
         <lights>
-            <texture>TAM-Lights.png</texture>
+            <texture>TAM-lights.png</texture>
         </lights>
     </model>
 </sim>

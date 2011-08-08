@@ -5,7 +5,7 @@
     <model>
         <livery>
             <name type="string">Cathay Pacific</name>
-            <texture>CPA-paint</texture>
+            <texture>CPA-paint.png</texture>
         </livery>
         <lights>
             <texture>CPA-lights.png</texture>

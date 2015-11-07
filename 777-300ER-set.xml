@@ -210,7 +210,7 @@
                 <desc>toggle spoilers</desc>
             </key>
             <key>
-                <name>Ctrl-I</name>
+                <name>=</name>
                 <desc>toggle auto spoilers</desc>
             </key>
             <key>
@@ -440,8 +440,8 @@ Service Ceiling: 43,100ft
                     <property>instrumentation/afds/inputs/hdg-hold</property>
                 </binding>
             </key>
-            <key n="9">
-                <name>Ctrl-I</name>
+            <key n="61">
+                <name>=</name>
                 <desc>toggle auto spoilers</desc>
                 <binding>
                     <command>nasal</command>

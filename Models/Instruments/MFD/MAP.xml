@@ -12,6 +12,72 @@
 
         <layer>
             <condition>
+                 <not>
+                     <property>/instrumentation/efis/inputs/nd-centered</property>
+                 </not>
+				 <not-equals>
+					<property>/autopilot/route-manager/wp/id</property>
+					<value></value>
+				 </not-equals>
+            </condition>
+            <name>costam</name>
+            <w>16</w>
+            <h>16</h>
+            <texture>
+                <path>Aircraft/777-300/Models/Instruments/MFD/star_1.png</path>
+                <x1>0.0</x1>
+                <y1>0.0</y1>
+                <x2>1.0</x2>
+                <y2>1.0</y2>
+            </texture>
+            <transformations>
+                <transformation>
+                    <type>y-shift</type>
+                    <property>/aaa/route/y1</property>
+                </transformation>
+                <transformation>
+                    <type>x-shift</type>
+                    <property>/aaa/route/x1</property>
+                </transformation>
+            </transformations>
+            <emissive>true</emissive>
+        </layer>
+
+        <layer>
+            <condition>
+                 <not>
+                     <property>/instrumentation/efis/inputs/nd-centered</property>
+                 </not>
+				 <not-equals>
+					<property>/autopilot/route-manager/wp[1]/id</property>
+					<value></value>
+				 </not-equals>
+            </condition>
+            <name>costam</name>
+            <w>16</w>
+            <h>16</h>
+            <texture>
+                <path>Aircraft/777-300/Models/Instruments/MFD/star_2.png</path>
+                <x1>0.0</x1>
+                <y1>0.0</y1>
+                <x2>1.0</x2>
+                <y2>1.0</y2>
+            </texture>
+            <transformations>
+                <transformation>
+                    <type>y-shift</type>
+                    <property>/aaa/route/y2</property>
+                </transformation>
+                <transformation>
+                    <type>x-shift</type>
+                    <property>/aaa/route/x2</property>
+                </transformation>
+            </transformations>
+            <emissive>true</emissive>
+        </layer>		
+		
+        <layer>
+            <condition>
                 <not>
                     <property>instrumentation/efis/inputs/nd-centered</property>
                 </not>
@@ -107,7 +173,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -155,7 +222,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -278,7 +346,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -323,7 +392,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -578,7 +648,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -624,7 +695,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -741,7 +813,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>
@@ -784,7 +857,8 @@
             </transformation>
             <transformation>
                 <type>rotation</type>
-                <property>orientation/heading-magnetic-deg</property>
+                <!--  nav receiver has true heading, so subtract true (not magnetic) heading!  -->
+                <property>orientation/heading-deg</property> 
                 <scale>-1</scale>
             </transformation>
             <transformation>

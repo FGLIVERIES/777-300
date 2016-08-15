@@ -5,11 +5,21 @@
     <model>
         <livery>
             <name type="string">White</name>
-            <texture>paint1.png</texture>
+            <texture>/Liveries/PNG/paint1.png</texture>
         </livery>
+		
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+      </livery-door>
+		
         <lights>
-            <texture>lights1.png</texture>
+            <texture>/Liveries/PNG/lights1.png</texture>
         </lights>
+		
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>
+		
     </model>
 </sim>
 </PropertyList>

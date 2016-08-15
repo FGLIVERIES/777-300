@@ -5,8 +5,8 @@ Syd Adams
 
 <PropertyList>
 
- <path>eicas.ac</path>
-
+ <path>eicas.ac</path>  
+ 
     <panel>
         <path>Aircraft/777-300/Models/Instruments/EICAS/eicas-panel.xml</path>
         <bottom-left>

@@ -2,9 +2,9 @@
 
     <sim>
         <description>Boeing 777-300</description>
-        <author>Justin Smithies, Syd Adams</author>
+        <author>Justin Smithies, Syd Adams, Arminair</author>
         <status>Development</status>
-        <aircraft-version>20110805</aircraft-version>
+        <aircraft-version>20111229</aircraft-version>
         <flight-model>yasim</flight-model>
         <aero>777-300</aero>
         <fuel-fraction>0.75</fuel-fraction>
@@ -15,10 +15,10 @@
         <model>
             <path>Aircraft/777-300/Models/777-300.xml</path>
             <livery>
-                <file type="string">White</file>
+                <file type="string">arminair</file>
             </livery>
             <lights>
-                <file type="string">White</file>
+                <file type="string">arminair</file>
             </lights>
             <armrest type="double">0</armrest>
         </model>
@@ -32,6 +32,7 @@
                 <y-offset-m type="double">0.8</y-offset-m>
                 <z-offset-m type="double">-28.0781</z-offset-m>
                 <pitch-offset-deg>-13.5</pitch-offset-deg>
+				<default-field-of-view-deg type="double">60.0</default-field-of-view-deg>				
                 <limits>
                     <enabled type="bool">true</enabled>
                     <left>
@@ -130,6 +131,102 @@
         </config>
     </view>
 
+	<view n="102">
+	    <name>Right side view</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>		
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">3.864</x-offset-m>
+            <y-offset-m type="double">0.961</y-offset-m>
+            <z-offset-m type="double">-9.946</z-offset-m>
+		</config>
+	</view>
+	
+	<view n="103">
+	    <name>Front gear view</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">0.0025</x-offset-m>
+            <y-offset-m type="double">-3.2</y-offset-m>
+            <z-offset-m type="double">-21.5</z-offset-m>
+		</config>
+	</view>	
+	
+	<view n="104">
+	    <name>Visitor 1 view</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">0.015</x-offset-m>
+            <y-offset-m type="double">0.8</y-offset-m>
+            <z-offset-m type="double">-27.15</z-offset-m>
+		</config>
+	</view>	
+	
+	<view n="105">
+	    <name>Visitor 2 view</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">0.85</x-offset-m>
+            <y-offset-m type="double">0.8</y-offset-m>
+            <z-offset-m type="double">-27.15</z-offset-m>
+		</config>
+	</view>		
+	
+	<view n="106">
+	    <name>Passenger 1</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">2.52</x-offset-m>
+            <y-offset-m type="double">0.35</y-offset-m>
+            <z-offset-m type="double">-8.38</z-offset-m>
+		</config>
+	</view>		
+
+	<view n="107">
+	    <name>Passenger 2</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">-2.58</x-offset-m>
+            <y-offset-m type="double">0.33</y-offset-m>
+            <z-offset-m type="double">19.03</z-offset-m>
+		</config>
+	</view>		
+	
+	<view n="108">
+	    <name>Passenger 3</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">2.52</x-offset-m>
+            <y-offset-m type="double">0.35</y-offset-m>
+            <z-offset-m type="double">-0.6</z-offset-m>
+		</config>
+	</view>		
+	
     <airport>
         <runways>
             <start-offset-m>50</start-offset-m>
@@ -196,7 +293,7 @@
         <allow-toggle-cockpit>true</allow-toggle-cockpit>
 
         <help>
-            <title>777-300ER</title>
+            <title>777-300</title>
             <key>
                 <name>S</name>
                 <desc>autostart / shutdown</desc>
@@ -210,7 +307,7 @@
                 <desc>toggle spoilers</desc>
             </key>
             <key>
-                <name>=</name>
+                <name>Ctrl-I</name>
                 <desc>toggle auto spoilers</desc>
             </key>
             <key>
@@ -229,46 +326,155 @@
                 <name>Ctrl-W</name>
                 <desc>enable/disable EICAS warning unit</desc>
             </key>
-   <text>=== Tutorials ===
-Interactive tutorials are available to introduce you to this aircraft and its cockpit instruments.
-See main menu: "Help" - "Tutorials".
- 
-=== Takeoff Procedure ===
-Pre-departure:
-1. - Allocate your fuel, passengers and weight under Equipment/fuel and payload
-   - Ensure a complete systems checklist is carried out
-   - Use Pushback truck to taxi away from the terminal
+   <text>=====B777-300(ER) startup guide by SP-WKA=====
 
-Departure:
-2. Select 777-300/Autostart (or press 's') to get the engines running
-3. Set your flaps suitably for the conditions and runway length
-4. Release parking brakes
-5. Apply throttle gently, until at 75% throttle
-6. Rotate at around 140-160kt
-7. Raise landing gear at positive climb
-8. Maintain positive climb
+0. remember to:
+a) set the correct QNH (pressure) when below transition level
+b) set the fuel to a proper level in each tank (so you dont mess with the sliders when airborne :D)
+c) you can use ctrl+c to reveal all usable buttons and knobs
 
-=== Cruising ===
-Cruising Speed: Mach 0.84 (905 km/h, 490 knots, 560 mph) at 35,000 ft
-Service Ceiling: 43,100ft
+1. prepare systems:
+a) turn on the battery, taxi lights, rotating beacon and panel lights if you need it (button is placed)
+to tle left, left from the BCN light button.
+b) turn the APU knob clockwise (the knob next to the APU GEN), wait 1min for it to start-up
+b1) set APU knob to the middle position
+c) open APU and L, C, R ISLN bleed air valves to supply L and R ENG starters with compressed air
+d) turn on all 4 hydraulic pumps/valves. 2 in the center are for the flaps and spoilers (both
+pumps MUST be enabled), the same with the other two, they are for landing gear. the
+buttons are between electrical and fuel part of the panel.
 
-=== Landing ===
-1. Arm auto speedbrakes and suitable autobrake level (or decide to operate manually)
-2. Switch off cabin lights. Switch on landing lights if necessary
-3. Decend through 200kt, reaching roughly 160kt 1mile before reaching the apron
-4. Set flaps accordingly
-5. Land at roughly 140kt, touch down carefully and smoothly at 135kt
-6. Apply speedbrakes (when operating manually)
-7. Apply thrust reversal and apply throttle
-8. Lower throttle and deactivate thrust reversers
-9. If necessary, emergency brakes should be used (avoid overheating the brakes)
+2. prepare engines:
+a) start fuel pumps. there are 6: 2 for each tank. to enable fuel flow from a tank, you have
+to enable BOTH (just like with the hydraulics) pumps.
+b) enable the engine starters (you can turn on both one after another, but thats not really realistic)
+c) after N1 reach ~45, engine should be running on its own, self sustaining, fuel cutoff valves open
+automatically. eicas shows up a message that L(R) ENG STARTER is on.
+d) turn on both engine generators
+e), turn off APU (knob position 1) and BAT
+
+3. jettisonning fuel:
+a) just press the JETTISON ARM button, its hidden behind some knob in the right part of the OH panel,
+go to $0 a) if you cant find it
+b) monitor the fuel levels, press the button again to stop the process. (jettisonning will automatically
+stop when theres ~1000 gallons in each tank)
+c) fuel flow is 30 gallons per second.
+
+4. using the crossfeed (XFEED VALVE/PUMP):
+a) enable FWD xfeed pump and AFTER IT enable AFT pump. if you mess this, it wont work and you will have
+to repeat.
+b) watch the fuel indicators on the eicas as the fuel level gets equalized in both tanks, left and right.
+c) fuel flow is set to 4 gallons per second.
+
+
+=====B777-300(ER) checklists=====
+1. Pre-start checklist
+Parking brake SET
+Throttle IDLE
+Fuel flow CUTOFF
+BATT switch ON
+APU generator switch OFF
+APU starter knob OFF
+Bleed air valves ALL OFF
+Gear lever CHECK DOWN
+Flaps UP
+Spoiler RETRACTED
+Fuel quantity CHECK
+Engine Instruments CHECK
+De-ice/Aircraft lighting OFF
+Flight controls FREE AND CORRECT
+Check Weather ATIS, Flight Services
+De-Ice TEST/CHECK
+Request Clearance
+Beacon ON
+
+2. Start-up checklist
+Thrust levers IDLE
+Engine area CLEAR
+Eng 1 starter switch START
+Fuel flow CHECK
+N1 increasing as N2 incr. CHECK
+Eng 2 starter switch START
+Fuel flow CHECK
+N1 increasing as N2 incr. CHECK
+Oil pressure CHECK
+De-ice AS REQUIRED
+
+3. Before Taxi Checklist
+Nav lights ON
+Taxi lights ON
+Altimeter SET
+Standby instruments CHECK
+Radios and avionics SET FOR DEPARTURE
+Wipers CHECK
+Autopilot SET, dont activate
+Autothrottle SET, dont activate
+F/D ON
+Autobrake RTO
+Elevator trim SET for T/O
+Request Taxi Clearance
+
+4. Taxi Checklist
+Parking brake RELEASED
+Brakes/Gyro/Turn coordinator CHECK during taxi and turns
+Taxi to assigned runway SPEED Max. 20 knots
+
+5. Before Take-off Checklist
+Brakes SET
+Throttle IDLE
+Flaps AS REQUIRED
+Spoilers RETRACTED
+Flight instruments CHECKED
+Engine instruments CHECK
+Takeoff data (V1, VR, V2) CHECK
+Nav equipment CHECK
+Landing lights ON
+Taxi lights ON
+Strobe light ON
+De-ice AS REQUIRED
+Request Takeoff Clearance
+
+6. Take-off Checklist
+Smoothly increase thrust to 60% N1 let spool up
+Takeoff thrust FULL
+Brakes RELEASE
+V1 = 155 KIAS (descision)
+Vr = 160 KIAS (rotate)
+Pitch 10 deg. nose up
+V2 = 165 KIAS (safety speed)
+At Positive Climb Rate Touch Brakes
+Landing gear RETRACT
+At 190 KIAS RETRACT flaps to 1 deg
+At 210 KIAS RETRACT flaps up
+
+7. Climb-out Checklist
+Throttle AS REQUIRED
+Speed 250 KIAS
+Autothrottle ARM and SET
+Autopilot ON and SET
+Autobrake OFF
+Below 10000ft max. speed 250 KIAS
+ATC AS REQUIRED
+Landing Lights OFF
+Above 10000ft speed 280 KIAS
+
+8. Cruise Checklist
+At Transition Altitude (FL80) set Altimeter to 29.92inHg (1013mb)
+Accelerate to cruise speed
+FL180 0.67 mach
+FL240 0.75 mach
+FL280 0.80 mach
+FL330 0.84 mach
+Engine instruments CHECK
+Fuel quantity CHECK
+Radios TUNED and SET
+Lights AS REQUIRED
 </text>
         </help>
 
         <menubar>
             <default>
                 <menu n="100">
-                    <label>777-300ER</label>
+                    <label>777-300</label>
                     <enabled type="bool">true</enabled>
                     <item>
                         <label>Autostart</label>
@@ -277,7 +483,7 @@ Service Ceiling: 43,100ft
                             <property>sim/model/start-idling</property>
                         </binding>
                     </item>
-                    <item >
+                    <item>
                         <label>Pushback</label>
                         <name>pushback</name>
                         <binding>
@@ -285,6 +491,39 @@ Service Ceiling: 43,100ft
                             <dialog-name>pushback</dialog-name>
                         </binding>
                     </item>
+					<item>
+      					<label>Announcements</label>
+      					<binding>
+       					<command>nasal</command>
+       					<script>
+						var mal = gui.Dialog.new("/sim/gui/dialogs/announcements/menu/dialog", 
+                                                              "Aircraft/777-300/Systems/announcements.xml");
+        				mal.open();
+       					</script>
+      					</binding>
+     				</item>		
+					<item>
+      					<label>Failure system</label>
+      					<binding>
+       					<command>nasal</command>
+       					<script>
+						var mal = gui.Dialog.new("/sim/gui/dialogs/failures/menu/dialog", 
+                                                              "Aircraft/777-300/Systems/failures.xml");
+        				mal.open();
+       					</script>
+      					</binding>
+     				</item>	
+					<item>
+      					<label>Ground services</label>
+      					<binding>
+       					<command>nasal</command>
+       					<script>
+						var mal = gui.Dialog.new("/sim/gui/dialogs/services/menu/dialog", 
+                                                              "Aircraft/777-300/Systems/services.xml");
+        				mal.open();
+       					</script>
+      					</binding>
+     				</item>						
                     <item>
                         <label>Select Livery</label>
                         <binding>
@@ -306,6 +545,16 @@ Service Ceiling: 43,100ft
                             <script>dialogs.tiller_steering.open()</script>
                         </binding>
                     </item>
+				<item>
+					<label>Select MP-copilot</label>
+					<binding>
+						<command>nasal</command>
+						<script>
+							dual_control_tools.
+							copilot_dialog.show(aircraft_dual_control.copilot_type);
+						</script>
+					</binding>
+				</item>					
                 </menu>
             </default>
         </menubar>
@@ -336,7 +585,9 @@ Service Ceiling: 43,100ft
                 <int n="6" alias="/systems/electrical/outputs/landing-light[2]"/>
                 <int n="7" alias="/systems/electrical/outputs/nav-lights"/>
                 <int n="8" alias="/systems/electrical/outputs/cabin-lights"/>
-
+				
+				<bool n="0" alias="/controls/lighting/wing-lights"/>
+				
                 <float n="0" alias="/gear/gear[0]/compression-m"/>
                 <float n="1" alias="/gear/gear[1]/compression-m"/>
                 <float n="2" alias="/gear/gear[2]/compression-m"/>
@@ -345,6 +596,7 @@ Service Ceiling: 43,100ft
                 <float n="5" alias="/surface-positions/speedbrake-norm"/>
                 <float n="6" alias="/surface-positions/reverser-norm"/>
                 <string  alias="/sim/multiplay/callsign"/>
+				<string n="1" type="string"></string>
             </generic>
         </multiplay>
 
@@ -380,9 +632,9 @@ Service Ceiling: 43,100ft
 
     <consumables>
         <fuel>
-            <tank n="0"><name>LH Main</name></tank>
-            <tank n="1"><name>Center</name></tank>
-            <tank n="2"><name>RH Main</name></tank>
+            <tank n="0"><name>LH Main</name><selected type="bool">false</selected></tank>
+            <tank n="1"><name>Center</name><selected type="bool">false</selected></tank>
+            <tank n="2"><name>RH Main</name><selected type="bool">false</selected></tank>
         </fuel>
     </consumables>
 
@@ -440,14 +692,24 @@ Service Ceiling: 43,100ft
                     <property>instrumentation/afds/inputs/hdg-hold</property>
                 </binding>
             </key>
-            <key n="61">
-                <name>=</name>
+            <key n="9">
+                <name>Ctrl-I</name>
                 <desc>toggle auto spoilers</desc>
                 <binding>
                     <command>nasal</command>
                     <script>controls.toggleAutoSpoilers();</script>
                 </binding>
             </key>
+ <key n="10"> <!-- OSG -->
+  <name>Enter</name>
+  <desc>Move rudder right</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>property-adjust</command>
+   <property>/controls/flight/rudder</property>
+   <step type="double">0.05</step>
+  </binding>
+ </key>			
             <key n="12">
                 <name>Ctrl-L</name>
                 <desc>toggle cabin lights</desc>
@@ -456,14 +718,16 @@ Service Ceiling: 43,100ft
                     <property>controls/lighting/cabin-lights</property>
                 </binding>
             </key>
-            <key n="13">
-                <name>Ctrl-M</name>
-                <desc>mute current master warning</desc>
-                <binding>
-                    <command>nasal</command>
-                    <script>b777.Weu.mute_warnings();</script>
-                </binding>
-            </key>
+ <key n="13"> <!-- PLIB -->
+  <name>Enter</name>
+  <desc>Move rudder right</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>property-adjust</command>
+   <property>/controls/flight/rudder</property>
+   <step type="double">0.05</step>
+  </binding>
+ </key>
             <key n="14">
                 <name>Ctrl-N</name>
                 <desc>toggle LNAV lock</desc>
@@ -512,6 +776,97 @@ Service Ceiling: 43,100ft
                     <property>sim/model/start-idling</property>
                 </binding>
             </key>
+ <key n="93">
+  <name>]</name>
+  <desc>FUBAR 1</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))			
+	controls.flapsDown(1);   
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))	
+	controls.flapsDown(0);	
+	</script>
+   </binding>
+  </mod-up>
+ </key>	
+ <key n="91">
+  <name>[</name>
+  <desc>FUBAR 2</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+ 	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))
+	controls.flapsDown(-1);  
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))			
+	controls.flapsDown(0);	
+	</script>
+   </binding>
+  </mod-up>
+ </key> 
+  <key n="2">
+  <name>Ctrl-B</name>
+  <desc>FUBAR 3</desc>
+  <binding>
+   <command>property-toggle</command>
+   <property>/foo/bar</property>
+  </binding>
+ </key>
+ 
+  <key n="71">
+  <name>G</name>
+  <desc>Gear down</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))				   
+   controls.gearDown(1);
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))
+	controls.gearDown(0);
+	</script>
+   </binding>
+  </mod-up>
+ </key>
+ 
+  <key n="103">
+  <name>g</name>
+  <desc>Gear Up</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))				   
+   controls.gearDown(-1);
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+	if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))
+	controls.gearDown(0);
+	</script>
+   </binding>
+  </mod-up>
+ </key>
+ 
         </keyboard>
     </input>
 	
@@ -624,9 +979,9 @@ Service Ceiling: 43,100ft
             <inputs>
                 <mode type="int">0</mode>       <!-- 0=off, 1=standby, 2=TA-only, 3=auto(TA/RA) -->
             </inputs>
-            <!--voice>
-                <file-prefix type="string">Sounds/tcas/</file-prefix>
-            </voice-->
+            <voice>
+                <file-prefix type="string">Sounds/tcas/female/</file-prefix>
+            </voice>
             <speaker>                           <!-- Speaker Configuration -->
                 <max-dist type="double"> 2 </max-dist>        <!-- Max. distance where speaker is heard -->
                 <reference-dist type="double"> 1 </reference-dist> <!-- Distance to pilot -->
@@ -707,12 +1062,13 @@ Service Ceiling: 43,100ft
         <gear>
             <brake-parking type="bool">1</brake-parking>
             <tiller-cmd-norm type="double">0</tiller-cmd-norm>
-            <tiller-enabled type="bool" userarchive="y">true</tiller-enabled>
+            <!--tiller-enabled type="bool" userarchive="y">true</tiller-enabled-->
+			<tiller-enabled type="bool">false</tiller-enabled>
             <nosegear-steering-cmd-norm type="double">0</nosegear-steering-cmd-norm>
             <maingear-steering-cmd-norm type="double">0</maingear-steering-cmd-norm>
         </gear>
         <flight>
-            <speedbrake-lever type="int">1</speedbrake-lever>
+            <speedbrake-lever type="int">0</speedbrake-lever>
         </flight>
     </controls>
 
@@ -740,8 +1096,11 @@ Service Ceiling: 43,100ft
             <file>Aircraft/777-300/Nasal/gpws.nas</file>
             <file>Aircraft/777-300/Nasal/warnsystem.nas</file>
             <file>Aircraft/777-300/Nasal/brakesystem.nas</file>
+			<file>Aircraft/777-300/Nasal/icing.nas</file>
+			<file>Aircraft/777-300/Nasal/failures.nas</file>
             <file>Aircraft/777-300/Nasal/ground_steering.nas</file>
             <file>Aircraft/Generic/limits.nas</file>
+			<file>Aircraft/777-300/Nasal/doors.nas</file>
         </b777>
         <dialogs>
             <file>Aircraft/777-300/Nasal/dialogs.nas</file>
@@ -749,6 +1108,15 @@ Service Ceiling: 43,100ft
         <cdu>
             <file>Aircraft/Instruments-3d/cdu/boeing.nas</file>
         </cdu>
+	<dual_control_tools>
+		<file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+	</dual_control_tools>
+	<aircraft_dual_control>
+		<file>Aircraft/777-300/DualControl/777-300-dual-control.nas</file>
+	</aircraft_dual_control>
+	<dual_control>
+		<file>Aircraft/Generic/DualControl/pilot-dual-control.nas</file>
+	</dual_control>		
     </nasal>
 
     <limits>

@@ -26,6 +26,7 @@
     <animation>
         <type>rotate</type>
         <object-name>ET.switch</object-name>
+		<object-name>ET.switch.001</object-name>
         <property>instrumentation/clock/et-knob</property>
         <interpolation>
             <entry><ind>-1</ind><dep>-144</dep></entry>
@@ -47,6 +48,7 @@
     <animation>
         <type>rotate</type>
         <object-name>SET.switch</object-name>
+        <object-name>SET.switch.001</object-name>		
         <property>instrumentation/clock/set-knob</property>
         <interpolation>
             <entry><ind>0</ind><dep>0</dep></entry>
@@ -69,6 +71,7 @@
     <animation>
         <type>rotate</type>
         <object-name>UTC.switch</object-name>
+        <object-name>UTC.switch.001</object-name>		
         <property>instrumentation/clock/time-knob</property>
         <interpolation>
             <entry><ind>-1</ind><dep>-135</dep></entry>
@@ -284,5 +287,76 @@
             </mod-up>
         </action>
     </animation>
+
+	
+	<animation>
+		<type>material</type>
+		<object-name>Chrono.bezel</object-name>
+		<object-name>UTC.switch</object-name>
+		<object-name>Chrono.knob</object-name>
+		<object-name>ET.switch</object-name>
+		<object-name>SET.switch</object-name>	
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>
+
+ <animation>
+		<type>material</type>
+		<object-name>ET.switch.001</object-name>
+		<object-name>SET.switch.001</object-name>
+        <object-name>UTC.switch.001</object-name>
+		<object-name>Chrono.labels</object-name>
+		<object-name>Time.man</object-name>	
+		<object-name>Time.utc</object-name>	
+		<object-name>Time.date</object-name>
+		<object-name>Set.run</object-name>
+		<object-name>Set.hld</object-name>
+		<object-name>Set.mn</object-name>
+		<object-name>Set.hr</object-name>
+		<object-name>ET.reset</object-name>
+		<object-name>ET.hld</object-name>
+		<object-name>ET.run</object-name>			
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation>
+	
+<animation>
+		<type>material</type>	
+		<object-name>Plane.001</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>/aaa/displays-norm</factor-prop>
+		</emission>
+	</animation>
+	
 
 </PropertyList>

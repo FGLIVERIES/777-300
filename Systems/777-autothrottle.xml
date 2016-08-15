@@ -181,7 +181,7 @@
                 <equals>
                     <property>/instrumentation/afds/inputs/autothrottle-index</property>
                     <value>5</value>
-                </equals>
+                </equals>				
                 <not>
                     <property>/instrumentation/afds/inputs/ias-mach-selected</property>
                 </not>
@@ -199,11 +199,11 @@
             <prop>/controls/engines/engine[0]/throttle</prop>
         </output>
         <config>
-            <Kp>0.15</Kp>
+            <Kp>0.05</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
-            <Ti>20.0</Ti>
+            <Ti>10.0</Ti>
             <Td>0.00001</Td>
             <u_min>0.0</u_min>
             <u_max>1.0</u_max>
@@ -222,7 +222,7 @@
                 </equals>
                 <not>
                     <property>/instrumentation/afds/inputs/ias-mach-selected</property>
-                </not>
+                </not>				
                 <honor-passive>true</honor-passive>
             </condition>
         </enable>
@@ -237,11 +237,11 @@
             <prop>/controls/engines/engine[1]/throttle</prop>
         </output>
         <config>
-            <Kp>0.15</Kp>
+            <Kp>0.05</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
-            <Ti>20.0</Ti>
+            <Ti>10.0</Ti>
             <Td>0.00001</Td>
             <u_min>0.0</u_min>
             <u_max>1.0</u_max>

@@ -1,6 +1,8 @@
 <!-- 777-300
 Justin Smithies
 Syd Adams
+Wojciech Kaczmarski
+Leszek Tejwan
 -->
 
 <PropertyList>
@@ -16,7 +18,746 @@ Syd Adams
             livery_update.stop();
         </unload>
     </nasal>
+	
+	<!-- Door Pick Animations -->
+	<animation>
+		<type>pick</type>
+		<object-name>Cargo.door.1l</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("c1");
+				</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Cargo.door.2l</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("c2");
+				</script>
+			</binding>
+		</action>
+	</animation>	
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Cargo.door.1r</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("c3");
+				</script>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>Cargo.door.2r</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("c4");
+				</script>
+			</binding>
+		</action>
+	</animation>	
+	
+	<animation>
+		<type>pick</type>
+		<object-name>entry1l</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("l1");
+				</script>
+			</binding>
+		</action>
+	</animation>	
+	
+	<animation>
+		<type>pick</type>
+		<object-name>entry1r</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("r1");
+				</script>
+			</binding>
+		</action>
+	</animation>
 
+	<animation>
+		<type>pick</type>
+		<object-name>entry2l</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("l2");
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>entry2r</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("r2");
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>entry3l</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("l3");
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>entry3r</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("r3");
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>entry4l</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("l4");
+				</script>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<object-name>entry4r</object-name>
+		<action>
+			<button>0</button>
+			<repeatable type="bool">false</repeatable>
+			<binding>
+				<command>nasal</command>
+				<script>
+				 b777.doors.toggle("r4");
+				</script>
+			</binding>
+		</action>
+	</animation>	
+
+<!-- Door Translate Animations -->
+
+	<animation>
+		<name>L1 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry1l</object-name>
+		<property>aaa/door-positions/l1/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>L1 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry1l</object-name>
+		<property>aaa/door-positions/l1/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>R1 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry1r</object-name>
+		<property>aaa/door-positions/r1/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>R1 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry1r</object-name>
+		<property>aaa/door-positions/r1/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>L2 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry2l</object-name>
+		<object-name>entry2l.light</object-name>
+		<property>aaa/door-positions/l2/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>L2 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry2l</object-name>
+		<object-name>entry2l.light</object-name>
+		<property>aaa/door-positions/l2/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<name>R2 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry2r</object-name>
+		<object-name>entry2r.light</object-name>
+		<property>aaa/door-positions/r2/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>R2 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry2r</object-name>
+		<object-name>entry2r.light</object-name>
+		<property>aaa/door-positions/r2/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<name>L3 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry3l</object-name>
+		<property>aaa/door-positions/l3/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>L3 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry3l</object-name>
+		<property>aaa/door-positions/l3/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<name>R3 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry3r</object-name>
+		<property>aaa/door-positions/r3/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>R3 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry3r</object-name>
+		<property>aaa/door-positions/r3/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<name>L4 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry4l</object-name>
+		<property>aaa/door-positions/l4/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0.2</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>L4 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry4l</object-name>
+		<property>aaa/door-positions/l4/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>-0.2</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<name>R4 Door X-translate</name>
+		<type>translate</type>
+		<object-name>entry4r</object-name>
+		<property>aaa/door-positions/r4/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>-0.2</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>R4 Door Y-translate</name>
+		<type>translate</type>
+		<object-name>entry4r</object-name>
+		<property>aaa/door-positions/r4/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0.2</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>	
+	
+	<animation>
+		<name>C1</name>
+		<type>rotate</type>
+		<object-name>Cargo.door.1l</object-name>
+		<object-name>Cargo.door.1l.int</object-name>
+		<property>aaa/door-positions/c1/position-norm</property>
+		<factor>110</factor>
+        <center>
+            <x-m>-18.957</x-m>
+            <y-m>-3.046</y-m>
+            <z-m>-0.648</z-m>
+        </center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>	
+	
+	<animation>
+		<name>C2</name>
+		<type>rotate</type>
+		<object-name>Cargo.door.2l</object-name>
+		<object-name>Cargo.door.2l.int</object-name>
+		<property>aaa/door-positions/c2/position-norm</property>
+		<factor>110</factor>
+        <center>
+            <x-m>20.928</x-m>
+            <y-m>-3.03</y-m>
+            <z-m>-0.659</z-m>
+        </center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>	
+
+	<animation>
+		<name>C3</name>
+		<type>rotate</type>
+		<object-name>Cargo.door.1r</object-name>
+		<object-name>Cargo.door.1r.int</object-name>
+		<property>aaa/door-positions/c3/position-norm</property>
+		<factor>110</factor>
+        <center>
+            <x-m>-19.299</x-m>
+            <y-m>3.037</y-m>
+            <z-m>-0.661</z-m>
+        </center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>	
+	
+	<animation>
+		<name>C4</name>
+		<type>rotate</type>
+		<object-name>Cargo.door.2r</object-name>
+		<object-name>Cargo.door.2r.int_1</object-name>
+		<object-name>Cargo.door.2r.int_0</object-name>
+		<property>aaa/door-positions/c4/position-norm</property>
+		<factor>110</factor>
+        <center>
+            <x-m>20.846</x-m>
+            <y-m>3.029</y-m>
+            <z-m>-0.681</z-m>
+        </center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>	
+	
+	<!--Ram air turbine-->
+	<animation>
+		<name>rat</name>
+		<type>rotate</type>
+		<object-name>raturbine</object-name>
+		<object-name>rat.holder</object-name>
+		<property>aaa/door-positions/rat/position-norm</property>
+		<factor>90</factor>
+        <center>
+            <x-m>10.987</x-m>
+            <y-m>2.535</y-m>
+            <z-m>-3.029</z-m>
+        </center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>rat</name>
+		<type>rotate</type>
+		<object-name>rat.door</object-name>
+		<property>aaa/door-positions/rat/position-norm</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>110</dep></entry>
+			<entry><ind>1</ind><dep>110</dep></entry>
+		</interpolation>
+        <center>
+            <x-m>10.565</x-m>
+            <y-m>2.675</y-m>
+            <z-m>-3.147</z-m>
+        </center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+    
+	
+	<animation>
+        <name>raturbine</name>
+		<type>spin</type>
+		<object-name>raturbine</object-name>
+		<factor>10</factor>
+		<property>velocities/airspeed-kt</property>
+		<axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <center>
+            <x-m>10.431</x-m>
+            <y-m>2.534</y-m>
+            <z-m>-2.906</z-m>
+        </center>
+    </animation>
+
+	<!--  RAT - END -->
+	
+    <animation>
+        <type>select</type>
+        <object-name>Rhlightedwing.b</object-name>
+		<object-name>Rhlightedwing.a</object-name>
+		<object-name>Lhlightedwing.a</object-name>
+		<object-name>Lhlightedwing.b</object-name>
+		<object-name>Lhlightedreverse</object-name>
+		<object-name>Rhlightedreverse</object-name>
+        <condition>
+				<property>sim/multiplay/generic/bool[0]</property>
+        </condition>
+    </animation>	
+	
+	<animation>
+		<type>material</type>
+		<object-name>Passenger.seats.1</object-name>
+		<object-name>Passenger.seats.2</object-name>
+		<object-name>interior.1</object-name>
+		<object-name>floor</object-name>
+		<object-name>ceiling</object-name>
+		<object-name>walls</object-name>
+		<object-name>entry.tunnel_1</object-name>
+		<object-name>entry.tunnel_0</object-name>
+		<object-name>Cargo.walls.01_2</object-name>
+		<object-name>Cargo.walls.01_0</object-name>
+		<object-name>Cargo.walls.01_1</object-name>
+		<object-name>cargo.roof</object-name>
+		<object-name>Cargo.door.1l.int</object-name>
+		<object-name>Cargo.door.1r.int</object-name>
+		<object-name>Cargo.door.2l.int</object-name>
+		<object-name>Cargo.door.2r.int_0</object-name>
+		<object-name>Cargo.door.2r.int_1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+			</greater-than-equals>
+                    <greater-than>
+                        <property>/sim/time/sun-angle-rad</property>
+                        <value>1.55</value>
+                    </greater-than>
+                    <property>sim/multiplay/generic/int[8]</property>
+        </condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>	
+	
+   <animation>
+   <type>textranslate</type>
+   <object-name>Glass.001</object-name>
+	<property>/aaa/windows_ice/left1</property>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+   <animation>
+   <type>textranslate</type>
+   <object-name>Glass.002</object-name>
+	<property>/aaa/windows_ice/right1</property>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+   <animation>
+   <type>textranslate</type>
+   <object-name>Glass.003</object-name>
+	<property>/aaa/windows_ice/right2</property>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+   <animation>
+   <type>textranslate</type>
+   <object-name>Glass.004</object-name>
+	<property>/aaa/windows_ice/right3</property>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+   <animation>
+   <type>textranslate</type>
+   <object-name>Glass.005</object-name>
+	<property>/aaa/windows_ice/left2</property>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+   <animation>
+   <type>textranslate</type>
+   <object-name>Glass.006</object-name>
+	<property>/aaa/windows_ice/left3</property>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation> 
+	
+    <animation>
+        <type>rotate</type>
+        <object-name>Lwiper</object-name>
+        <property>/aaa/lwiper/degrees</property>
+        <center>
+            <x-m>-29.335</x-m>
+            <y-m>-0.164</y-m>
+            <z-m>0.477</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Rwiper</object-name>
+        <property>/aaa/rwiper/degrees</property>
+        <center>
+            <x-m>-29.335</x-m>
+            <y-m>0.166</y-m>
+            <z-m>0.477</z-m>
+        </center>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>		
+	
     <animation>
         <type>material</type>
         <object-name>Fuselage</object-name>
@@ -28,7 +769,12 @@ Syd Adams
         <object-name>Lmain.geardoor</object-name>
         <object-name>Engines</object-name>
         <object-name>Reversers</object-name>
-        <object-name>Wings</object-name>
+		<object-name>Lwing.a</object-name>
+        <object-name>Lwing.b</object-name>
+		<object-name>Lwing.c</object-name>
+		<object-name>Rwing.a</object-name>
+		<object-name>Rwing.b</object-name>
+		<object-name>Rwing.c</object-name>
         <object-name>Laileron</object-name>
         <object-name>Laileron_int_1</object-name>
         <object-name>Lflap4</object-name>
@@ -43,11 +789,17 @@ Syd Adams
         <object-name>LHstab</object-name>
         <object-name>LHelevator</object-name>
         <object-name>RHelevator</object-name>
+		<object-name>Fuselage.002</object-name>
+		<object-name>rat.door</object-name>
+		<object-name>Cargo.door.1l</object-name>
+		<object-name>Cargo.door.1r</object-name>
+		<object-name>Cargo.door.2l</object-name>
+		<object-name>Cargo.door.2r</object-name>
         <property-base>sim/model/livery</property-base>
         <texture-prop>texture</texture-prop>
-        <texture>paint1.png</texture>
+        <texture>/Liveries/PNG/paint1.png</texture>
     </animation>
-
+	
     <animation>
         <type>material</type>
         <object-name>RFdoor.001</object-name>
@@ -57,11 +809,43 @@ Syd Adams
         <object-name>FuselageL</object-name>
         <object-name>FuselageR</object-name>
         <object-name>Fuselage.001</object-name>
+		<object-name>Rhlightedwing.a</object-name>
+		<object-name>Rhlightedwing.b</object-name>
+		<object-name>Lhlightedwing.a</object-name>
+		<object-name>Lhlightedwing.b</object-name>
+		<object-name>Lhlightedreverse</object-name>
+		<object-name>Rhlightedreverse</object-name>
         <property-base>sim/model/lights</property-base>
         <texture-prop>texture</texture-prop>
-        <texture>lights1.png</texture>
+        <texture>/Liveries/PNG/lights1.png</texture>
     </animation>
 
+		<animation>
+        <type>material</type>
+		<object-name>entry1l</object-name>
+		<object-name>entry1r</object-name>
+		<object-name>entry2l</object-name>
+		<object-name>entry2r</object-name>
+		<object-name>entry3l</object-name>
+		<object-name>entry3r</object-name>
+		<object-name>entry4l</object-name>
+		<object-name>entry4r</object-name>
+		<object-name>entry.evac.l</object-name>
+		<object-name>entry.evac.r</object-name>
+		<property-base>sim/model/livery-door</property-base>
+        <texture-prop>texture</texture-prop>
+        <texture>/Liveries/PNG/entry.png</texture>
+	</animation>
+ 
+ 	<animation>
+        <type>material</type>
+       	<object-name>entry2l.light</object-name>
+		<object-name>entry2r.light</object-name>
+        <property-base>sim/model/lights-door</property-base>
+        <texture-prop>texture</texture-prop>
+        <texture>/Liveries/PNG/entry.lights.png</texture>
+    </animation>
+	
     <model>
         <name>flightdeck</name>
         <path>Aircraft/777-300/Models/flightdeck.xml</path>
@@ -90,9 +874,12 @@ Syd Adams
         <object-name>FrtStrut</object-name>
         <object-name>Lstrut</object-name>
         <object-name>Rstrut</object-name>
-        <object-name>Rslat1.001</object-name>
-        <object-name>Lslat1.001</object-name>
-        <object-name>Wheaters</object-name>
+        <object-name>Rslat2a</object-name>
+        <object-name>Lslat2a</object-name>
+		<object-name>Rslat2b</object-name>
+        <object-name>Lslat2b</object-name>
+        <object-name>Lwheater</object-name>
+		<object-name>Rwheater</object-name>
         <object-name>LandingLights</object-name>
         <object-name>taxiL-off</object-name>
     </animation>
@@ -646,11 +1433,6 @@ Syd Adams
         </axis>
     </animation>
 
-<!--
-For the B767, the lockout is at around approx 278 kts or Mach .59.
-From Maintenance Training Manual
-Outboard Aileron Lockout Schedule
--->
     <animation>
         <type>rotate</type>
         <object-name>Laileron_int_1</object-name>
@@ -722,7 +1504,8 @@ Outboard Aileron Lockout Schedule
 
     <animation>
         <type>rotate</type>
-        <object-name>hinge2</object-name>
+        <object-name>hinge2l</object-name>
+		<object-name>hinge2r</object-name>
         <property>surface-positions/flap-pos-norm</property>
         <factor>15</factor>
         <center>
@@ -739,7 +1522,8 @@ Outboard Aileron Lockout Schedule
 
     <animation>
         <type>rotate</type>
-        <object-name>hinge3</object-name>
+        <object-name>hinge3l</object-name>
+		<object-name>hinge3r</object-name>
         <property>surface-positions/flap-pos-norm</property>
         <factor>15</factor>
         <center>
@@ -757,6 +1541,8 @@ Outboard Aileron Lockout Schedule
     <animation>
         <type>translate</type>
         <object-name>Reversers</object-name>
+		<object-name>Lhlightedreverse</object-name>
+		<object-name>Rhlightedreverse</object-name>
         <property>sim/multiplay/generic/float[6]</property>
         <factor>0.7</factor>
         <axis>
@@ -768,10 +1554,16 @@ Outboard Aileron Lockout Schedule
 
     <animation>
         <type>translate</type>
-        <object-name>Rslat1</object-name>
-        <object-name>Lslat1</object-name>
-        <object-name>Rslat1.001</object-name>
-        <object-name>Lslat1.001</object-name>
+        <object-name>Rslat1a</object-name>
+        <object-name>Lslat1a</object-name>
+        <object-name>Rslat2a</object-name>
+        <object-name>Lslat2a</object-name>
+		<object-name>Rslat1b</object-name>
+        <object-name>Lslat1b</object-name>
+        <object-name>Rslat2b</object-name>
+        <object-name>Lslat2b</object-name>
+		<object-name>Lwheater</object-name>
+		<object-name>Rwheater</object-name>
         <property>surface-positions/slats</property>
         <factor>0.4</factor>
         <axis>
@@ -787,6 +1579,7 @@ Outboard Aileron Lockout Schedule
     <animation>
         <type>select</type>
         <object-name>navlights</object-name>
+		<object-name>navlights.001</object-name>
         <object-name>redflash</object-name>
         <object-name>whiteflash</object-name>
         <object-name>greenflash</object-name>
@@ -815,6 +1608,7 @@ Outboard Aileron Lockout Schedule
     <animation>
         <type>select</type>
         <object-name>FuselageL</object-name>
+		<object-name>entry2l.light</object-name>
         <object-name>LHLND.flare</object-name>
         <condition>
             <greater-than>
@@ -845,6 +1639,7 @@ Outboard Aileron Lockout Schedule
         <type>select</type>
         <object-name>RHLND.flare</object-name>
         <object-name>FuselageR</object-name>
+		<object-name>entry2r.light</object-name>
         <condition>
             <greater-than>
                 <property>sim/multiplay/generic/int[6]</property>
@@ -1240,20 +2035,6 @@ Outboard Aileron Lockout Schedule
         </condition>
     </animation>
 
-    <animation>
-        <type>select</type>
-        <object-name>cabinlighting</object-name>
-        <condition>
-                <and>
-                    <greater-than>
-                        <property>/sim/time/sun-angle-rad</property>
-                        <value>1.55</value>
-                    </greater-than>
-                    <property>sim/multiplay/generic/int[8]</property>
-                </and>
-        </condition>
-    </animation>
-
 <!--   engines   -->
 
     <animation>
@@ -1290,7 +2071,7 @@ Outboard Aileron Lockout Schedule
             <z-m>-2.994</z-m>
         </center>
         <axis>
-            <x>-1.0</x>
+            <x>1.0</x>
             <y>0</y>
             <z>0</z>
         </axis>
@@ -1308,7 +2089,7 @@ Outboard Aileron Lockout Schedule
             <z-m>-2.994</z-m>
         </center>
         <axis>
-            <x>-1.0</x>
+            <x>1.0</x>
             <y>0</y>
             <z>0</z>
         </axis>
@@ -1367,8 +2148,10 @@ Outboard Aileron Lockout Schedule
     <animation>
         <type>rotate</type>
         <object-name>Frontgear</object-name>
-        <property>controls/flight/rudder</property>
-        <factor>60</factor>
+		<property>controls/gear/nosegear-steering-cmd-norm</property>
+        <factor>70</factor>
+        <!--property>controls/flight/rudder</property>
+        <factor>60</factor-->
         <center>
             <x-m>-24.5221</x-m>
             <y-m>0.0</y-m>
@@ -1842,23 +2625,6 @@ Outboard Aileron Lockout Schedule
         </center>
     </animation>
 
-    <animation>
-        <type>spin</type>
-        <object-name>LHwheel.3</object-name>
-        <property>gear/gear[1]/rollspeed-ms</property>
-        <factor>10</factor>
-        <axis>
-            <x>0</x>
-            <y>-1</y>
-            <z>0</z>
-        </axis>
-        <center>
-            <x-m>7.897</x-m>
-            <y-m>5.617</y-m>
-            <z-m>-5.100</z-m>
-        </center>
-    </animation>
-
 <!--   Right gear -->
 
     <animation>
@@ -2143,6 +2909,23 @@ Outboard Aileron Lockout Schedule
     </animation>
 
     <animation>
+        <type>rotate</type>
+        <object-name>LHwheel.3</object-name>
+        <property>/controls/gear/maingear-steering-cmd-norm</property>
+        <factor>-8</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+        <center>
+            <x-m>7.897</x-m>
+            <y-m>-5.620</y-m>
+            <z-m>-5.100</z-m>
+        </center>
+    </animation>	
+	
+    <animation>
         <type>spin</type>
         <object-name>RHwheel.3</object-name>
         <property>gear/gear[2]/rollspeed-ms</property>
@@ -2155,6 +2938,23 @@ Outboard Aileron Lockout Schedule
         <center>
             <x-m>7.897</x-m>
             <y-m>5.617</y-m>
+            <z-m>-5.100</z-m>
+        </center>
+    </animation>
+	
+	    <animation>
+        <type>spin</type>
+        <object-name>LHwheel.3</object-name>
+        <property>gear/gear[1]/rollspeed-ms</property>
+        <factor>10</factor>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+        <center>
+            <x-m>7.897</x-m>
+            <y-m>-5.620</y-m>
             <z-m>-5.100</z-m>
         </center>
     </animation>
@@ -2271,6 +3071,66 @@ Outboard Aileron Lockout Schedule
  </offsets>
 </model>
 
+<model>
+ <name>baggage</name>
+ <path>Aircraft/777-300/Models/Service/Baggage/baggage.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>fuel</name>
+ <path>Aircraft/777-300/Models/Service/Fuel/fuel.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>service_tech</name>
+ <path>Aircraft/777-300/Models/Service/Service_tech/service_tech.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>catering</name>
+ <path>Aircraft/777-300/Models/Service/Catering/catering.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>service_pax</name>
+ <path>Aircraft/777-300/Models/Service/Service_PAX/services.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>service_cargo</name>
+ <path>Aircraft/777-300/Models/Service/Service_Cargo/service.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
 <animation>
     <type>select</type>
     <object-name>Firetruck1</object-name>
@@ -2286,4 +3146,613 @@ Outboard Aileron Lockout Schedule
     </condition>
 </animation>
 
+<animation>
+    <type>select</type>
+    <object-name>baggage</object-name>
+    <condition>
+            <or>
+			<property>aaa/animation/baggage</property>	
+			<property>aaa/door-positions/c1/position-norm</property>
+			<property>aaa/door-positions/c4/position-norm</property>
+			</or>
+    </condition>
+</animation>
+
+<animation>
+    <type>select</type>
+    <object-name>service_tech</object-name>
+    <condition>
+            <property>aaa/animation/service-tech</property>
+    </condition>
+</animation>
+
+<animation>
+    <type>select</type>
+    <object-name>catering</object-name>
+    <condition>
+            <property>aaa/animation/catering</property>
+    </condition>
+</animation>
+
+<animation>
+    <type>select</type>
+    <object-name>service_pax</object-name>
+    <condition>
+			<or>
+            <property>aaa/animation/service-pax</property>
+			<!--property>aaa/door-positions/l4/position-norm</property>
+			<property>aaa/door-positions/r4/position-norm</property-->
+			</or>
+    </condition>
+</animation>
+
+<animation>
+    <type>select</type>
+    <object-name>fuel</object-name>
+    <condition>
+            <property>aaa/animation/fuel</property>
+    </condition>
+</animation>
+
+<animation>
+    <type>select</type>
+    <object-name>service_cargo</object-name>
+    <condition>
+						<or>
+            <property>aaa/animation/service-cargo</property>
+			<property>aaa/door-positions/c2/position-norm</property>
+			<property>aaa/door-positions/c3/position-norm</property>
+			</or>
+    </condition>
+</animation>
+
+<!--WING FLEX-->
+ <animation>
+  <type>rotate</type>
+  <object-name>Lwing.b</object-name>
+  <object-name>Lwing.c</object-name>
+  <object-name>Lslat1a</object-name>
+  <object-name>Lslat1b</object-name>
+  <object-name>Laileron_0</object-name>
+  <object-name>Laileron_1</object-name>
+  <object-name>Lbrake1</object-name>
+  <object-name>Lflap4</object-name>
+  <object-name>Lslat2a</object-name>
+  <object-name>Lslat2b</object-name>
+  <object-name>Rflap4.002</object-name>
+  <object-name>Wings_0</object-name>
+  <object-name>hinge2l</object-name>
+  <object-name>hinge3l</object-name>
+  <object-name>navlights</object-name>
+  <object-name>rednav</object-name>
+  <object-name>Lhlightedwing.b</object-name>
+  <property>/accelerations/pilot-gdamped</property>
+  <factor>1.6</factor>
+  <offset-deg>-1.6</offset-deg>   
+  <center>
+   <x-m>5.745</x-m>
+   <y-m>-11.105</y-m>
+   <z-m>-0.546</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>Rwing.b</object-name>
+  <object-name>Rwing.c</object-name>
+  <object-name>Rslat1a</object-name>
+  <object-name>Rslat1b</object-name>
+  <object-name>Raileron_0</object-name>
+  <object-name>Raileron_1</object-name>
+  <object-name>Rbrake1</object-name>
+  <object-name>Rflap4</object-name>
+  <object-name>Rslat2a</object-name>
+  <object-name>Rslat2b</object-name>
+  <object-name>Rflap4.001</object-name>
+  <object-name>Wings_0.001</object-name>
+  <object-name>hinge2r</object-name>
+  <object-name>hinge3r</object-name>
+  <object-name>navlights.001</object-name>
+  <object-name>greennav</object-name>
+  <object-name>Rhlightedwing.b</object-name>
+  <property>/accelerations/pilot-gdamped</property>
+  <factor>1.6</factor>
+  <offset-deg>-1.6</offset-deg>   
+  <center>
+   <x-m>5.745</x-m>
+   <y-m>11.105</y-m>
+   <z-m>-0.546</z-m>
+  </center>
+  <axis>
+   <x>-1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation> 
+
+<!--ENGINE FIRE-->
+	<model>
+		<name>Engine fire 1</name>
+		<path>Aircraft/777-300/Models/Effects/enginefire.xml</path>
+		<offsets>
+  		 <x-m>1.698</x-m>
+ 		 <y-m>-9.873</y-m>
+ 		 <z-m>-3.106</z-m>
+		</offsets>
+		<condition>
+			<property>engines/engine[0]/on-fire</property>
+		</condition>
+	</model>
+
+	<model>
+		<name>Engine fire 2</name>
+		<path>Aircraft/777-300/Models/Effects/enginefire.xml</path>
+		<offsets>
+  		 <x-m>1.698</x-m>
+ 		 <y-m>9.994</y-m>
+ 		 <z-m>-3.106</z-m>
+		</offsets>
+		<condition>
+			<property>engines/engine[1]/on-fire</property>
+		</condition>
+	</model>
+	
+	<model>
+		<name>Engine ext 1</name>
+		<path>Aircraft/777-300/Models/Effects/ext.xml</path>
+		<offsets>
+  		 <x-m>1.698</x-m>
+ 		 <y-m>-9.873</y-m>
+ 		 <z-m>-3.106</z-m>
+		</offsets>
+		<condition>
+			<property>engines/engine[0]/extinguishing</property>
+		</condition>
+	</model>
+
+	<model>
+		<name>Engine ext 2</name>
+		<path>Aircraft/777-300/Models/Effects/ext.xml</path>
+		<offsets>
+  		 <x-m>1.698</x-m>
+ 		 <y-m>9.994</y-m>
+ 		 <z-m>-3.106</z-m>
+		</offsets>
+		<condition>
+			<property>engines/engine[1]/extinguishing</property>
+		</condition>
+	</model>	
+	
+	<model>
+		<name>Dump left</name>
+		<path>Aircraft/777-300/Models/Effects/jettison.xml</path>
+		<offsets>
+  		 <x-m>14.931</x-m>
+ 		 <y-m>-25.492</y-m>
+ 		 <z-m>0.547</z-m>
+		</offsets>
+		<condition>
+			<property>/aaa/jettison</property>
+		</condition>
+	</model>
+
+	<model>
+		<name>Dump right</name>
+		<path>Aircraft/777-300/Models/Effects/jettison.xml</path>
+		<offsets>
+  		 <x-m>14.931</x-m>
+ 		 <y-m>25.492</y-m>
+ 		 <z-m>0.547</z-m>
+		</offsets>
+		<condition>
+			<property>/aaa/jettison</property>
+		</condition>
+	</model>	
+	
+<!--    evacuations traps    -->	
+	<model>
+ <name>evacuation</name>
+ <path>Aircraft/777-300/Models/Service/Evacuation/evacuation.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<animation>
+    <type>select</type>
+    <object-name>evacuation</object-name>
+    <condition>
+            <property>/aaa/switches/switch62</property>
+    </condition>
+</animation>
+
+<!--    oxygen masks    -->	
+
+<model>
+ <name>oxygenmasks</name>
+ <path>Aircraft/777-300/Models/Effects/Oxygen_masks/oxygen_mask.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<animation>
+    <type>select</type>
+    <object-name>oxygenmasks</object-name>
+    <condition>
+			<equals>
+            <property>/aaa/switches/oxygenswitch</property>
+				<value>1</value>
+			</equals>
+		</condition>
+</animation>
+
+<animation>
+    <type>select</type>
+    <object-name>ceiling.lettering1</object-name>
+    <condition>
+			<equals>
+				<property>/aaa/seatbelts</property>
+				<value>1</value>
+			</equals>
+		</condition>
+</animation>
+
+<animation>
+    <type>select</type>
+    <object-name>ceiling.lettering2</object-name>
+		<condition>
+			<equals>
+				<property>/aaa/no-smkg</property>
+				<value>1</value>
+			</equals>
+		</condition>
+</animation>
+
+<!--floor emer.lights -->
+
+<animation>
+    <type>select</type>
+    <object-name>floor.emerlights002</object-name>
+		<condition>
+			<not-equals>
+				<property>/aaa/pdstl/switches/floorlightswitch</property>
+				<value>0</value>
+			</not-equals>
+		</condition>
+</animation>
+
+<!--personel - flight attendants -->
+
+<model>
+ <name>flight_attendants</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<model>
+ <name>flight_attendants_reargalley</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_reargalley.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants</object-name>
+	<object-name>flight_attendants_reargalley</object-name>
+	<condition>
+		<equals>
+			<property>/aaa/no-smkg</property>
+			<value>1</value>
+		</equals>
+	</condition>
+</animation>
+
+
+<model>
+ <name>flight_attendants_door1l</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door1l.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door1l</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/l1/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+<model>
+ <name>flight_attendants_door1r</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door1r.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door1r</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/r1/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+<model>
+ <name>flight_attendants_door2l</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door2l.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door2l</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/l2/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+<model>
+ <name>flight_attendants_door2r</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door2r.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door2r</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/r2/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+<model>
+ <name>flight_attendants_door3l</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door3l.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door3l</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/l3/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+<model>
+ <name>flight_attendants_door3r</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door3r.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door3r</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/r3/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+<model>
+ <name>flight_attendants_door4l</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door4l.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door4l</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/l4/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+<model>
+ <name>flight_attendants_door4r</name>
+ <path>Aircraft/777-300/Models/Personel/Flight_attendants/flight_attendants_door4r.xml</path>
+ <offsets>
+  <x-m>0</x-m>
+  <y-m>0</y-m>
+  <z-m>0</z-m>
+ </offsets>
+</model>
+<animation>
+    <type>select</type>
+    <object-name>flight_attendants_door4r</object-name>
+    <condition>
+		<greater-than>
+			<property>aaa/door-positions/r4/position-norm</property>
+			<value>0</value>
+		</greater-than>
+    </condition>
+</animation>
+
+
+<!--animation>
+		<name>L1 Door x-evac</name>
+		<type>translate</type>
+		<object-name>entry1l</object-name>
+		<object-name>entry2l</object-name>
+		<object-name>entry3l</object-name>
+		<object-name>entry4l</object-name>
+		<property>/aaa/switches/switch62</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>L1 Door y-evac</name>
+		<type>translate</type>
+		<object-name>entry1l</object-name>
+		<object-name>entry2l</object-name>
+		<object-name>entry3l</object-name>
+		<object-name>entry4l</object-name>
+		<property>/aaa/switches/switch62</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+<animation>
+		<name>R1 Door x-evac</name>
+		<type>translate</type>
+		<object-name>entry1r</object-name>
+		<object-name>entry2r</object-name>
+		<object-name>entry3r</object-name>
+		<object-name>entry4r</object-name>
+		<property>/aaa/switches/switch62</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>-1.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<name>R1 Door y-evac</name>
+		<type>translate</type>
+		<object-name>entry1r</object-name>
+		<object-name>entry2r</object-name>
+		<object-name>entry3r</object-name>
+		<object-name>entry4r</object-name>
+		<property>/aaa/switches/switch62</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.25</ind><dep>-0.2</dep></entry>
+			<entry><ind>1</ind><dep>-0.2</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation-->	
+	
+<!--Tail fin-->
+
+<animation>
+		<name>tailfinn</name>
+		<type>rotate</type>
+        <object-name>Tailfinn.1</object-name>
+        <property>gear/gear/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>-60</dep></entry>
+            <entry><ind>0.3</ind><dep>-60</dep></entry>
+            <entry><ind>0.6</ind><dep>-23</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>34.361</x-m>
+            <y-m>0.000</y-m>
+            <z-m>-1.207</z-m>
+        </center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+    <animation>
+		<name>tailfinn</name>
+        <type>rotate</type>
+        <object-name>Tailfinn.2</object-name>
+        <property>gear/gear/position-norm</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>-60</dep></entry>
+            <entry><ind>0.3</ind><dep>-60</dep></entry>
+            <entry><ind>0.6</ind><dep>-23</dep></entry>
+            <entry><ind>0.8</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>34.371</x-m>
+            <y-m>0.000</y-m>
+            <z-m>-1.128</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+            <z>0</z>
+        </axis>
+    </animation>	
+	
 </PropertyList>

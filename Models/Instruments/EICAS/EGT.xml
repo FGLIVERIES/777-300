@@ -61,7 +61,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind1.001</object-name>
-        <property>engines/engine[0]/egt-degf</property>
+        <property>engines/engine[1]/egt-degf</property>
         <factor>0.2142</factor>
         <center>
             <x-m>0</x-m>
@@ -78,7 +78,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind2.001</object-name>
-        <property>engines/engine[0]/egt-degf</property>
+        <property>engines/engine[1]/egt-degf</property>
         <factor>0.1428</factor>
         <center>
             <x-m>0</x-m>
@@ -95,7 +95,7 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>RH_ind3.001</object-name>
-        <property>engines/engine[0]/egt-degf</property>
+        <property>engines/engine[1]/egt-degf</property>
         <factor>0.07</factor>
         <center>
             <x-m>0</x-m>
@@ -205,8 +205,8 @@ Syd Adams
         <type>material</type>
 		<object-name>EGT</object-name>
 		<emission>
-			<red>0.0</red>
-			<green>0.9</green>
+			<red>0.3</red>
+			<green>0.6</green>
 			<blue>0.9</blue>
 		</emission>
 		<ambient>
@@ -275,5 +275,31 @@ Syd Adams
 			<blue>0</blue>
 		</specular>
     </animation-->
+
+    <!--<animation>
+        <name>blueish</name>
+        <type>material</type>
+		<object-name>EGT</object-name>
+        <emission>
+			<red>0.3</red>
+			<green>0.6</green>
+			<blue>0.9</blue>
+		</emission>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<diffuse>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</diffuse>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+    </animation>-->
 
 </PropertyList>

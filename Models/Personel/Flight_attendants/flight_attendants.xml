@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>flight_attendants.ac</path>
+
+  <animation>
+		<type>material</type>
+		<object-name>galleycart.001_1</object-name>	
+		<object-name>galleycart.001_0</object-name>	
+		<object-name>galleycart.002_1</object-name>
+		<object-name>galleycart.002_0</object-name>			
+		<object-name>galleycart.003_1</object-name>	
+		<object-name>galleycart.003_0</object-name>	
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+		</emission>
+	</animation>
+ 
+  <animation>
+		<type>material</type>
+		<object-name>Flightattend.001_0</object-name>
+		<object-name>Flight_attend.002_1</object-name>
+		<object-name>Flight_attend.002_0</object-name>
+		<object-name>Flightattend.001_1</object-name>
+		<object-name>Flight_attend.003</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+ 
+</PropertyList>

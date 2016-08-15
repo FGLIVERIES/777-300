@@ -570,7 +570,7 @@
                         <property>instrumentation/efis/inputs/lh-vor-adf</property>
                         <value>1</value>
                     </equals>
-                    <property>instrumentation/nav/dme-in-range</property>
+                    <property>instrumentation/nav/in-range</property>
                 </and>
             </condition>
             <name>L VOR dme</name>
@@ -679,7 +679,7 @@
                         <property>instrumentation/efis/inputs/rh-vor-adf</property>
                         <value>1</value>
                     </equals>
-                    <property>instrumentation/nav[1]/dme-in-range</property>
+                    <property>instrumentation/nav[1]/in-range</property>
                 </and>
             </condition>
             <name>R VOR dme</name>

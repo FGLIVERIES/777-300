@@ -1,0 +1,123 @@
+<!--
+Syd Adams
+777-300 Navigation display
+-->
+
+<PropertyList>
+
+ <path>EFIS.ac</path>
+
+ 	<animation>
+		<type>material</type>
+		<object-name>EFIS.bezel</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>  
+ 
+<!--glare-->	
+	<animation>
+		<type>material</type>
+		<object-name>glare</object-name>
+		<condition>
+        <less-than>
+			<property>/sim/time/sun-angle-rad</property>
+			<value>1.6</value>
+        </less-than>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>glare.001</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/displays-norm</factor-prop>
+		</emission>
+	</animation>	
+	
+    <animation>
+        <type>select</type>
+        <object-name>glare</object-name>
+        <condition>
+        <less-than>
+			<property>/sim/time/sun-angle-rad</property>
+			<value>1.6</value>
+        </less-than>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>glare.001</object-name>
+        <condition>
+            <not-equals>
+                <property>/aaa/displays-norm</property>
+                <value>0</value>
+            </not-equals>
+        </condition>
+    </animation>	
+<!--end of glare-->	  
+ 
+    <panel>
+        <path>Aircraft/777-300/Models/Instruments/MFD/mfd-panel2.xml</path>
+        <bottom-left>
+            <x-m>0.003</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>0.003</x-m>
+            <y-m>0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>0.003</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>0.094</z-m>
+        </top-left>
+    </panel>
+
+    <panel>
+        <path>Aircraft/777-300/Models/Instruments/MFD/mfdtext-panel2.xml</path>
+        <bottom-left>
+            <x-m>0.005</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>0.005</x-m>
+            <y-m>0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>0.005</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>0.094</z-m>
+        </top-left>
+    </panel>
+
+</PropertyList>

@@ -5,11 +5,21 @@
     <model>
         <livery>
             <name type="string">Cathay Pacific</name>
-            <texture>CPA-paint.png</texture>
+            <texture>/Liveries/PNG/CPA-paint.png</texture>
         </livery>
+
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+		</livery-door>			
+		
         <lights>
-            <texture>CPA-lights.png</texture>
+            <texture>/Liveries/PNG/CPA-lights.png</texture>
         </lights>
+		
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>
+		
     </model>
 </sim>
 </PropertyList>

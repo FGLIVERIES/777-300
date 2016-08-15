@@ -1,0 +1,779 @@
+<!--
+Syd Adams
+777-300 Efis controller
+-->
+
+<PropertyList>
+
+ <path>efis-ctl.ac</path>
+
+	<animation>
+		<type>material</type> 
+		<object-name>MINS.knob2</object-name>
+		<object-name>minset.dec</object-name>
+		<object-name>minset.inc</object-name>
+		<object-name>Mins.inc</object-name>
+		<object-name>Mins.dec</object-name>
+		<object-name>MINS.knob2</object-name>
+		<object-name>MINS.knob</object-name>
+		<object-name>MODE.knob</object-name>
+		<object-name>Mode2.dec</object-name>
+		<object-name>Mode2.inc</object-name>
+		<object-name>Mode.inc</object-name>
+		<object-name>Mode.dec</object-name>
+		<object-name>Range.knob</object-name>
+		<object-name>rng.dec</object-name>
+		<object-name>rng.inc</object-name>
+		<object-name>rng2.inc</object-name>
+		<object-name>rng2.dec</object-name>
+		<object-name>baro.dec</object-name>
+		<object-name>baro.inc</object-name>
+		<object-name>inhg.dec</object-name>
+		<object-name>inhg.inc</object-name>
+		<object-name>BARO.knob</object-name>
+		<object-name>BARO.knob2</object-name>
+		<object-name>EFIS.panel</object-name>
+		<object-name>LVOR.toggle</object-name>
+		<object-name>RVOR.toggle</object-name>		
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation> 
+ 
+	<animation>
+		<type>material</type>
+		<object-name>AP.panel.002</object-name>
+		<object-name>Plane.105_0</object-name>
+		<object-name>MINS.knob.001</object-name>
+		<object-name>MODE.knob.001</object-name>
+		<object-name>BARO.knob.001</object-name>
+		<object-name>Range.knob.001</object-name>
+		<object-name>ND.center</object-name>
+		<object-name>DH.reset</object-name>
+		<object-name>TFC</object-name>
+		<object-name>inhg.reset</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation> 
+ 
+    <animation>
+        <type>rotate</type>
+        <object-name>BARO.knob</object-name>
+        <object-name>BARO.knob.001</object-name>
+        <property>instrumentation/efis/inputs/kpa-mode</property>
+        <factor>80</factor>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>0.041</y-m>
+            <z-m>0.028</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>Range.knob</object-name>
+        <object-name>Range.knob.001</object-name>
+        <property>instrumentation/efis/inputs/range</property>
+        <interpolation>
+            <entry><ind>10</ind><dep>0</dep></entry>
+            <entry><ind>20</ind><dep>30</dep></entry>
+            <entry><ind>40</ind><dep>60</dep></entry>
+            <entry><ind>80</ind><dep>90</dep></entry>
+            <entry><ind>160</ind><dep>120</dep></entry>
+            <entry><ind>320</ind><dep>150</dep></entry>
+            <entry><ind>640</ind><dep>180</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>0.022</y-m>
+            <z-m>-0.001</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>MINS.knob</object-name>
+        <object-name>MINS.knob.001</object-name>
+        <property>instrumentation/efis/inputs/minimums-mode</property>
+        <factor>80</factor>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>-0.041</y-m>
+            <z-m>0.028</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>MODE.knob</object-name>
+        <object-name>MODE.knob.001</object-name>
+        <property>instrumentation/efis/mfd2/mode-num</property>
+        <interpolation>
+            <entry><ind>0</ind><dep>0</dep></entry>
+            <entry><ind>1</ind><dep>30</dep></entry>
+            <entry><ind>2</ind><dep>60</dep></entry>
+            <entry><ind>3</ind><dep>90</dep></entry>
+        </interpolation>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>-0.020</y-m>
+            <z-m>-0.001</z-m>
+        </center>
+        <axis>
+            <x>-1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>LVOR.toggle</object-name>
+        <property>instrumentation/efis/inputs/lh-vor-adf</property>
+        <factor>0.003</factor>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>-0.048</y-m>
+            <z-m>-0.0</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>RVOR.toggle</object-name>
+        <property>instrumentation/efis/inputs/rh-vor-adf</property>
+        <factor>0.003</factor>
+        <center>
+            <x-m>0.0</x-m>
+            <y-m>0.052</y-m>
+            <z-m>0.0</z-m>
+        </center>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+
+<!-- 
+#############   hotspots   ############## -->
+
+    <animation>
+        <type>pick</type>
+        <object-name>ND.center</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("center",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Mtrs.btn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/alt-meters</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>FPV.btn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/efis/inputs/fpv-view</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RDR.pos</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/radar/display-controls/pos</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RDR.data</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>instrumentation/radar/display-controls/data</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RDR.terr</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("terr",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RDR.arpt</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("arpt",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RDR.wpt</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+var nav_stars = func {
+if (getprop("/autopilot/route-manager/wp/id")!="" and getprop("/autopilot/route-manager/wp/dist")>0){
+setprop("/aaa/route/x1", getprop("/autopilot/route-manager/wp/dist")*math.cos(math.pi*(90-getprop("/autopilot/route-manager/wp/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range")));
+setprop("/aaa/route/y1", getprop("/autopilot/route-manager/wp/dist")*math.sin(math.pi*(90-getprop("/autopilot/route-manager/wp/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range"))-80);
+}
+if (getprop("/autopilot/route-manager/wp[1]/id")!="" and getprop("/autopilot/route-manager/wp/dist")>0){
+setprop("/aaa/route/x2", getprop("/autopilot/route-manager/wp[1]/dist")*math.cos(math.pi*(90-getprop("/autopilot/route-manager/wp[1]/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range")));
+setprop("/aaa/route/y2", getprop("/autopilot/route-manager/wp[1]/dist")*math.sin(math.pi*(90-getprop("/autopilot/route-manager/wp[1]/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range"))-80);
+}
+if (getprop("/aaa/route/show")){
+settimer(nav_stars, 1);
+}else{
+props.globals.getNode("/aaa/route/x1", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y1", 0).setDoubleValue(100);
+props.globals.getNode("/aaa/route/x2", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y2", 0).setDoubleValue(100);
+}
+}
+setprop("/aaa/route/show", !(getprop("/aaa/route/show")));
+if (getprop("/aaa/route/show")){
+nav_stars();
+controls.click(3);
+}else{
+props.globals.getNode("/aaa/route/x1", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y1", 0).setDoubleValue(100);
+props.globals.getNode("/aaa/route/x2", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y2", 0).setDoubleValue(100);
+controls.click(3);
+}
+				</script>
+            </binding>			
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RDR.sta</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("sta",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>RDR.wxr</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("wxr",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Rvor.toggle</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("rhvor",1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Radf.toggle</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("rhvor",-1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Lvor.toggle</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("lhvor",1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Ladf.toggle</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("lhvor",-1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>rng.dec</object-name>
+        <object-name>rng2.dec</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",-1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>rng.inc</object-name>
+        <object-name>rng2.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("range",-1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>TFC</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("tfc",1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>baro.dec</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/efis/inputs/kpa-mode</property>
+                <value>0</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>baro.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/efis/inputs/kpa-mode</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>inhg.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>-0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>inhg.dec</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>-0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>property-adjust</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <step>0.01</step>
+                <min>26.0</min>
+                <max>33.0</max>
+                <wrap>false</wrap>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(4);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>inhg.reset</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/altimeter/setting-inhg</property>
+                <value>29.92</value>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(3);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Mins.dec</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",0);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",1);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Mins.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",1);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("mins",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>minset.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("dh",10);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("dh",-10);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>minset.dec</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("dh",-10);</script>
+            </binding>
+        </action>
+        <action>
+            <button>1</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("dh",10);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>DH.reset</object-name>
+        <visible>true</visible>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("dh",0);</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Mode.inc</object-name>
+        <object-name>Mode2.inc</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/instrumentation/efis/mfd2/mode-num")==0){
+				setprop("/instrumentation/efis/mfd2/mode-num", 1);
+				setprop("/instrumentation/efis/mfd2/display-mode", "VOR");
+				} else if (getprop("/instrumentation/efis/mfd2/mode-num")==1){
+				setprop("/instrumentation/efis/mfd2/mode-num", 2);
+				setprop("/instrumentation/efis/mfd2/display-mode", "MAP");				
+				} else if (getprop("/instrumentation/efis/mfd2/mode-num")==2){
+				setprop("/instrumentation/efis/mfd2/mode-num", 3);
+				setprop("/instrumentation/efis/mfd2/display-mode", "PLAN");
+				}
+				</script>
+            </binding>
+        </action>
+        <!--action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("display",-1);</script>
+            </binding>
+        </action-->
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Mode.dec</object-name>
+        <object-name>Mode2.dec</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/instrumentation/efis/mfd2/mode-num")==3){
+				setprop("/instrumentation/efis/mfd2/mode-num", 2);
+				setprop("/instrumentation/efis/mfd2/display-mode", "MAP");				
+				} else if (getprop("/instrumentation/efis/mfd2/mode-num")==2){
+				setprop("/instrumentation/efis/mfd2/mode-num", 1);
+				setprop("/instrumentation/efis/mfd2/display-mode", "VOR");				
+				} else if (getprop("/instrumentation/efis/mfd2/mode-num")==1){
+				setprop("/instrumentation/efis/mfd2/mode-num", 0);
+				setprop("/instrumentation/efis/mfd2/display-mode", "APP");				
+				}				
+				</script>
+            </binding>
+        </action>
+        <!--action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>b777.Efis.ctl_func("display",1);</script>
+            </binding>
+        </action-->
+    </animation>
+
+</PropertyList>

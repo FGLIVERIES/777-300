@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>flight_attendants_reargalley.ac</path>
+
+  <animation>
+		<type>material</type>
+		<object-name>Flight_attend.rgall.1</object-name>
+		<object-name>Flight_attend.rgall.2</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+  <animation>
+		<type>material</type>
+		<object-name>galleycart.004</object-name>	
+		<object-name>galleycart.005</object-name>	
+		<object-name>galleycart.006</object-name>
+		<emission>
+			<red>0.7</red>
+			<green>0.7</green>
+			<blue>0.7</blue>
+		</emission>
+	</animation>
+</PropertyList>

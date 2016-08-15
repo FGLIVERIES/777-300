@@ -6,15 +6,39 @@ Syd Adams
 <PropertyList>
 
  <path>PFD3d.ac</path>
-
+ 
+ 	<animation>
+		<type>material</type>
+		<object-name>EFIS.bezel</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>  
+ 
     <animation>
         <type>select</type>
         <object-name>Power.off</object-name>
         <condition>
-            <less-than>
+            <and>
+			<less-than>
                 <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </less-than>
+			<less-than>
+                <property>/controls/electric/ram-air-turbine</property>
+                <value>1</value>
+            </less-than>
+			</and>
         </condition>
     </animation>
 
@@ -152,13 +176,15 @@ Syd Adams
     <animation>
         <object-name>StallSpeedInd</object-name>
         <property>instrumentation/pfd/stallspeed-diff</property>
-        <type>translate</type>
+        <type>textranslate</type>
         <axis>
             <x>0</x>
-            <y>0</y>
-            <z>1</z>
+            <y>-1</y>
         </axis>
-        <factor>0.000646</factor>
+        <factor>0.0013</factor>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
     <animation>
         <type>select</type>
@@ -168,10 +194,33 @@ Syd Adams
                 <property>velocities/airspeed-kt</property>
                 <value>40</value>
             </greater-than>
-        </condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
+        <object-name>OverSpeedInd</object-name>
+        <property>instrumentation/pfd/overspeed-diff</property>
+        <type>textranslate</type>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+        <factor>0.0013</factor>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
+    </animation>
+	
+    <animation>
+        <object-name>OverSpeedInd</object-name>
+        <type>select</type>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
+    </animation>	
+
+    <animation>	
         <type>translate</type>
         <object-name>locpointer</object-name>
         <property>instrumentation/nav/heading-needle-deflection-norm</property>
@@ -200,6 +249,9 @@ Syd Adams
             <y>0</y>
             <z>1</z>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
@@ -224,6 +276,9 @@ Syd Adams
             <y>0</y>
             <z>0</z>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
 
@@ -263,6 +318,9 @@ Syd Adams
             <y>0</y>
             <z>0</z>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
@@ -275,8 +333,11 @@ Syd Adams
             <y>-1</y>
             <z>0</z>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
-
+	
     <animation>
         <type>texmultiple</type>
         <object-name>AI</object-name>
@@ -291,7 +352,7 @@ Syd Adams
         </transform>
         <transform>
             <property>orientation/roll-deg</property>
-            <subtype>texrotate</subtype>
+            <subtype>texrotate</subtype>			
             <center>
                 <x>0.25</x>
                 <y>0.50</y>
@@ -302,6 +363,9 @@ Syd Adams
                 <z>-1</z>
             </axis>
         </transform>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>		
     </animation>
 
     <animation>
@@ -316,7 +380,7 @@ Syd Adams
             <x>0</x>
             <y>0</y>
             <z>-1</z>
-        </axis>
+        </axis>		
     </animation>
 
     <animation>
@@ -331,6 +395,9 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>		
     </animation>
 
 <!-- ALT tape-->
@@ -339,11 +406,16 @@ Syd Adams
         <type>select</type>
         <object-name>Alt1</object-name>
         <condition>
+			<or>
             <less-than>
                 <property>instrumentation/altimeter/indicated-altitude-ft</property>
                 <value>9600</value>
             </less-than>
-        </condition>
+			<not>
+			<property>/aaa/oh/adiru</property>
+			</not>
+			</or>
+        </condition>	
     </animation>
 
     <animation>
@@ -359,7 +431,8 @@ Syd Adams
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>19200</value>
                 </less-than>
-            </and>
+				<property>/aaa/oh/adiru</property>
+            </and>	
         </condition>
     </animation>
 
@@ -376,6 +449,7 @@ Syd Adams
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>28800</value>
                 </less-than>
+				<property>/aaa/oh/adiru</property>
             </and>
         </condition>
     </animation>
@@ -393,6 +467,7 @@ Syd Adams
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>38400</value>
                 </less-than>
+				<property>/aaa/oh/adiru</property>
             </and>
         </condition>
     </animation>
@@ -410,6 +485,7 @@ Syd Adams
                     <property>instrumentation/altimeter/indicated-altitude-ft</property>
                     <value>48000</value>
                 </less-than>
+				<property>/aaa/oh/adiru</property>
             </and>
         </condition>
     </animation>
@@ -422,6 +498,7 @@ Syd Adams
                 <property>instrumentation/altimeter/indicated-altitude-ft</property>
                 <value>47999.999</value>
             </greater-than>
+			<property>/aaa/oh/adiru</property>
         </condition>
     </animation>
 
@@ -438,6 +515,9 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
@@ -452,6 +532,9 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
@@ -466,6 +549,9 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
@@ -480,6 +566,9 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
@@ -494,6 +583,9 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
     <animation>
@@ -508,6 +600,9 @@ Syd Adams
             <x>0</x>
             <y>1</y>
         </axis>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>
     </animation>
 
 <!-- Text -->
@@ -524,7 +619,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/speed-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.015</character-size>
+        <character-size>0.009</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -544,7 +639,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/roll-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.015</character-size>
+        <character-size>0.009</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -564,7 +659,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/pitch-mode</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.015</character-size>
+        <character-size>0.009</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -584,7 +679,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/roll-mode-arm</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.013</character-size>
+        <character-size>0.009</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -604,7 +699,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/pitch-mode-arm</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.013</character-size>
+        <character-size>0.009</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -624,7 +719,7 @@ Syd Adams
         <type type="string">text-value</type>
         <property>instrumentation/afds/ap-modes/mode-annunciator</property>
         <font>helvetica_bold.txf</font>
-        <character-size>0.018</character-size>
+        <character-size>0.012</character-size>
         <character-aspect-ratio type="double">1.5</character-aspect-ratio>
         <font-resolution>
             <width type="int">64</width>
@@ -695,6 +790,26 @@ Syd Adams
             <height type="int">32</height>
         </font-resolution>
     </text>
+	
+    <text>
+        <name>INHG-STD</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.058</y-m>
+            <z-m>-0.061</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>STD</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>	
 
     <text>
         <name>KPA</name>
@@ -804,6 +919,28 @@ Syd Adams
     </text>
 
     <text>
+        <name>DME</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.040</y-m>
+            <z-m>0.0714</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <scale>0.000539</scale>
+        <format type="string">DME %3.1f</format>
+        <property>instrumentation/nav/nav-distance</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+    <text>	
         <name>MACH-annun</name>
         <offsets>
             <x-m>0.004</x-m>
@@ -865,13 +1002,51 @@ Syd Adams
         </font-resolution>
     </text>
 
+    <text>
+        <name>AOAtt</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.08</y-m>
+            <z-m>0.084</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">literal</type>
+        <text>AOA</text>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>	
+	
+    <text>
+        <name>AOAttval</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>0.08</y-m>
+            <z-m>0.075</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <format type="string">%1.1f</format>	
+		<property>/orientation/alpha-deg</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>		
+	
     <animation>
         <type>material</type><!--green-->
-        <object-name>SPD</object-name>
-        <object-name>ROLL</object-name>
-        <object-name>PITCH</object-name>
-        <object-name>AP-annun</object-name>
         <object-name>INHG</object-name>
+        <object-name>INHG-STD</object-name>		
         <object-name>KPA</object-name>
         <object-name>MAG-annun</object-name>
         <object-name>mins</object-name>
@@ -903,12 +1078,12 @@ Syd Adams
         <object-name>MACH</object-name>
         <object-name>ASIdigits</object-name>
         <object-name>ALTdigits</object-name>
-        <object-name>PITCH arm</object-name>
-        <object-name>ROLL arm</object-name>
+        <object-name>AOAtt</object-name>
+		<object-name>AOAttval</object-name>		
         <emission>
-            <red>0.7</red>
-            <green>0.7</green>
-            <blue>0.7</blue>
+            <red>0.9</red>
+            <green>0.9</green>
+            <blue>0.9</blue>
         </emission>
         <ambient>
             <red>0</red>
@@ -929,14 +1104,18 @@ Syd Adams
 
     <animation>
         <type>material</type><!--magenta-->
+        <object-name>SPD</object-name>
+        <object-name>ROLL</object-name>
+        <object-name>PITCH</object-name>
+        <object-name>AP-annun</object-name>		
         <object-name>ALT-annun</object-name>
         <object-name>IAS-annun</object-name>
         <object-name>MACH-annun</object-name>
         <object-name>HDG-annun</object-name>
         <emission>
-            <red>0.7</red>
+            <red>1</red>
             <green>0.3</green>
-            <blue>0.5</blue>
+            <blue>1</blue>
         </emission>
         <ambient>
             <red>0</red>
@@ -954,6 +1133,33 @@ Syd Adams
             <blue>0</blue>
         </specular>
     </animation>
+	
+    <animation>
+        <type>material</type><!--red-->
+        <object-name>PITCH arm</object-name>
+        <object-name>ROLL arm</object-name>
+		<object-name>DME</object-name>
+        <emission>
+            <red>1</red>
+            <green>0.2</green>
+            <blue>0.2</blue>
+        </emission>
+        <ambient>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </ambient>
+        <diffuse>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </diffuse>
+        <specular>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+        </specular>
+    </animation>	
 
     <!--animation>
         <type>select</type>
@@ -976,11 +1182,25 @@ Syd Adams
 
     <animation>
         <type>select</type>
+        <object-name>DME</object-name>
+        <condition>
+            <property>instrumentation/nav/dme-in-range</property>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
         <object-name>INHG</object-name>
         <condition>
+            <and>
             <not>
                 <property>instrumentation/efis/inputs/kpa-mode</property>
             </not>
+                <not-equals>
+                    <property>instrumentation/altimeter/setting-inhg</property>
+                    <value>29.92</value>
+                </not-equals>
+            </and>
         </condition>
     </animation>
 
@@ -988,7 +1208,26 @@ Syd Adams
         <type>select</type>
         <object-name>KPA</object-name>
         <condition>
+            <and>
             <property>instrumentation/efis/inputs/kpa-mode</property>
+                <not-equals>
+                    <property>instrumentation/altimeter/setting-inhg</property>
+                    <value>29.92</value>
+                </not-equals>
+            </and>
+        </condition>
+    </animation>
+
+    <animation>
+        <type>select</type>
+        <object-name>INHG-STD</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property>instrumentation/altimeter/setting-inhg</property>
+                    <value>29.92</value>
+                </equals>
+            </and>
         </condition>
     </animation>
 
@@ -1009,10 +1248,16 @@ Syd Adams
         <object-name>IAS-annun</object-name>
         <condition>
             <and>
+              <or>
                 <equals>
                     <property>instrumentation/afds/ap-modes/speed-mode</property>
                     <value>SPD</value>
                 </equals>
+	            <equals>
+    	            <property>instrumentation/afds/ap-modes/pitch-mode</property>
+        	        <value>FLCH SPD</value>
+            	</equals>
+			  </or>
                 <not>
                     <property>instrumentation/afds/inputs/ias-mach-selected</property>
                 </not>
@@ -1020,15 +1265,43 @@ Syd Adams
         </condition>
     </animation>
 
-    <animation>
+    <text>
+        <name>DME</name>
+        <offsets>
+            <x-m>0.004</x-m>
+            <y-m>-0.040</y-m>
+            <z-m>0.0714</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type type="string">number-value</type>
+        <scale>0.000539</scale>
+        <format type="string">DME %3.1f</format>
+        <property>instrumentation/nav/nav-distance</property>
+        <font>helvetica_bold.txf</font>
+        <character-size>0.007</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>
+
+     <animation>
         <type>select</type>
         <object-name>MACH-annun</object-name>
         <condition>
             <and>
+              <or>
                 <equals>
                     <property>instrumentation/afds/ap-modes/speed-mode</property>
                     <value>SPD</value>
                 </equals>
+	            <equals>
+    	            <property>instrumentation/afds/ap-modes/pitch-mode</property>
+        	        <value>FLCH SPD</value>
+            	</equals>
+			  </or>
                 <property>instrumentation/afds/inputs/ias-mach-selected</property>
             </and>
         </condition>
@@ -1045,7 +1318,15 @@ Syd Adams
             </equals>
             <equals>
                 <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                <value>V/S</value>
+            </equals>
+             <equals>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
                 <value>FLCH SPD</value>
+            </equals>
+             <equals>
+                <property>instrumentation/afds/ap-modes/pitch-mode</property>
+                <value>FPA</value>
             </equals>
           </or>
         </condition>
@@ -1156,5 +1437,14 @@ Syd Adams
         </axis>
         <factor>1</factor> <!-- 0.048/+70knots-->
     </animation>
+	
+	<animation>
+		<object-name>speedtrend.up</object-name>
+		<object-name>speedtrend.down</object-name>
+		<type>select</type>
+		<condition>
+			<property>/aaa/oh/adiru</property>
+		</condition>		
+	</animation>
 
 </PropertyList>

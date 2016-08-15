@@ -5,11 +5,21 @@
     <model>
         <livery>
             <name type="string">British Airways</name>
-            <texture>BAW.png</texture>
+            <texture>/Liveries/PNG/BAW.png</texture>
         </livery>
+		
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+      </livery-door>		
+		
         <lights>
-            <texture>BAW-lights.png</texture>
+            <texture>/Liveries/PNG/BAW-lights.png</texture>
         </lights>
+
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>
+
     </model>
 </sim>
 </PropertyList>

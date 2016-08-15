@@ -6,7 +6,140 @@ Syd Adams
 <PropertyList>
 
     <path>pedestal.ac</path>
+	
+   <animation>
+   <type>rotate</type>
+   <object-name>disch.knob.1</object-name>
+	<property>/engines/engine[0]/extinguishing</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>30.0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>0</y>
+     <z>1</z>
+   </axis>
+   <center>
+   <x-m>-0.001</x-m>
+   <y-m>-0.021</y-m>
+   <z-m>0.454</z-m>
+  </center>  
+ </animation>
 
+   <animation>
+   <type>rotate</type>
+   <object-name>disch.knob.2</object-name>
+	<property>/engines/engine[1]/extinguishing</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>30.0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>0</y>
+     <z>-1</z>
+   </axis>
+   <center>
+   <x-m>-0.001</x-m>
+   <y-m>0.021</y-m>
+   <z-m>0.454</z-m>
+  </center>  
+ </animation>
+ 
+    <animation>
+        <type>translate</type>
+        <object-name>disch.knob.1</object-name>
+        <property>/engines/engine[0]/extinguishing</property>
+        <factor>0.01</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>disch.knob.2</object-name>
+        <property>/engines/engine[1]/extinguishing</property>
+        <factor>0.01</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>	
+	
+	<animation>
+		<type>material</type>
+		<object-name>EVAC001</object-name>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>	
+	
+	<animation>
+		<type>material</type>
+		<object-name>disch.knob.1</object-name>
+		<emission>
+			<red>1</red>
+			<green>0</green>
+			<blue>0</blue>
+		</emission>
+		<condition>
+		<property>/engines/engine[0]/on-fire</property>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>disch.knob.2</object-name>
+		<emission>
+			<red>1</red>
+			<green>0</green>
+			<blue>0</blue>
+		</emission>
+		<condition>
+		<property>/engines/engine[1]/on-fire</property>
+		</condition>
+	</animation>	
+	
+<animation>
+		<type>material</type>
+		<object-name>greentext</object-name>
+		<object-name>greentext_0</object-name>
+		<object-name>greentext_3</object-name>		
+		<object-name>APlettering</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation>		
+	
     <effect>
 	<inherits-from>Effects/lightmap</inherits-from>
 	<parameters>
@@ -19,19 +152,19 @@ Syd Adams
         <object-name>LHthrottle.001</object-name>
         <object-name>RHthrottle</object-name>
         <object-name>RHthrottle.001</object-name>
-        <object-name>BrkLever</object-name>
         <object-name>PitchTrim</object-name>
         <object-name>SpdBrkLever</object-name>
         <object-name>FlapLever</object-name>
+		<object-name>phone</object-name>
     </effect>
 
     <model>
         <name>NDB</name>
         <path>Aircraft/777-300/Models/Instruments/NDB/ndb.xml</path>
         <offsets>
-            <x-m>-0.4252</x-m>
+            <x-m>-0.43</x-m>
             <y-m>0</y-m>
-            <z-m>0.558</z-m>
+            <z-m>0.56</z-m>
             <roll-deg>180</roll-deg>
             <pitch-deg>59.5</pitch-deg>
         </offsets>
@@ -39,7 +172,7 @@ Syd Adams
     
     <model>
         <name>CDU1</name>
-        <path>Aircraft/Instruments-3d/cdu/boeing.xml</path>
+        <path>Aircraft/777-300/Models/Instruments/cdu/boeing.xml</path>
         <offsets>
             <x-m>-0.423</x-m>
             <y-m>-0.175</y-m>
@@ -50,13 +183,14 @@ Syd Adams
             <texture>boeing_brown.png</texture>
             <material>
                 <emission>
-                    <red>0.1</red>
-                    <green>0.1</green>
-                    <blue>0.1</blue>
+                    <red>0.8</red>
+                    <green>0.8</green>
+                    <blue>0.8</blue>
+					<factor-prop>/aaa/flightdeck-norm</factor-prop>
                 </emission>
             </material>
         </overlay>
-    </model>
+    </model>	
     <animation>
         <type>scale</type>
         <object-name>CDU1</object-name>
@@ -71,7 +205,7 @@ Syd Adams
     </animation>
     <model>
         <name>CDU2</name>
-        <path>Aircraft/Instruments-3d/cdu/boeing.xml</path>
+        <path>Aircraft/777-300/Models/Instruments/cdu/boeing.xml</path>
         <offsets>
             <x-m>-0.423</x-m>
             <y-m>0.175</y-m>
@@ -103,11 +237,11 @@ Syd Adams
     </animation>
     <model>
         <name>CDU3</name>
-        <path>Aircraft/Instruments-3d/cdu/boeing.xml</path>
+        <path>Aircraft/777-300/Models/Instruments/cdu/boeing.xml</path>
         <offsets>
-            <x-m>0.183</x-m>
+            <x-m>0.107</x-m>
             <y-m>0.0</y-m>
-            <z-m>0.399</z-m>
+            <z-m>0.429</z-m>
             <pitch-deg>-88.4</pitch-deg>
         </offsets>
         <overlay>
@@ -167,35 +301,106 @@ Syd Adams
         </offsets>
     </model>
 -->
+	<animation>
+		<type>material</type>
+		<object-name>Pedestal_0</object-name>
+		<object-name>LHthrottle</object-name>
+		<object-name>RHthrottle</object-name>
+		<object-name>SpdBrkLever</object-name>
+		<object-name>FlapLever</object-name>
+		<object-name>PitchTrim</object-name>
+		<object-name>Audio.pnl.009</object-name>
+		<object-name>Audio.pnl.010</object-name>
+		<object-name>Lcutoff</object-name>
+		<object-name>Rcutoff</object-name>		
+		<object-name>Fuel-cutoff</object-name>
+		<object-name>switch1.02</object-name>
+		<object-name>switch1.01</object-name>
+		<object-name>switch2.01</object-name>
+		<object-name>switch2.02</object-name>
+		<object-name>Sruba</object-name>
+		<object-name>dich.pnl_0</object-name>
+		<object-name>dich.pnl_1</object-name>
+		<object-name>wx_radar_002</object-name>
+		<object-name>wx_radar_001</object-name>
+		<object-name>Rudder.trim</object-name>
+		<object-name>Pedestal.001</object-name>
+		<object-name>phone</object-name>
+		<object-name>obi_02_02___Default_0</object-name>
+		<object-name>Audio.pnl.002</object-name>
+		<object-name>Pedestal.002</object-name>
+		<object-name>Pedestal_1</object-name>
+		<object-name>Mesh286.003</object-name>
+		<object-name>Mesh286.002</object-name>
+		<object-name>LHthrottle.001</object-name>
+		<object-name>RHthrottle.001</object-name>
+		<object-name>phone</object-name>
+		<object-name>Evac1</object-name>
+		<object-name>EVAC001</object-name>
+		<object-name>Aisle_stand</object-name>
+		<object-name>Flt_door</object-name>
+		<object-name>Phone_holder</object-name>
+		<object-name>Pitch.trim.01</object-name>
+		<object-name>altn_flaps</object-name>
+		<object-name>Rudder.trm.holder</object-name>
+		<object-name>Audio.pnl.005</object-name>
+		<object-name>Pedestalknob4.001</object-name>
+		<object-name>Pedestalknob5.001</object-name>		
+		<object-name>switch6</object-name>
+		<object-name>switch6.2</object-name>
+		<object-name>switch6.3</object-name>
+		<object-name>EVAC_horn</object-name>
+		<object-name>Flightdeckdoor.knob.1</object-name>
+		<object-name>altn.flaps.knob</object-name>
+		<object-name>altn.flaps.01</object-name>
+		<object-name>alienortrim1</object-name>
+		<object-name>alienortrim2</object-name>
+		<object-name>floorlight.switch</object-name>
+		
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>
+
     <model>
         <name>Radio1</name>
         <path>Aircraft/777-300/Models/Instruments/radio1.xml</path>
         <offsets>
-            <x-m>0.053</x-m>
+            <x-m>-0.018</x-m>
             <y-m>-0.121</y-m>
-            <z-m>0.405</z-m>
+            <z-m>0.435</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
 
     <model>
         <name>Radio2</name>
-        <path>Aircraft/777-300/Models/Instruments/radio1.xml</path>
+        <path>Aircraft/777-300/Models/Instruments/radio2.xml</path>
         <offsets>
-            <x-m>0.053</x-m>
+            <x-m>-0.018</x-m>
             <y-m>0.122</y-m>
-            <z-m>0.405</z-m>
+            <z-m>0.435</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
 
     <model>
         <name>Radio3</name>
-        <path>Aircraft/777-300/Models/Instruments/radio1.xml</path>
+        <path>Aircraft/777-300/Models/Instruments/radio3.xml</path>
         <offsets>
-            <x-m>0.252</x-m>
+            <x-m>0.181</x-m>
             <y-m>-0.121</y-m>
-            <z-m>0.399</z-m>
+            <z-m>0.429</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
@@ -204,9 +409,9 @@ Syd Adams
         <name>TCAS</name>
         <path>Aircraft/777-300/Models/Instruments/tcas-ctl.xml</path>
         <offsets>
-            <x-m>0.192</x-m>
+            <x-m>0.121</x-m>
             <y-m>0.122</y-m>
-            <z-m>0.401</z-m>
+            <z-m>0.431</z-m>
             <pitch-deg>-88</pitch-deg>
         </offsets>
     </model>
@@ -216,12 +421,12 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Lcutoff</object-name>
-        <property>controls/engines/engine/cutoff</property>
+        <property>controls/engines/engine/cutoff_lever</property>
         <factor>40</factor>
         <center>
-            <x-m>-0.023</x-m>
+            <x-m>-0.064</x-m>
             <y-m>0</y-m>
-            <z-m>0.457</z-m>
+            <z-m>0.481</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -233,12 +438,12 @@ Syd Adams
     <animation>
         <type>rotate</type>
         <object-name>Rcutoff</object-name>
-        <property>controls/engines/engine[1]/cutoff</property>
+        <property>controls/engines/engine[1]/cutoff_lever</property>
         <factor>40</factor>
         <center>
-            <x-m>-0.023</x-m>
+            <x-m>-0.064</x-m>
             <y-m>0</y-m>
-            <z-m>0.457</z-m>
+            <z-m>0.481</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -254,9 +459,9 @@ Syd Adams
         <property>controls/engines/engine/throttle</property>
         <factor>-50</factor>
         <center>
-            <x-m>-0.140</x-m>
+            <x-m>-0.181</x-m>
             <y-m>0</y-m>
-            <z-m>0.420</z-m>
+            <z-m>0.444</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -272,9 +477,9 @@ Syd Adams
         <property>controls/engines/engine[1]/throttle</property>
         <factor>50</factor>
         <center>
-            <x-m>-0.140</x-m>
+            <x-m>-0.181</x-m>
             <y-m>0</y-m>
-            <z-m>0.420</z-m>
+            <z-m>0.444</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -318,9 +523,9 @@ Syd Adams
             </entry>
         </interpolation>
         <center>
-            <x-m>-0.140</x-m>
+            <x-m>-0.181</x-m>
             <y-m>0</y-m>
-            <z-m>0.420</z-m>
+            <z-m>0.444</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -339,9 +544,9 @@ Syd Adams
             <entry><ind>2</ind><dep>50.0</dep></entry>
         </interpolation>
         <center>
-            <x-m>-0.140</x-m>
+            <x-m>-0.181</x-m>
             <y-m>0</y-m>
-            <z-m>0.420</z-m>
+            <z-m>0.444</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -356,9 +561,9 @@ Syd Adams
         <property>controls/gear/brake-parking</property>
         <factor>60</factor>
         <center>
-            <x-m>-0.041</x-m>
-            <y-m>-0.197</y-m>
-            <z-m>0.417</z-m>
+			<x-m>-0.091</x-m>
+            <y-m>-0.198</y-m>
+            <z-m>0.444</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -386,9 +591,9 @@ Syd Adams
             </entry>
         </interpolation>
         <center>
-            <x-m>-0.140</x-m>
+            <x-m>-0.181</x-m>
             <y-m>0</y-m>
-            <z-m>0.420</z-m>
+            <z-m>0.444</z-m>
         </center>
         <axis>
             <x>0</x>
@@ -415,9 +620,9 @@ Syd Adams
         <property>controls/flight/rudder-trim</property>
         <factor>90</factor>
         <center>
-            <x-m>0.353</x-m>
+            <x-m>0.277</x-m>
             <y-m>0.030</y-m>
-            <z-m>0.398</z-m>
+            <z-m>0.428</z-m>
         </center>
         <axis>
             <x>0.028</x>
@@ -428,7 +633,7 @@ Syd Adams
 
 <!-- OSG hotspots -->
 
-    <animation>
+   <!-- <animation>
         <type>pick</type>
         <object-name>Rudder.trim</object-name>
         <action>
@@ -463,6 +668,57 @@ Syd Adams
             </binding>
         </action>
     </animation>
+-->
+
+<animation>
+        <type>pick</type>
+       <object-name>Rudder.trim</object-name>
+        <action>
+            <button>0</button>
+			<button>3</button>
+            <repeatable>false</repeatable>
+			<interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                 <property>controls/flight/rudder-trim</property>
+                <step>0.01</step>
+                <min>-1.0</min>
+                <max>1</max>
+				<wrap>0</wrap>
+            </binding>	
+			<binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+	<animation>
+        <type>pick</type>
+       <object-name>Rudder.trim</object-name>
+        <action>
+            <button>1</button>
+			<button>4</button>
+            <repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+                 <property>controls/flight/rudder-trim</property>
+                <step>-0.01</step>
+                <min>-1.0</min>
+				<max>1.0</max>
+				<wrap>0</wrap>
+            </binding>	
+			<binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation>
 
     <animation>
         <type>pick</type>
@@ -482,11 +738,18 @@ Syd Adams
         <action>
             <button>0</button>
             <binding>
-                <command>property-adjust</command>
-                <property>controls/flight/speedbrake-lever</property>
-                <step>1</step>
-                <min>0</min>
-                <max>2</max>
+                <command>nasal</command>
+				<script>
+				if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump")){
+				if (getprop("controls/flight/speedbrake-lever")==0){
+				setprop(("controls/flight/speedbrake-lever"), 1);
+				controls.click(7);
+				}else if (getprop("controls/flight/speedbrake-lever")==1){
+				setprop(("controls/flight/speedbrake-lever"), 2);
+				controls.click(7);				
+				}
+				}
+				</script>
             </binding>
         </action>
     </animation>
@@ -497,11 +760,18 @@ Syd Adams
         <action>
             <button>1</button>
             <binding>
-                <command>property-adjust</command>
-                <property>controls/flight/speedbrake-lever</property>
-                <step>-1</step>
-                <min>0</min>
-                <max>2</max>
+                <command>nasal</command>
+				<script>
+				if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump")){
+				if (getprop("controls/flight/speedbrake-lever")==2){
+				setprop(("controls/flight/speedbrake-lever"), 1);
+				controls.click(7);
+				}else if (getprop("controls/flight/speedbrake-lever")==1){
+				setprop(("controls/flight/speedbrake-lever"), 0);
+				controls.click(7);				
+				}
+				}
+				</script>
             </binding>
         </action>
     </animation>
@@ -513,8 +783,19 @@ Syd Adams
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-                <property>controls/engines/engine/cutoff</property>
+                <property>/controls/engines/engine[0]/cutoff_lever</property>
             </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/controls/engines/engine/cutoff_lever")){
+				setprop("/controls/engines/engine/cutoff", 1);
+				}else if (!getprop("/controls/engines/engine/cutoff_lever") and !getprop("/engines/engine[0]/extinguished") and getprop("/engines/engine/rpm")&gt;20.5 and (getprop("/controls/fuel/tank/boost-pump") or getprop("/controls/fuel/tank/boost-pump[1]") or getprop("/controls/fuel/tank[1]/boost-pump"))){
+				setprop("/controls/engines/engine/cutoff", 0);				
+				}
+				controls.click(7);
+				</script>
+            </binding>			
         </action>
     </animation>
 
@@ -525,8 +806,19 @@ Syd Adams
             <button>0</button>
             <binding>
                 <command>property-toggle</command>
-                <property>controls/engines/engine[1]/cutoff</property>
-            </binding>
+                <property>/controls/engines/engine[1]/cutoff_lever</property>
+            </binding>				
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/controls/engines/engine[1]/cutoff_lever")){
+				setprop("/controls/engines/engine[1]/cutoff", 1);
+				}else if (!getprop("/controls/engines/engine[1]/cutoff_lever") and !getprop("/engines/engine[1]/extinguished") and getprop("/engines/engine[1]/rpm")&gt;20.5 and (getprop("/controls/fuel/tank[2]/boost-pump") or getprop("/controls/fuel/tank[2]/boost-pump[1]") or getprop("/controls/fuel/tank[1]/boost-pump[1]"))){
+				setprop("/controls/engines/engine[1]/cutoff", 0);
+				}
+				controls.click(7);
+				</script>
+            </binding>		
         </action>
     </animation>
 
@@ -537,7 +829,10 @@ Syd Adams
             <button>0</button>
             <binding>
                 <command>nasal</command>
-                <script>controls.flapsDown(1);</script>
+                <script>
+				if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))
+				controls.flapsDown(1);
+				</script>
             </binding>
         </action>
     </animation>
@@ -549,9 +844,12 @@ Syd Adams
             <button>1</button>
             <binding>
                 <command>nasal</command>
-                <script>controls.flapsDown(-1);</script>
+                <script>
+				if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump"))				
+				controls.flapsDown(-1);
+				</script>
             </binding>
-        </action>
+        </action>		
     </animation>
 
     <animation>
@@ -559,6 +857,7 @@ Syd Adams
         <object-name>PitchTrim</object-name>
         <action>
             <repeatable>true</repeatable>
+			<interval-sec>0.01</interval-sec>
             <button>0</button>
             <binding>
                 <command>nasal</command>
@@ -572,6 +871,7 @@ Syd Adams
         <object-name>PitchTrim</object-name>
         <action>
             <repeatable>true</repeatable>
+			<interval-sec>0.01</interval-sec>
             <button>1</button>
             <binding>
                 <command>nasal</command>
@@ -579,5 +879,747 @@ Syd Adams
             </binding>
         </action>
     </animation>
+	
+   <animation>
+   <type>rotate</type>
+   <object-name>switch1.02</object-name>
+	<property>/aaa/switches/switch102</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>90.0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>-0.050</x-m>
+   <y-m>-0.088</y-m>
+   <z-m>0.467</z-m>
+  </center>  
+ </animation>
+ 
+    <animation>
+   <type>rotate</type>
+   <object-name>switch2.02</object-name>
+	<property>/aaa/switches/switch202</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>90.0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>-0.050</x-m>
+   <y-m>-0.072</y-m>
+   <z-m>0.467</z-m>
+  </center>  
+ </animation>
+	
+	<animation>
+        <type>pick</type>
+		<object-name>switch1.02</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/aaa/switches/switch102</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/switches/switch102")==0)
+				setprop("/aaa/switches/switch101", 0);
+				controls.click(2);
+				</script>
+            </binding>			
+        </action>
+    </animation>
 
+	<animation>
+        <type>pick</type>
+		<object-name>switch2.02</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/aaa/switches/switch202</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/switches/switch202")==0)
+				setprop("/aaa/switches/switch201", 0);				
+				controls.click(2);
+				</script>
+            </binding>			
+        </action>
+    </animation>	
+	
+    <animation>
+   <type>rotate</type>
+   <object-name>switch1.01</object-name>
+	<property>/aaa/switches/switch101</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>-30</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>-0.056</x-m>
+   <y-m>-0.088</y-m>
+   <z-m>0.472</z-m>
+  </center>  
+ </animation>
+
+    <animation>
+   <type>rotate</type>
+   <object-name>switch2.01</object-name>
+	<property>/aaa/switches/switch201</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>-30</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0</dep>
+            </entry>	
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>-0.056</x-m>
+   <y-m>-0.072</y-m>
+   <z-m>0.472</z-m>
+  </center>  
+ </animation> 
+ 
+ 	<animation>
+        <type>pick</type>
+		<object-name>switch1.01</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/aaa/switches/switch101</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>			
+        </action>
+    </animation>
+	
+	<animation>
+        <type>pick</type>
+		<object-name>switch2.01</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/aaa/switches/switch201</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>			
+        </action>
+    </animation>
+	
+	<animation>
+        <type>pick</type>
+		<object-name>disch.knob.1</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/engines/engine[0]/extinguishing</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				var extd = func{
+				if(getprop("/engines/engine[0]/extinguishing")){
+				setprop("/engines/engine[0]/on-fire", 0);
+				setprop("/engines/engine[0]/extinguished", 1);
+				setprop("/controls/engines/engine[0]/cutoff", 1);
+				}
+				}
+				if(getprop("/engines/engine[0]/extinguishing")){
+				setprop("/engines/engine[0]/extinguished", 1);
+				settimer(extd, 20);
+				}
+				controls.click(7);
+				</script>
+            </binding>			
+        </action>
+    </animation>	
+	
+	<animation>
+        <type>pick</type>
+		<object-name>disch.knob.2</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/engines/engine[1]/extinguishing</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				var extd = func{
+				if(getprop("/engines/engine[1]/extinguishing")){
+				setprop("/engines/engine[1]/on-fire", 0);
+				setprop("/engines/engine[1]/extinguished", 1);
+				setprop("/controls/engines/engine[1]/cutoff", 1);
+				}
+				}
+				if(getprop("/engines/engine[1]/extinguishing")){
+				setprop("/engines/engine[1]/extinguished", 1);
+				settimer(extd, 20);
+				}
+				controls.click(7);
+				</script>
+            </binding>			
+        </action>
+    </animation>	
+
+   <animation>
+   <type>rotate</type>
+   <object-name>switch6.3</object-name>
+	<property>/aaa/switches/switch63</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>-90.0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>0.237</x-m>
+   <y-m>0.082</y-m>
+   <z-m>0.432</z-m>
+  </center>  
+ </animation>
+
+<animation>
+        <type>pick</type>
+   <object-name>switch6.3</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-toggle</command>
+			<property>/aaa/switches/switch63</property>
+            </binding>
+		<binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/switches/switch63")==0)
+				setprop("/aaa/switches/switch62", 0);
+				controls.click(2);
+				</script>
+         </binding>	
+        </action>
+    </animation>
+ 
+	<animation>
+   <type>rotate</type>
+   <object-name>switch6.2</object-name>
+	<property>/aaa/switches/switch62</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>35</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>-10</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>0.245</x-m>
+   <y-m>0.082</y-m>
+   <z-m>0.429</z-m>
+  </center>  
+ </animation>
+	
+	<animation>
+        <type>pick</type>
+		<object-name>switch6.2</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				setprop("/aaa/switches/switch62", 1);
+				setprop("/aaa/door-positions/l1/position-norm", 1);
+				setprop("/aaa/door-positions/l2/position-norm", 1);
+				setprop("/aaa/door-positions/l3/position-norm", 1);
+				setprop("/aaa/door-positions/l4/position-norm", 1);
+				setprop("/aaa/door-positions/r1/position-norm", 1);
+				setprop("/aaa/door-positions/r2/position-norm", 1);
+				setprop("/aaa/door-positions/r3/position-norm", 1);
+				setprop("/aaa/door-positions/r4/position-norm", 1);
+				</script>
+            </binding>			
+        </action>
+    </animation>
+	
+	<animation>
+        <type>translate</type>
+        <object-name>EVAC001</object-name>
+        <property>/aaa/switches/EVAC001</property>
+        <factor>-0.005</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+		
+	<animation>
+        <type>pick</type>
+			<object-name>EVAC001</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/aaa/switches/EVAC001</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>			
+        </action>
+    </animation>
+	
+		<animation>
+        <type>translate</type>
+        <object-name>EVAC_horn_001</object-name>
+        <property>/aaa/switches/EVACHORN1</property>
+        <factor>0.004</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+		
+	<animation>
+        <type>pick</type>
+			<object-name>EVAC_horn_001</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/aaa/switches/EVACHORN1</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>			
+        </action>
+		
+    </animation>
+		<animation>
+		<type>material</type>
+		<object-name>EVAC_horn_001</object-name>
+		<emission>
+			<red>1</red>
+			<green>0</green>
+			<blue>0</blue>
+		</emission>
+		<condition>
+		<property>/aaa/switches/EVACHORN1</property>
+		</condition>
+	</animation>
+
+<animation>
+		<type>material</type>
+		<object-name>Pitch.trim</object-name>
+		<object-name>Pitch.trim.02</object-name>
+		<object-name>Audio.pnl.007</object-name>
+		<object-name>ruddertrim.needle</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>	
+	
+	<!--  pitch trim info -->
+	
+	<animation>
+		<type>translate</type>
+		<object-name>Pitch.trim.02</object-name>
+        <property>/controls/flight/elevator-trim</property>
+        <factor>-0.027</factor>
+        <axis>
+            <x>1</x>
+            <y></y>
+            <z>-0.18</z>
+        </axis>
+    </animation>
+
+		<!--  Pedestal buttoncases -->
+	
+			 <animation>
+   <type>rotate</type>
+   <object-name>button.case.010</object-name>
+	<property>/aaa/pdstl/switches/buttoncase010</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>-100.0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>-0.142</x-m>
+   <y-m>0.195</y-m>
+   <z-m>0.458</z-m>
+  </center>  
+ </animation> 
+ 
+ <animation>
+        <type>pick</type>
+		<object-name>button.case.010</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>/aaa/pdstl/switches/buttoncase010</property>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>			
+        </action>
+    </animation>
+
+		<!--  Alienor trim -->	
+
+ <animation>
+        <type>rotate</type>
+        <object-name>alienortrim1</object-name>
+		<property>controls/flight/aileron-trim</property>
+        <factor>90</factor>
+        <center>
+            <x-m>0.266</x-m>
+            <y-m>-0.033</y-m>
+            <z-m>0.429</z-m>
+        </center>
+        <axis>
+            <x>0.028</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
+	
+<animation>
+        <type>pick</type>
+        <object-name>alienortrim1</object-name>
+        <action>
+            <button>0</button>
+			<button>3</button>
+            <repeatable>false</repeatable>
+			<interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+		<property>controls/flight/aileron-trim</property>
+                <step>0.01</step>
+                <min>-1.0</min>
+                <max>1</max>
+				<wrap>0</wrap>
+            </binding>	
+			<binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+	<animation>
+        <type>pick</type>
+        <object-name>alienortrim1</object-name>
+        <action>
+            <button>1</button>
+			<button>4</button>
+            <repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+		<property>controls/flight/aileron-trim</property>
+                <step>-0.01</step>
+                <min>-1.0</min>
+				<max>1.0</max>
+				<wrap>0</wrap>
+            </binding>	
+			<binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation>
+	
+<animation>
+        <type>rotate</type>
+        <object-name>alienortrim2</object-name>
+		<property>controls/flight/aileron-trim</property>
+        <factor>90</factor>
+        <center>
+            <x-m>0.285</x-m>
+            <y-m>-0.034</y-m>
+            <z-m>0.428</z-m>
+        </center>
+        <axis>
+            <x>0.028</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+	
+<animation>
+        <type>pick</type>
+        <object-name>alienortrim2</object-name>
+        <action>
+            <button>0</button>
+			<button>3</button>
+            <repeatable>false</repeatable>
+			<interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+		<property>controls/flight/aileron-trim</property>
+                <step>0.01</step>
+                <min>-1.0</min>
+                <max>1.0</max>
+				<wrap>0</wrap>
+            </binding>	
+			<binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+	<animation>
+        <type>pick</type>
+        <object-name>alienortrim2</object-name>
+        <action>
+            <button>1</button>
+			<button>4</button>
+            <repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+            <binding>
+                <command>property-adjust</command>
+		<property>controls/flight/aileron-trim</property>
+                <step>-0.01</step>
+                <min>-1.0</min>
+				<max>1.0</max>
+				<wrap>0</wrap>
+            </binding>	
+			<binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+		<!--  Pedestal radio-->	
+   <model>
+        <name>PDSTLRadio1</name>
+        <path>Aircraft/777-300/Models/Instruments/PDSTLaudio/PDSTLaudio.xml</path>
+        <offsets>
+            <x-m>0.0525</x-m>
+            <y-m>0.121</y-m>
+            <z-m>0.4334</z-m>
+            <pitch-deg>-88</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>PDSTLRadio2</name>
+        <path>Aircraft/777-300/Models/Instruments/PDSTLaudio/PDSTLaudio.xml</path>
+        <offsets>
+            <x-m>0.0525</x-m>
+            <y-m>-0.121</y-m>
+            <z-m>0.4334</z-m>
+            <pitch-deg>-88</pitch-deg>
+        </offsets>
+    </model>
+
+    <model>
+        <name>PDSTLRadio3</name>
+        <path>Aircraft/777-300/Models/Instruments/PDSTLaudio/PDSTLaudio.xml</path>
+        <offsets>
+            <x-m>0.252</x-m>
+            <y-m>-0.121</y-m>
+            <z-m>0.429</z-m>
+            <pitch-deg>-88</pitch-deg>
+        </offsets>
+    </model>
+
+<!--Floorlight switch -->	
+		
+		<animation>
+   <type>rotate</type>
+	<object-name>floorlight.switch</object-name>	
+	<property>/aaa/pdstl/switches/floorlightswitch</property>
+<interpolation> 
+            <entry>
+                <ind>-1</ind>
+                <dep>-35</dep>
+            </entry>
+            <entry>
+                <ind>0</ind>
+                <dep>0.0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>35</dep>
+            </entry>			
+        </interpolation>
+   <axis>
+     <x>-1</x>
+     <y>0</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>0.293</x-m>
+   <y-m>0.090</y-m>
+   <z-m>0.431</z-m>
+  </center>  
+ </animation>
+  
+ 	 <animation>
+        <type>pick</type>
+      <object-name>floorlight.switch</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+				<property>/aaa/pdstl/switches/floorlightswitch</property>
+                <step>1</step>
+                <min>-1</min>
+                <max>1</max>
+            </binding>
+			<binding>
+			<command>nasal</command>
+			<script>
+			controls.click(2);
+			</script>
+			</binding>			
+        </action>
+    </animation>
+	
+	<animation>
+        <type>pick</type>
+		<object-name>floorlight.switch</object-name>
+        <action>
+            <button>1</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-adjust</command>
+				<property>/aaa/pdstl/switches/floorlightswitch</property>
+                <step>-1</step>
+                <min>-1</min>
+                <max>1</max>
+            </binding>	
+			<binding>
+			<command>nasal</command>
+			<script>
+			controls.click(2);
+			</script>
+			</binding>		
+        </action>
+    </animation> 
+	
 </PropertyList>

@@ -3,6 +3,50 @@
     <path>gear-ctl.ac</path>
 
     <animation>
+        <type>material</type>	
+		<object-name>GearLever_0</object-name>
+		<object-name>GearLever_1</object-name>
+		<object-name>AltGr.knob</object-name>
+		<object-name>AutoBrake.knob</object-name>
+		<object-name>gearCTL</object-name>
+		<object-name>switch4.03</object-name>
+		<object-name>switch4.02</object-name>
+		<object-name>switch4.01</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>	
+	
+    <animation>
+        <type>material</type>	
+		<object-name>APlettering</object-name>
+		<object-name>lines</object-name>
+		<object-name>Abrake.001</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation>	
+	
+    <animation>
         <type>rotate</type>
         <object-name>AutoBrake.knob</object-name>
         <object-name>Abrake.001</object-name>
@@ -295,7 +339,11 @@
             <button>1</button>
             <binding>
                 <command>nasal</command>
-                <script>controls.gearDown(-1)</script>
+                <script>
+				if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump")){				
+				controls.gearDown(-1);
+				}
+				</script>
             </binding>
             <mod-up>
                 <binding>
@@ -313,7 +361,11 @@
             <button>0</button>
             <binding>
                 <command>nasal</command>
-                <script>controls.gearDown(1)</script>
+                <script>
+				if (getprop("/aaa/hydraulic/air_c1")==1 or getprop("/aaa/hydraulic/air_c2")==1 or getprop("/controls/hydraulic/system[2]/electric-pump")){				
+				controls.gearDown(1);
+				}
+				</script>
             </binding>
             <mod-up>
                 <binding>
@@ -361,5 +413,100 @@
             </binding>
         </action>
     </animation>
+	
+ <!-- Emergency gear down system-->
+ <animation>
+   <type>rotate</type>
+   <object-name>switch4.02</object-name>
+	<property>/aaa/switches/switch402</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>0</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>90.0</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>0.010</x-m>
+   <y-m>0.030</y-m>
+   <z-m>-0.041</z-m>
+  </center>  
+ </animation>
 
+<animation>
+        <type>pick</type>
+   <object-name>switch4.02</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+            <command>property-toggle</command>
+			<property>/aaa/switches/switch402</property>
+            </binding>
+		<binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/switches/switch402")==0)
+				setprop("/aaa/switches/switch401", 0);
+				controls.click(2);
+				</script>
+         </binding>	
+        </action>
+    </animation>
+ 
+	<animation>
+   <type>rotate</type>
+   <object-name>switch4.01</object-name>
+	<property>/aaa/switches/switch401</property>
+    <interpolation> 
+            <entry>
+                <ind>0</ind>
+                <dep>-35</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>10</dep>
+            </entry>		
+        </interpolation>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+   <center>
+   <x-m>0.006</x-m>
+   <y-m>0.030</y-m>
+   <z-m>-0.030</z-m>
+  </center>  
+ </animation>
+	
+	<animation>
+        <type>pick</type>
+		<object-name>switch4.01</object-name>	
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				controls.click(2);
+				setprop("/aaa/switches/switch401", 1);
+				
+				if (getprop("/systems/electrical/left-bus")>0 or getprop("/systems/electrical/right-bus")>0){				
+				controls.gearDown(1);
+				}
+				</script>
+            </binding>			
+        </action>
+    </animation>
+	
+	
 </PropertyList>

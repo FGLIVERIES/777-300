@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <name>Cabin Announcements</name>
+  <layout>vbox</layout>
+
+  <text>
+    <label>Cabin Announcements</label>
+  </text>
+
+  <hrule/>
+
+  <group>
+    <layout>vbox</layout>
+    <halign>center</halign>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Boarding Music</label>
+      <property>sim/sound/music_b</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/music_b</property>
+      </binding>
+    </checkbox>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Safety</label>
+      <property>sim/sound/safety</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/safety</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Climbing</label>
+      <property>sim/sound/climbing</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/climbing</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Cruise</label>
+      <property>sim/sound/cruise</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/cruise</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Emergency</label>
+      <property>sim/sound/emergency</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/emergency</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Descent</label>
+      <property>sim/sound/descent</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/descent</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Gate</label>
+      <property>sim/sound/gate</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/gate</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Land</label>
+      <property>sim/sound/land</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/land</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Pre-takeoff</label>
+      <property>sim/sound/pretakeoff</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/pretakeoff</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Turbulence</label>
+      <property>sim/sound/turbulence</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/turbulence</property>
+      </binding>
+    </checkbox>
+
+	    <checkbox>
+      <halign>left</halign>
+      <label>Welcome</label>
+      <property>sim/sound/welcome</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/sound/welcome</property>
+      </binding>
+    </checkbox>	
+	
+  </group>
+
+  <hrule/>
+
+  <group>
+    <layout>hbox</layout>
+    <empty><stretch>true</stretch></empty>
+
+    <button>
+      <legend>Close</legend>
+      <default>true</default>
+      <key>Esc</key>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+
+    <empty><stretch>true</stretch></empty>
+  </group>
+
+</PropertyList>

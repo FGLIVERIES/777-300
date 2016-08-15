@@ -7,6 +7,75 @@ Syd Adams
 
  <path>efis-ctl.ac</path>
 
+	<animation>
+		<type>material</type> 
+		<object-name>MINS.knob2</object-name>
+		<object-name>minset.dec</object-name>
+		<object-name>minset.inc</object-name>
+		<object-name>Mins.inc</object-name>
+		<object-name>Mins.dec</object-name>
+		<object-name>MINS.knob2</object-name>
+		<object-name>MINS.knob</object-name>
+		<object-name>MODE.knob</object-name>
+		<object-name>Mode2.dec</object-name>
+		<object-name>Mode2.inc</object-name>
+		<object-name>Mode.inc</object-name>
+		<object-name>Mode.dec</object-name>
+		<object-name>Range.knob</object-name>
+		<object-name>rng.dec</object-name>
+		<object-name>rng.inc</object-name>
+		<object-name>rng2.inc</object-name>
+		<object-name>rng2.dec</object-name>
+		<object-name>baro.dec</object-name>
+		<object-name>baro.inc</object-name>
+		<object-name>inhg.dec</object-name>
+		<object-name>inhg.inc</object-name>
+		<object-name>BARO.knob</object-name>
+		<object-name>BARO.knob2</object-name>
+		<object-name>EFIS.panel</object-name>
+		<object-name>LVOR.toggle</object-name>
+		<object-name>RVOR.toggle</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation> 
+ 
+	<animation>
+		<type>material</type>
+		<object-name>AP.panel.002</object-name>
+		<object-name>Plane.105_0</object-name>
+		<object-name>MINS.knob.001</object-name>
+		<object-name>MODE.knob.001</object-name>
+		<object-name>BARO.knob.001</object-name>
+		<object-name>Range.knob.001</object-name>
+		<object-name>ND.center</object-name>
+		<object-name>DH.reset</object-name>
+		<object-name>TFC</object-name>
+		<object-name>inhg.reset</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation>
+ 
     <animation>
         <type>rotate</type>
         <object-name>BARO.knob</object-name>
@@ -244,7 +313,37 @@ Syd Adams
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>b777.Efis.ctl_func("wpt",0);</script>
+                <script>
+var nav_stars = func {
+if (getprop("/autopilot/route-manager/wp/id")!="" and getprop("/autopilot/route-manager/wp/dist")>0){
+setprop("/aaa/route/x1", getprop("/autopilot/route-manager/wp/dist")*math.cos(math.pi*(90-getprop("/autopilot/route-manager/wp/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range")));
+setprop("/aaa/route/y1", getprop("/autopilot/route-manager/wp/dist")*math.sin(math.pi*(90-getprop("/autopilot/route-manager/wp/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range"))-80);
+}
+if (getprop("/autopilot/route-manager/wp[1]/id")!="" and getprop("/autopilot/route-manager/wp/dist")>0){
+setprop("/aaa/route/x2", getprop("/autopilot/route-manager/wp[1]/dist")*math.cos(math.pi*(90-getprop("/autopilot/route-manager/wp[1]/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range")));
+setprop("/aaa/route/y2", getprop("/autopilot/route-manager/wp[1]/dist")*math.sin(math.pi*(90-getprop("/autopilot/route-manager/wp[1]/bearing-deg")+getprop("/orientation/heading-magnetic-deg"))/180)*(160/getprop("/instrumentation/efis/inputs/range"))-80);
+}
+if (getprop("/aaa/route/show")){
+settimer(nav_stars, 1);
+}else{
+props.globals.getNode("/aaa/route/x1", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y1", 0).setDoubleValue(100);
+props.globals.getNode("/aaa/route/x2", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y2", 0).setDoubleValue(100);
+}
+}
+setprop("/aaa/route/show", !(getprop("/aaa/route/show")));
+if (getprop("/aaa/route/show")){
+nav_stars();
+controls.click(3);
+}else{
+props.globals.getNode("/aaa/route/x1", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y1", 0).setDoubleValue(100);
+props.globals.getNode("/aaa/route/x2", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y2", 0).setDoubleValue(100);
+controls.click(3);
+}
+				</script>
             </binding>
         </action>
     </animation>

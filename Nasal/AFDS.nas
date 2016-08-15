@@ -23,7 +23,7 @@ var AFDS = {
         "TRK SEL","TRK HOLD","ATT","TO/GA"];
 
         m.pitch_list=["","ALT","V/S","VNAV PTH","VNAV SPD",
-        "VNAV ALT","G/S","FLARE","FLCH SPD","FPA","TO/GA"];
+        "VNAV ALT","G/S","FLARE","FLCH SPD","FPA","TO/GA","CLB CON"];
 
         m.step=0;
 
@@ -110,9 +110,11 @@ var AFDS = {
                 } else
                     btn = 0;
             }
-            if (btn==8)
+            if (btn==11)
             {
-                # change flight level
+                    var vs_now = int(getprop("/velocities/vertical-speed-fps")*0.6)*100;
+					if (vs_now>0 and vs_now<6000)
+                    me.vs_setting.setValue(vs_now);
             }
             me.vertical_mode.setValue(btn);
         }elsif(mode==2){
@@ -244,10 +246,40 @@ var AFDS = {
                 # auto-throttle disables when reverser is enabled
                 me.autothrottle_mode.setValue(0);
             }
-        }
+        }elsif(me.step==5){				
+			if (getprop("/autopilot/route-manager/active")){
+				max_wpt=getprop("/autopilot/route-manager/route/num");
+				atm_wpt=getprop("/autopilot/route-manager/current-wp");
+				max_wpt-=1;
+				if (getprop("/autopilot/route-manager/wp/eta")=="0:37" and getprop("/autopilot/route-manager/wp/dist")<20){
+					if (getprop("/autopilot/route-manager/current-wp")<=max_wpt){
+						atm_wpt+=1;
+						props.globals.getNode("/autopilot/route-manager/current-wp").setValue(atm_wpt);
+					}
+				}				
+			}
+		}elsif(me.step==6){
+			ma_spd=getprop("/velocities/mach");
+			banklimit=getprop("/instrumentation/afds/inputs/bank-limit-switch");
+			if (banklimit==0 and ma_spd>0.85)
+			lim=0;
+			if (banklimit==0 and ma_spd<=0.85 and ma_spd>0.6666)
+			lim=10;
+			if (banklimit==0 and ma_spd<=0.6666 and ma_spd>0.5)
+			lim=20;	
+			if (banklimit==0 and ma_spd<=0.5 and ma_spd>0.3333)
+			lim=30;
+			if (banklimit==0 and ma_spd<=0.333)
+			lim=35;
+			if (banklimit==0){
+	        props.globals.getNode("/instrumentation/afds/settings/bank-max").setValue(lim);
+			lim = -1 * lim;
+			props.globals.getNode("/instrumentation/afds/settings/bank-min").setValue(lim);
+			}
+		}
 
         me.step+=1;
-        if(me.step>4)me.step =0;
+        if(me.step>6)me.step =0;
     },
 };
 #####################
@@ -256,10 +288,14 @@ var AFDS = {
 var afds = AFDS.new();
 
 setlistener("/sim/signals/fdm-initialized", func {
-    settimer(update_afds,5);
+    settimer(update_afds, 6);
     print("AFDS System ... check");
 });
 
+var lim=30;
+var max_wpt=1;
+var atm_wpt=1;
+setprop("/aaa/jettison", 0);
 var update_afds = func {
     afds.ap_update();
 

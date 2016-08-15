@@ -7,13 +7,16 @@
 <h>256</h>
 
 <instruments>
-
     <instrument include="ctrl-surf.xml">
         <condition>
             <greater-than>
                 <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>FCTL</value>
+                </equals>			
         </condition>
         <name>eng</name>
         <x>128</x>
@@ -21,6 +24,164 @@
         <w>256</w>
         <h>256</h>
     </instrument>
-</instruments>
 
+    <instrument include="gmcs-info.xml">
+        <condition>
+            <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+            </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>GMCS</value>
+                </equals>			
+        </condition>
+        <name>gmcs</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+    <instrument include="fuel-info.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>FUEL</value>
+                </equals>
+            </and>
+        </condition>
+        <name>fuel</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>	
+
+    <instrument include="gear-info.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>GEAR</value>
+                </equals>
+            </and>
+        </condition>
+        <name>gear</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+    <instrument include="hydraulic-info.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>HYDRAULIC</value>
+                </equals>
+            </and>
+        </condition>
+        <name>hydraulic</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+	
+	<instrument include="electric-info.xml">
+            <condition>
+           	 <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>ELECTRIC</value>
+                </equals>
+               </and>
+            </condition>
+        <name>electric</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+<instrument include="presure-info.xml">
+            <condition>
+           	 <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>PRESURE</value>
+                </equals>
+               </and>
+            </condition>
+        <name>presure</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+	<instrument include="doors-info.xml">
+            <condition>
+           	 <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>DOORS</value>
+                </equals>
+               </and>
+            </condition>
+        <name>doors</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
+
+	<instrument include="eicas2.xml">
+            <condition>
+           	 <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/efis/mfd3/display-mode</property>
+                    <value>EICAS2</value>
+                </equals>
+               </and>
+            </condition>
+        <name>doors</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>	
+	
+</instruments>
 </PropertyList>

@@ -5,6 +5,51 @@
 <PropertyList>
  <path>tcas-ctl.ac</path>
 
+ 	<animation>
+		<type>material</type>
+		<object-name>TCAS.pnl</object-name>
+		<object-name>ATC.alt_src</object-name>
+		<object-name>ATC.norm_altn</object-name>
+		<object-name>TCAS-left.abv_blw</object-name>
+		<object-name>TCAS-left.abs_rel</object-name>
+		<object-name>Xpdr.knob</object-name>
+		<object-name>Xpdr.knob1</object-name>
+		<object-name>TCAS-right.abv_blw</object-name>	
+		<object-name>TCAS-right.abs_rel</object-name>
+		<object-name>TCAS.knob</object-name>
+		<object-name>IDT.btn</object-name>		
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>
+ 
+ <animation>
+		<type>material</type>
+		<object-name>greentext</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation>
+ 
     <animation>
         <type>textranslate</type>
         <object-name>digit0</object-name>
@@ -208,6 +253,7 @@
         <object-name>TCAS.knob</object-name>
         <action>
             <button>0</button>
+			<button>3</button>
             <binding>
                 <command>property-adjust</command>
                 <property>instrumentation/transponder/mode-switch</property>
@@ -224,6 +270,7 @@
         <object-name>TCAS.knob</object-name>
         <action>
             <button>1</button>
+			<button>4</button>
             <binding>
                 <command>property-adjust</command>
                 <property>instrumentation/transponder/mode-switch</property>

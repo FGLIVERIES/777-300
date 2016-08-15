@@ -5,11 +5,21 @@
     <model>
         <livery>
             <name type="string">TAM</name>
-            <texture>TAM.png</texture>
+            <texture>/Liveries/PNG/TAM.png</texture>
         </livery>
+		
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+		</livery-door>			
+		
         <lights>
-            <texture>TAM-lights.png</texture>
+            <texture>/Liveries/PNG/TAM-lights.png</texture>
         </lights>
+		
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>			
+		
     </model>
 </sim>
 </PropertyList>

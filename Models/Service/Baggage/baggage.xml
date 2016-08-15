@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>baggage.ac</path>
+
+  <animation>
+    <type>range</type>
+    <min-m>0</min-m>
+    <max-property>sim/rendering/static-lod/bare</max-property>
+  </animation>
+
+     <animation>
+      <type>material</type>
+    <object-name>Cube_0.002_0</object-name>
+	<object-name>Cube_0.002_1</object-name>
+	<object-name>Cube_0.002_2</object-name>
+	<object-name>Bag_02.001</object-name>
+	<object-name>Baggage.car2_0.002</object-name>
+	<object-name>Baggage.car1_4</object-name>
+	<object-name>Baggage.car1_0</object-name>
+	<object-name>Baggage.car1_2</object-name>
+	<object-name>Baggage.car1_3</object-name>
+	<object-name>Baggage.car1_1</object-name>
+	<object-name>Baggage.car1_5</object-name>
+	<object-name>Cube_0_0</object-name>
+	<object-name>Cube_0_1</object-name>
+	<object-name>Cube_0_2</object-name>
+	<object-name>Bag_02</object-name>
+	<object-name>Baggage.car2_0</object-name>
+	<object-name>Baggage.car2_4</object-name>
+	<object-name>Baggage.car1_0</object-name>
+	<object-name>Baggage.car2_2</object-name>
+	<object-name>Baggage.car2_3</object-name>
+	<object-name>Baggage.car2_1</object-name>
+	<object-name>Baggage.car2_5</object-name>
+	<object-name>man1</object-name>
+	<object-name>man2</object-name>
+	<object-name>man3</object-name>
+	<object-name>man4</object-name>
+      <condition>
+         <greater-than>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.59</value>
+         </greater-than>
+      </condition>
+      <global type="bool">true</global>
+      <emission>
+         <red>0.3</red>
+         <green>0.3</green>
+         <blue>0.3</blue>
+      </emission>
+   </animation>
+   
+   <animation>
+      <type>material</type>
+    <object-name>Cube_0.002_0</object-name>
+	<object-name>Cube_0.002_1</object-name>
+	<object-name>Cube_0.002_2</object-name>
+	<object-name>Bag_02.001</object-name>
+	<object-name>Baggage.car2_0.002</object-name>
+	<object-name>Baggage.car1_4</object-name>
+	<object-name>Baggage.car1_0</object-name>
+	<object-name>Baggage.car1_2</object-name>
+	<object-name>Baggage.car1_3</object-name>
+	<object-name>Baggage.car1_1</object-name>
+	<object-name>Baggage.car1_5</object-name>
+	<object-name>Cube_0_0</object-name>
+	<object-name>Cube_0_1</object-name>
+	<object-name>Cube_0_2</object-name>
+	<object-name>Bag_02</object-name>
+	<object-name>Baggage.car2_0</object-name>
+	<object-name>Baggage.car2_4</object-name>
+	<object-name>Baggage.car1_0</object-name>
+	<object-name>Baggage.car2_2</object-name>
+	<object-name>Baggage.car2_3</object-name>
+	<object-name>Baggage.car2_1</object-name>
+	<object-name>Baggage.car2_5</object-name>
+	<object-name>man1</object-name>
+	<object-name>man2</object-name>
+	<object-name>man3</object-name>
+	<object-name>man4</object-name>
+      <condition>
+         <less-than-equals>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.59</value>
+         </less-than-equals>
+      </condition>
+      <global type="bool">true</global>
+      <emission>
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+      </emission>
+   </animation>
+  
+</PropertyList>

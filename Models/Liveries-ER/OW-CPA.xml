@@ -5,11 +5,21 @@
     <model>
         <livery>
             <name type="string">Cathay Pacific (One World)</name>
-            <texture>OW-CPA.png</texture>
+            <texture>/Liveries/PNG/OW-CPA.png</texture>
         </livery>
+		
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+		</livery-door>	
+		
         <lights>
-            <texture>OW-CPA-lights.png</texture>
+            <texture>/Liveries/PNG/OW-CPA-lights.png</texture>
         </lights>
+		
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>	
+		
     </model>
 </sim>
 </PropertyList>

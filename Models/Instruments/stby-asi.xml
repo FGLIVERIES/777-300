@@ -86,5 +86,34 @@
    </axis>
  </animation>
 
-
+<animation>
+		<type>material</type>
+		<object-name>StbyAsi</object-name>
+		<object-name>StbyAsi.knob</object-name>		
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>
+ 
+	<animation>
+		<type>select</type>	
+		<object-name>asi_kurde</object-name>
+		<condition>
+		<less-than>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</less-than>
+		</condition>
+	</animation> 
+ 
 </PropertyList>

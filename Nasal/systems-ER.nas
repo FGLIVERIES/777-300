@@ -270,12 +270,16 @@ var Engine = {
         m.n2 = m.eng.getNode("n2",1);
         m.rpm = m.eng.getNode("rpm",1);
         m.rpm.setDoubleValue(0);
+		m.rpm2 = m.eng.getNode("rpm2",1);
+        m.rpm2.setDoubleValue(0);		
         m.throttle_lever = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle-lever",1);
         m.throttle_lever.setDoubleValue(0);
         m.throttle = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle",1);
         m.throttle.setDoubleValue(0);
         m.cutoff = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff",1);
         m.cutoff.setBoolValue(1);
+        m.cutoff_lever = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff_lever",1);
+        m.cutoff_lever.setBoolValue(1);			
         m.fuel_out = props.globals.getNode("engines/engine["~eng_num~"]/out-of-fuel",1);
         m.fuel_out.setBoolValue(0);
         m.starter = props.globals.getNode("controls/engines/engine["~eng_num~"]/starter",1);
@@ -291,6 +295,7 @@ var Engine = {
         if(me.fuel_out.getBoolValue())me.cutoff.setBoolValue(1);
         if(!me.cutoff.getBoolValue()){
         me.rpm.setValue(me.n1.getValue());
+		me.rpm2.setValue(me.n2.getValue());
         me.throttle_lever.setValue(me.throttle.getValue());
         }else{
             me.throttle_lever.setValue(0);
@@ -298,10 +303,15 @@ var Engine = {
                 me.spool_up();
             }else{
                 var tmprpm = me.rpm.getValue();
+				var tmprpm2 = me.rpm2.getValue();
                 if(tmprpm > 0.0){
                     tmprpm -= getprop("sim/time/delta-realtime-sec") * 0.5;
                     me.rpm.setValue(tmprpm);
                 }
+                if(tmprpm2 > 0.0){
+                    tmprpm2 -= getprop("sim/time/delta-realtime-sec") * 1.5;
+                    me.rpm2.setValue(tmprpm2);
+                }				
             }
         }
     me.fuel_pph.setValue(me.fuel_gph.getValue()*me.fdensity);
@@ -311,18 +321,27 @@ var Engine = {
     },
 
     spool_up : func{
-        if(!me.cutoff.getBoolValue()){
+        if(me.rpm.getValue()>20.8 and me.rpm2.getValue()>68.2){
         return;
         }else{
             var tmprpm = me.rpm.getValue();
+			var tmprpm2 = me.rpm2.getValue();
+			if(me.rpm.getValue()<=20.8){
             tmprpm += getprop("sim/time/delta-realtime-sec") * 0.5;
             me.rpm.setValue(tmprpm);
-            if(tmprpm >= me.n1.getValue())me.cutoff.setBoolValue(0);
+			}
+			if(me.rpm2.getValue()<=68.4){
+			tmprpm2 += getprop("sim/time/delta-realtime-sec") * 1.5;
+			me.rpm2.setValue(tmprpm2);
+			}			
         }
     },
 
 };
 ##########################
+#usage :     var wiper = Wiper.new(wiper property , wiper power source (separate from on off switch));
+#
+#    var wiper = Wiper.new("controls/electric/wipers","systems/electrical/left-bus");
 
 var Wiper = {
     new : func {
@@ -334,23 +353,27 @@ var Wiper = {
         m.power = props.globals.getNode(arg[1],1);
         if(m.power.getValue()==nil)m.power.setDoubleValue(0);
         m.spd = m.node.getNode("arc-sec",1);
-        if(m.spd.getValue()==nil)m.spd.setDoubleValue(1);
+        if(m.spd.getValue()==nil)m.spd.setDoubleValue(0.005);
         m.delay = m.node.getNode("delay-sec",1);
-        if(m.delay.getValue()==nil)m.delay.setDoubleValue(0);
-        m.position = m.node.getNode("position-norm", 1);
+        if(m.delay.getValue()==nil)m.delay.setDoubleValue(2);
+        m.position = m.node.getNode("degrees", 1);
         m.position.setDoubleValue(0);
-        m.switch = m.node.getNode("switch", 1);
-        if (m.switch.getValue() == nil)m.switch.setBoolValue(0);
+        m.switch = m.node.getNode("speed", 1);
+        if (m.switch.getValue() == nil)m.switch.setDoubleValue(0);
         return m;
     },
     active: func{
     if(me.power.getValue()<=5)return;
+	if(me.spd.getValue()==0){
+	me.position.setValue(0);
+	return;
+	}
     var spd_factor = 1/me.spd.getValue();
     var pos = me.position.getValue();
-    if(!me.switch.getValue()){
+    if(!me.switch.getValue()==1){
         if(pos <= 0.000)return;
         }
-    if(pos >=1.000){
+    if(pos >=45.000){
         me.direction=-1;
         }elsif(pos <=0.000){
         me.direction=0;
@@ -370,7 +393,10 @@ var Wiper = {
 var Efis = EFIS.new("instrumentation/efis");
 var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
-var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
+var wiper1 = Wiper.new("aaa/lwiper","systems/electrical/left-bus");
+setprop("/aaa/lwiper/delay-sec", 2);
+var wiper2 = Wiper.new("aaa/rwiper","systems/electrical/left-bus");
+setprop("/aaa/rwiper/delay-sec", 2);
 
 setlistener("/sim/signals/fdm-initialized", func {
     SndOut.setDoubleValue(0.15);
@@ -507,43 +533,16 @@ controls.toggleLandingLights = func()
 }
 
 var Startup = func{
-setprop("sim/model/armrest",1);
-setprop("controls/electric/engine[0]/generator",1);
-setprop("controls/electric/engine[1]/generator",1);
-setprop("controls/electric/engine[0]/bus-tie",1);
-setprop("controls/electric/engine[1]/bus-tie",1);
-setprop("controls/electric/APU-generator",1);
-setprop("controls/electric/avionics-switch",1);
-setprop("controls/electric/battery-switch",1);
-setprop("controls/electric/inverter-switch",1);
-setprop("controls/lighting/instrument-norm",0.8);
-setprop("controls/lighting/nav-lights",1);
-setprop("controls/lighting/beacon",1);
-setprop("controls/lighting/strobe",1);
-setprop("controls/lighting/wing-lights",1);
-setprop("controls/lighting/taxi-lights",1);
-setprop("controls/lighting/logo-lights",1);
-setprop("controls/lighting/cabin-lights",1);
-setprop("controls/lighting/landing-light[0]",1);
-setprop("controls/lighting/landing-light[1]",1);
-setprop("controls/lighting/landing-light[2]",1);
-setprop("controls/engines/engine[0]/cutoff",0);
-setprop("controls/engines/engine[1]/cutoff",0);
-setprop("controls/fuel/tank/boost-pump",1);
-setprop("controls/fuel/tank/boost-pump[1]",1);
-setprop("controls/fuel/tank[1]/boost-pump",1);
-setprop("controls/fuel/tank[1]/boost-pump[1]",1);
-setprop("controls/fuel/tank[2]/boost-pump",1);
-setprop("controls/fuel/tank[2]/boost-pump[1]",1);
-setprop("controls/flight/elevator-trim",0);
-setprop("controls/flight/aileron-trim",0);
-setprop("controls/flight/rudder-trim",0);
-if (getprop("/sim/model/start-idling")==0) setprop("/sim/model/start-idling",1);
-setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
+screen.log.write("O nie, nie ma tak latwo! Uruchom go recznie.", 1, 0, 0);
+screen.log.write("(No way, it's not that easy! Start it up manually.)", 1, 0, 0);
 }
 
 var Shutdown = func{
 setprop("/controls/gear/brake-parking",1);
+setprop("/sim/sound/music_b",0);
+setprop("/controls/electric/APU-button",-1);
+setprop("/aaa/lwiper/degrees",0.00);
+setprop("/aaa/rwiper/degrees",0.00);
 setprop("controls/electric/engine[0]/generator",0);
 setprop("controls/electric/engine[1]/generator",0);
 setprop("controls/electric/engine[0]/bus-tie",0);
@@ -574,6 +573,80 @@ setprop("controls/fuel/tank[1]/boost-pump[1]",0);
 setprop("controls/fuel/tank[2]/boost-pump",0);
 setprop("controls/fuel/tank[2]/boost-pump[1]",0);
 setprop("sim/model/armrest",0);
+setprop("/aaa/xfeed_1", 0);
+setprop("/aaa/xfeed_2", 0);
+setprop("/consumables/fuel/tank[0]/selected",0);
+setprop("/consumables/fuel/tank[1]/selected",0);
+setprop("/consumables/fuel/tank[2]/selected",0);
+setprop("/aaa/xfeed_progr", 0);
+props.globals.getNode("/aaa/bleed_air/L_PACK", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_PACK", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/L_TRIM", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_TRIM", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/L_ISLN", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/C_ISLN", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_ISLN", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/L_ENG", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/APU", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_ENG", 0).setBoolValue(0);
+setprop("/instrumentation/efis/mfd/mode-num", 3);
+setprop("/instrumentation/efis/mfd/display-mode", "INFORMATION");
+setprop("/instrumentation/efis/mfd2/mode-num", 3);
+setprop("/instrumentation/efis/mfd2/display-mode", "INFORMATION");
+setprop("/instrumentation/radar/switch", "off");
+setprop("/aaa/deice/di1", 0);
+setprop("/aaa/deice/di2", 0);
+setprop("/aaa/deice/di3", 0);
+setprop("/aaa/deice/di4", 0);
+setprop("/aaa/outflow/ofv1", 0);
+setprop("/aaa/outflow/ofv2", 0);
+setprop("/aaa/efb/mode", "off");
+setprop("/aaa/mfd_buttons/left", 0);
+setprop("/aaa/mfd_buttons/center", 0);
+setprop("/aaa/mfd_buttons/right", 1);
+setprop("/aaa/anti-ice/left", -1);
+setprop("/aaa/anti-ice/center", -1);
+setprop("/aaa/anti-ice/right", -1);
+setprop("/aaa/flightdeck-norm", 0.22);
+setprop("/instrumentation/efis/mfd3/display-mode", "EICAS2");
+setprop("/aaa/no-smkg", 0);
+setprop("/aaa/seatbelts", 0);
+setprop("/aaa/lheater", -1);
+setprop("/aaa/rheater", -1);
+setprop("/aaa/jettison", 0);
+setprop("/instrumentation/efis/inputs/range", 10);
+setprop("/aaa/hydraulic/air_l", -1);
+setprop("/aaa/hydraulic/air_c1", -1);
+setprop("/aaa/hydraulic/air_c2", -1);
+setprop("/aaa/hydraulic/air_r", -1);
+setprop("/aaa/switches/switch301", 0);
+setprop("/aaa/switches/switch302", 0);
+setprop("/aaa/switches/switch401", -1);
+setprop("/aaa/switches/switch402", 0);
+setprop("/aaa/switches/switch101", 0);
+setprop("/aaa/switches/switch102", 0);
+setprop("/aaa/switches/switch201", 0);
+setprop("/aaa/switches/switch202", 0);
+props.globals.getNode("/aaa/oh/adiru", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf1", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf2", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf3", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac1", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac2", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac3", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac4", 1).setBoolValue(0);
+setprop("/aaa/hydraulic/air_l_knob", -1);
+setprop("/aaa/hydraulic/air_c1_knob", -1);
+setprop("/aaa/hydraulic/air_c2_knob", -1);
+setprop("/aaa/hydraulic/air_r_knob", -1);
+props.globals.getNode("/aaa/route/x1", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y1", 0).setDoubleValue(-80);
+props.globals.getNode("/aaa/route/x2", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y2", 0).setDoubleValue(-80);
+props.globals.getNode("/aaa/flightdeck-norm").setDoubleValue(0.2);
+props.globals.getNode("/aaa/displays-norm").setDoubleValue(1);
+props.globals.getNode("/aaa/flightdeck-green-norm").setDoubleValue(0.8);
+props.globals.getNode("/aaa/route/show", 1).setBoolValue(0);
 if (getprop("/sim/model/start-idling")) setprop("/sim/model/start-idling",0);
 setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
 }
@@ -595,7 +668,8 @@ var update_systems = func {
     Efis.update_temp();
     LHeng.update();
     RHeng.update();
-    wiper.active();
+    wiper1.active();
+	wiper2.active();
     if(getprop("controls/gear/gear-down")){
         setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
         setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
@@ -607,6 +681,7 @@ var update_systems = func {
     var et_hr = int(et_min * 0.0166666666667) * 100;
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
+	setprop("/controls/lighting/cabin-lights", 1);	
     
     settimer(update_systems,0);
 }

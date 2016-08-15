@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <name>Failure system</name>
+  <layout>vbox</layout>
+
+  <text>
+    <label>Failure system</label>
+  </text>
+
+  <hrule/>
+
+  <group>
+    <layout>vbox</layout>
+    <halign>center</halign>
+	
+    <checkbox>
+      <halign>left</halign>
+      <label>Hydraulic system</label>
+      <property>/aaa/fail-system/hydr-fail</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/fail-system/hydr-fail</property>
+      </binding>
+    </checkbox>		
+	
+    <checkbox>
+      <halign>left</halign>
+      <label>Engine fail</label>
+      <property>/aaa/fail-system/eng-fail</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/fail-system/eng-fail</property>
+      </binding>
+    </checkbox>	
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Engine fire</label>
+      <property>/aaa/fail-system/eng-fire</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/fail-system/eng-fire</property>
+      </binding>
+    </checkbox>
+	
+    <checkbox>
+      <halign>left</halign>
+      <label>Turbulence</label>
+      <property>/aaa/fail-system/turbulence</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/fail-system/turbulence</property>
+      </binding>
+    </checkbox>	
+	
+  </group>
+
+		<group>
+			<layout>hbox</layout>
+			<halign>center</halign>
+			<text>
+				<pref-width>70</pref-width>
+				<label>Coefficient=</label>
+			</text>
+			<text>
+				<pref-width>30</pref-width>
+				<property>/aaa/fail-system/coefficient</property>
+				<format>%3.0f</format>
+				<live>true</live>
+			</text>			
+		</group>  
+  
+		<slider>
+			<min>1</min>
+			<max>1000</max>
+			<pref-width>290</pref-width>
+			<property>/aaa/fail-system/coefficient</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</slider>  
+  
+  <hrule/>
+
+  <group>
+    <layout>hbox</layout>
+    <empty><stretch>true</stretch></empty>
+
+    <button>
+      <legend>Close</legend>
+      <default>true</default>
+      <key>Esc</key>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+
+    <empty><stretch>true</stretch></empty>
+  </group>
+
+</PropertyList>

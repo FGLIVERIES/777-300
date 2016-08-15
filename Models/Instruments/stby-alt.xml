@@ -184,9 +184,10 @@
 
     <animation>
         <type>pick</type>
-        <object-name>StbyAsi.knob</object-name>
+        <object-name>StbyAlt.knob</object-name>
         <action>
             <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -202,9 +203,10 @@
 
     <animation>
         <type>pick</type>
-        <object-name>StbyAsi.knob</object-name>
+        <object-name>StbyAlt.knob</object-name>
         <action>
             <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -218,4 +220,34 @@
         </action>
     </animation>
 
+<animation>
+		<type>material</type>
+		<object-name>StbyAlt</object-name>
+		<object-name>StbyAlt.knob</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>
+ 
+	<animation>
+		<type>select</type>	
+		<object-name>alt_kurde</object-name>
+		<condition>
+		<less-than>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</less-than>
+		</condition>
+	</animation>
+	
 </PropertyList>

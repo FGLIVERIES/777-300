@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<sim>
+    <model>
+        <livery>
+            <name type="string">Jet Airways</name>
+            <texture>9W.png</texture>
+        </livery>
+        <lights>
+            <texture>light.png</texture>
+        </lights>
+    </model>
+</sim>
+</PropertyList>

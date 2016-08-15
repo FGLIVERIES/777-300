@@ -8,6 +8,370 @@ Autopilot Control Panel
 
 <path>APpanel.ac</path>
 
+	<animation>
+		<type>material</type>
+		<object-name>FDtoggle</object-name>
+		<object-name>THARM.switch</object-name>
+		<object-name>THARM1.switch</object-name>
+		<object-name>AP.panel</object-name>
+		<object-name>SPD.knob</object-name>
+		<object-name>IAS.knob</object-name>
+		<object-name>AP.disengage</object-name>
+		<object-name>Bank.dec</object-name>
+		<object-name>Bank.inc</object-name>
+		<object-name>HDG.dec</object-name>
+		<object-name>HDG.inc</object-name>
+		<object-name>BLimit.knob</object-name>
+		<object-name>HDG.knob</object-name>
+		<object-name>Pitchwheel.dec</object-name>
+		<object-name>Pitchwheel.inc</object-name>
+		<object-name>ALTmode.auto</object-name>
+		<object-name>ALTmode.1000</object-name>
+		<object-name>ALT.inc</object-name>
+		<object-name>ALT.dec</object-name>
+		<object-name>ALTmode.knob</object-name>
+		<object-name>ALT.knob</object-name>
+		<object-name>FD-on</object-name>
+		<object-name>Panel.004</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>AP.panel.001</object-name>
+		<object-name>BLimit.knob.001</object-name>
+		<object-name>ALTmode.knob.001</object-name>
+		<object-name>APletters</object-name>
+		<object-name>SPD.dec</object-name>
+		<object-name>SPD.inc</object-name>
+		<object-name>IAS.up</object-name>
+		<object-name>IAS.dwn</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation>		
+
+  <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.001</object-name>
+	<property>/aaa/mfd_buttons/left</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+        <type>translate</type>
+   <object-name>AP.btn.001</object-name>
+	<property>/aaa/mfd_buttons/left</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation> 
+ 
+   <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.002</object-name>
+	<property>/aaa/mfd_buttons/right</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+  <animation>
+        <type>translate</type>
+   <object-name>AP.btn.002</object-name>
+	<property>/aaa/mfd_buttons/right</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation> 
+ 
+   <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.003</object-name>
+	<property>/aaa/mfd_buttons/center</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation> 
+
+   <animation>
+        <type>translate</type>
+   <object-name>AP.btn.003</object-name>
+	<property>/aaa/mfd_buttons/center</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation> 
+ 
+  <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.007</object-name>
+	<property>/aaa/mfd_buttons/elec</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+    <animation>
+        <type>translate</type>
+   <object-name>AP.btn.007</object-name>
+	<property>/aaa/mfd_buttons/elec</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation> 
+ 
+   <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.011</object-name>
+	<property>/aaa/mfd_buttons/hyd</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+     <animation>
+        <type>translate</type>
+   <object-name>AP.btn.011</object-name>
+	<property>/aaa/mfd_buttons/hyd</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+   <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.012</object-name>
+	<property>/aaa/mfd_buttons/fuel</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+      <animation>
+        <type>translate</type>
+   <object-name>AP.btn.012</object-name>
+	<property>/aaa/mfd_buttons/fuel</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+   <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.006</object-name>
+	<property>/aaa/mfd_buttons/air</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+       <animation>
+        <type>translate</type>
+   <object-name>AP.btn.006</object-name>
+	<property>/aaa/mfd_buttons/air</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+  <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.008</object-name>
+	<property>/aaa/mfd_buttons/door</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+        <animation>
+        <type>translate</type>
+   <object-name>AP.btn.008</object-name>
+	<property>/aaa/mfd_buttons/door</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+  <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.010</object-name>
+	<property>/aaa/mfd_buttons/gear</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+         <animation>
+        <type>translate</type>
+   <object-name>AP.btn.010</object-name>
+	<property>/aaa/mfd_buttons/gear</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+  <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.013</object-name>
+	<property>/aaa/mfd_buttons/fctl</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+          <animation>
+        <type>translate</type>
+   <object-name>AP.btn.013</object-name>
+	<property>/aaa/mfd_buttons/fctl</property>
+        <factor>-0.0007</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+  <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.016</object-name>
+	<property>/aaa/mfd_buttons/cam</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation> 
+ 
+           <animation>
+        <type>translate</type>
+   <object-name>AP.btn.016</object-name>
+	<property>/aaa/mfd_buttons/cam</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation>
+ 
+   <animation>
+  <!-- -0.39 -->
+   <type>textranslate</type>
+   <object-name>AP.btn.013</object-name>
+	<property>/aaa/mfd_buttons/fctl</property>
+   <factor>0.039</factor>
+   <axis>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </axis>
+ </animation> 
+
+           <animation>
+        <type>translate</type>
+   <object-name>AP.btn.013</object-name>
+	<property>/aaa/mfd_buttons/fctl</property>
+        <factor>-0.0015</factor>
+        <axis>
+            <x>1</x>
+            <y>0</y>
+            <z>0</z>
+        </axis>
+    </animation> 
+ 
     <animation>
         <type>rotate</type>
         <object-name>BLimit.knob</object-name>
@@ -122,11 +486,11 @@ Autopilot Control Panel
         <type>translate</type>
         <object-name>AP.disengage</object-name>
         <property>instrumentation/afds/inputs/AP-disengage</property>
-        <factor>0.011</factor>
+        <factor>0.0025</factor>
         <axis>
-            <x>0</x>
+            <x>-1</x>
             <y>0</y>
-            <z>-1</z>
+            <z>0</z>
         </axis>
     </animation>
 
@@ -265,7 +629,7 @@ Autopilot Control Panel
                 </equals>
             </or>
         </condition>
-    </animation>
+    </animation>	
 
 <!-- LED displays-->
 
@@ -296,6 +660,7 @@ Autopilot Control Panel
         </axis>
     </animation>
 
+	
     <animation>
         <type>textranslate</type>
         <object-name>IAS.led2</object-name>
@@ -443,7 +808,7 @@ Autopilot Control Panel
     <animation>
         <type>textranslate</type>
         <object-name>TRK.led1</object-name>
-        <property>instrumentation/afds/settings/trk</property>
+        <property>instrumentation/nav/radials/selected-deg</property>
         <factor>0.001</factor>
         <step>100</step>
         <axis>
@@ -456,7 +821,7 @@ Autopilot Control Panel
     <animation>
         <type>textranslate</type>
         <object-name>TRK.led2</object-name>
-        <property>instrumentation/afds/settings/trk</property>
+        <property>instrumentation/nav/radials/selected-deg</property>
         <factor>0.01</factor>
         <step>10</step>
         <axis>
@@ -469,7 +834,7 @@ Autopilot Control Panel
     <animation>
         <type>textranslate</type>
         <object-name>TRK.led3</object-name>
-        <property>instrumentation/afds/settings/trk</property>
+        <property>instrumentation/nav/radials/selected-deg</property>
         <factor>0.1</factor>
         <step>1</step>
         <axis>
@@ -829,7 +1194,9 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(3);b777.afds.input(0,3);</script>
+                <script>				
+				controls.click(3);b777.afds.input(0,3);
+				</script>
             </binding>
         </action>
     </animation>
@@ -881,7 +1248,7 @@ Autopilot Control Panel
             <repeatable>false</repeatable>
             <binding>
                 <command>nasal</command>
-                <script>controls.click(3);b777.afds.input(2,3);</script>
+                <script>controls.click(4);b777.afds.input(1,2);</script>
             </binding>
         </action>
     </animation-->
@@ -965,12 +1332,13 @@ Autopilot Control Panel
         <object-name>Pitchwheel.dec</object-name>
         <action>
             <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
                     <equals>
-                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                        <value>V/S</value>
+                        <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                        <value>false</value>
                     </equals>
                 </condition>
                 <command>property-adjust</command>
@@ -982,8 +1350,8 @@ Autopilot Control Panel
             <binding>
                 <condition>
                     <equals>
-                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                        <value>FPA</value>
+                        <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                        <value>true</value>
                     </equals>
                 </condition>
                 <command>property-adjust</command>
@@ -997,19 +1365,15 @@ Autopilot Control Panel
                 <script>controls.click(5);</script>
             </binding>
         </action>
-    </animation>
-
-    <animation>
-        <type>pick</type>
-        <object-name>Pitchwheel.inc</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <binding>
             <condition>
                 <equals>
-                    <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                    <value>V/S</value>
+                    <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                    <value>false</value>
                 </equals>
             </condition>
             <command>property-adjust</command>
@@ -1021,8 +1385,48 @@ Autopilot Control Panel
             <binding>
                 <condition>
                     <equals>
-                        <property>instrumentation/afds/ap-modes/pitch-mode</property>
-                        <value>FPA</value>
+                        <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                        <value>true</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/flight-path-angle</property>
+                <step>0.1</step>
+                <min>-9.9</min>
+                <max>9.9</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>		
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>Pitchwheel.inc</object-name>
+        <action>
+            <button>0</button>
+			<button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+            <condition>
+                <equals>
+                    <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                    <value>false</value>
+                </equals>
+            </condition>
+            <command>property-adjust</command>
+            <property>autopilot/settings/vertical-speed-fpm</property>
+            <step>100</step>
+            <min>-8000</min>
+            <max>6000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                        <value>true</value>
                     </equals>
                 </condition>
                 <command>property-adjust</command>
@@ -1036,6 +1440,41 @@ Autopilot Control Panel
                 <script>controls.click(5);</script>
             </binding>
         </action>
+        <action>
+            <button>1</button>
+			<button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                        <value>false</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/vertical-speed-fpm</property>
+                <step>-100</step>
+                <min>-8000</min>
+                <max>6000</max>
+            </binding>
+            <binding>
+                <condition>
+                    <equals>
+                        <property>instrumentation/afds/inputs/vs-fpa-selected</property>
+                        <value>true</value>
+                    </equals>
+                </condition>
+                <command>property-adjust</command>
+                <property>autopilot/settings/flight-path-angle</property>
+                <step>-0.1</step>
+                <min>-9.9</min>
+                <max>9.9</max>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>		
     </animation>
 
     <animation>
@@ -1053,8 +1492,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>-10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1064,7 +1503,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>-0.010</step>
                 <min>0.4</min>
-                <max>0.82</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1075,9 +1514,9 @@ Autopilot Control Panel
     
     <animation>
         <type>pick</type>
-        <object-name>SPD.dec</object-name>
+        <object-name>SPD.knob</object-name>
         <action>
-            <button>1</button>
+            <button>3</button> <!--  scroll up -->
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1088,8 +1527,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1099,7 +1538,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>0.010</step>
                 <min>0.4</min>
-                <max>0.84</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1123,8 +1562,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1134,7 +1573,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>0.010</step>
                 <min>0.4</min>
-                <max>0.84</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1145,9 +1584,9 @@ Autopilot Control Panel
 
     <animation>
         <type>pick</type>
-        <object-name>SPD.inc</object-name>
+        <object-name>SPD.knob</object-name>
         <action>
-            <button>1</button>
+            <button>4</button> <!--  scroll down -->
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1158,8 +1597,8 @@ Autopilot Control Panel
                 <command>property-adjust</command>
                 <property>autopilot/settings/target-speed-kt</property>
                 <step>-10</step>
-                <min>120</min>
-                <max>260</max>
+                <min>100</min>
+                <max>390</max>
             </binding>
             <binding>
                 <condition>
@@ -1169,7 +1608,7 @@ Autopilot Control Panel
                 <property>autopilot/settings/target-speed-mach</property>
                 <step>-0.010</step>
                 <min>0.4</min>
-                <max>0.82</max>
+                <max>0.95</max>
             </binding>
             <binding>
                 <command>nasal</command>
@@ -1185,13 +1624,29 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>true</repeatable>
             <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
                 <step>1</step>
                 <min>0</min>
                 <max>360</max>
                 <wrap>true</wrap>
-            </binding>
+            </binding>	
+            <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>1</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>			
             <binding>
                 <command>nasal</command>
                 <script>controls.click(5);</script>
@@ -1201,6 +1656,11 @@ Autopilot Control Panel
             <button>1</button>
             <repeatable>true</repeatable>
             <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>			
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
                 <step>-1</step>
@@ -1209,10 +1669,85 @@ Autopilot Control Panel
                 <wrap>true</wrap>
             </binding>
             <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>			
+            <binding>
                 <command>nasal</command>
                 <script>controls.click(5);</script>
             </binding>
         </action>
+        <action>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>			
+                <command>property-adjust</command>
+                <property>autopilot/settings/heading-bug-deg</property>
+                <step>10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>
+            <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>			
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>
+        <action>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>			
+                <command>property-adjust</command>
+                <property>autopilot/settings/heading-bug-deg</property>
+                <step>-10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>
+            <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>-10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>				
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>		
     </animation>
 
     <animation>
@@ -1222,6 +1757,11 @@ Autopilot Control Panel
             <button>0</button>
             <repeatable>true</repeatable>
             <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>			
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
                 <step>-1</step>
@@ -1229,6 +1769,17 @@ Autopilot Control Panel
                 <max>360</max>
                 <wrap>true</wrap>
             </binding>
+            <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>-1</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>			
             <binding>
                 <command>nasal</command>
                 <script>controls.click(5);</script>
@@ -1238,6 +1789,11 @@ Autopilot Control Panel
             <button>1</button>
             <repeatable>true</repeatable>
             <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>			
                 <command>property-adjust</command>
                 <property>autopilot/settings/heading-bug-deg</property>
                 <step>1</step>
@@ -1246,11 +1802,88 @@ Autopilot Control Panel
                 <wrap>true</wrap>
             </binding>
             <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>1</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>			
+            <binding>
                 <command>nasal</command>
                 <script>controls.click(5);</script>
             </binding>
         </action>
+        <action>
+            <button>4</button>
+            <repeatable>true</repeatable>
+            <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>			
+                <command>property-adjust</command>
+                <property>autopilot/settings/heading-bug-deg</property>
+                <step>-10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>
+            <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>-10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>			
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>
+        <action>
+            <button>3</button>
+            <repeatable>true</repeatable>
+            <binding>
+				<condition>
+					<not>
+						<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+					</not>
+				</condition>			
+                <command>property-adjust</command>
+                <property>autopilot/settings/heading-bug-deg</property>
+                <step>10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>
+            <binding>
+				<condition>
+					<property>instrumentation/afds/inputs/hdg-trk-selected</property>
+				</condition>
+                <command>property-adjust</command>
+                <property>instrumentation/nav/radials/selected-deg</property>
+                <step>10</step>
+                <min>0</min>
+                <max>360</max>
+                <wrap>true</wrap>
+            </binding>			
+            <binding>
+                <command>nasal</command>
+                <script>controls.click(5);</script>
+            </binding>
+        </action>		
     </animation>
+	
+<!--CRS is there too-->	
 
     <animation>
         <type>pick</type>
@@ -1258,6 +1891,7 @@ Autopilot Control Panel
         <visible>0</visible>
         <action>
             <button>0</button>
+			<button>3</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -1274,6 +1908,7 @@ Autopilot Control Panel
         </action>
         <action>
             <button>1</button>
+			<button>4</button>
             <repeatable>false</repeatable>
             <binding>
                 <command>property-adjust</command>
@@ -1368,7 +2003,8 @@ Autopilot Control Panel
         <type>pick</type>
         <object-name>ALT.inc</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1398,7 +2034,8 @@ Autopilot Control Panel
             </binding>
         </action>
         <action>
-            <button>1</button>
+            <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1433,7 +2070,8 @@ Autopilot Control Panel
         <type>pick</type>
         <object-name>ALT.dec</object-name>
         <action>
-            <button>0</button>
+            <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1463,7 +2101,8 @@ Autopilot Control Panel
             </binding>
         </action>
         <action>
-            <button>1</button>
+            <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <binding>
                 <condition>
@@ -1494,5 +2133,337 @@ Autopilot Control Panel
         </action>
     </animation>
 
+    <animation>
+        <type>pick</type>
+        <object-name>CLB.btn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding><command>nasal</command>
+                <script>
+				setprop("/autopilot/settings/vertical-speed-mem", 0.000);
+				setprop("/autopilot/settings/vertical-speed-mem", getprop("/velocities/vertical-speed-fps"));
+				#setprop("/instrumentation/afds/ap-modes/pitch-mode", "CLB CON");
+				b777.afds.input(1,11);
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>	
 
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.007</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 1);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/aaa/mfd_buttons/left")==1)
+				setprop("/instrumentation/efis/mfd/display-mode", "ELECTRIC")
+				else if (getprop("/aaa/mfd_buttons/right")==1)
+				setprop("/instrumentation/efis/mfd2/display-mode", "ELECTRIC")
+				else if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "ELECTRIC");				
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.011</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 1);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/aaa/mfd_buttons/left")==1)
+				setprop("/instrumentation/efis/mfd/display-mode", "HYDRAULIC")
+				else if (getprop("/aaa/mfd_buttons/right")==1)
+				setprop("/instrumentation/efis/mfd2/display-mode", "HYDRAULIC")
+				else if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "HYDRAULIC");
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.012</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 1);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/aaa/mfd_buttons/left")==1)
+				setprop("/instrumentation/efis/mfd/display-mode", "FUEL")
+				else if (getprop("/aaa/mfd_buttons/right")==1)
+				setprop("/instrumentation/efis/mfd2/display-mode", "FUEL");
+				else if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "FUEL");
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.006</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 1);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/aaa/mfd_buttons/left")==1)
+				setprop("/instrumentation/efis/mfd/display-mode", "PRESURE")
+				else if (getprop("/aaa/mfd_buttons/right")==1)
+				setprop("/instrumentation/efis/mfd2/display-mode", "PRESURE")
+				else if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "PRESURE");
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.008</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 1);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/aaa/mfd_buttons/left")==1)
+				setprop("/instrumentation/efis/mfd/display-mode", "DOORS")
+				else if (getprop("/aaa/mfd_buttons/right")==1)
+				setprop("/instrumentation/efis/mfd2/display-mode", "DOORS")
+				else if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "DOORS");
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>
+	
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.010</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 1);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/aaa/mfd_buttons/left")==1)
+				setprop("/instrumentation/efis/mfd/display-mode", "GEAR")
+				else if (getprop("/aaa/mfd_buttons/right")==1)
+				setprop("/instrumentation/efis/mfd2/display-mode", "GEAR")
+				else if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "GEAR");
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.013</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 1);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "FCTL");
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.016</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 1);
+				setprop("instrumentation/radar/switch", "off");
+				if (getprop("/aaa/mfd_buttons/left")==1)
+				setprop("/instrumentation/efis/mfd/display-mode", "GMCS")
+				else if (getprop("/aaa/mfd_buttons/right")==1)
+				setprop("/instrumentation/efis/mfd2/display-mode", "GMCS")
+				else if (getprop("/aaa/mfd_buttons/center")==1)
+				setprop("/instrumentation/efis/mfd3/display-mode", "GMCS");
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.001</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/left", 1);
+				setprop("/aaa/mfd_buttons/center", 0);
+				setprop("/aaa/mfd_buttons/right", 0);
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.002</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/left", 0);
+				setprop("/aaa/mfd_buttons/center", 0);
+				setprop("/aaa/mfd_buttons/right", 1);
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.003</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				setprop("/aaa/mfd_buttons/left", 0);
+				setprop("/aaa/mfd_buttons/center", 1);
+				setprop("/aaa/mfd_buttons/right", 0);
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
+    <animation>
+        <type>pick</type>
+        <object-name>AP.btn.004</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>
+				if (getprop("/aaa/mfd_buttons/center")==1){
+				setprop("/instrumentation/efis/mfd3/display-mode", "EICAS2");
+				setprop("/aaa/mfd_buttons/elec", 0);
+				setprop("/aaa/mfd_buttons/hyd", 0);
+				setprop("/aaa/mfd_buttons/fuel", 0);
+				setprop("/aaa/mfd_buttons/air", 0);
+				setprop("/aaa/mfd_buttons/door", 0);
+				setprop("/aaa/mfd_buttons/gear", 0);
+				setprop("/aaa/mfd_buttons/fctl", 0);
+				setprop("/aaa/mfd_buttons/cam", 0);
+				}
+				controls.click(3);
+				</script>
+            </binding>
+        </action>
+    </animation>	
+	
 </PropertyList>

@@ -305,6 +305,70 @@ var WEU =
 
             if ((me.parkbrake>0.1)and((me.throttle>=0.667)or(me.radio_alt>30)))
                 append(me.msgs_alert,">CONFIG PARK BRK");
+				
+            if (getprop("/controls/engines/engine[0]/starter"))
+                append(me.msgs_info,">L ENG STARTER");
+
+            if (getprop("/controls/engines/engine[1]/starter"))
+                append(me.msgs_info,">R ENG STARTER");	
+
+            if (getprop("/aaa/jettison"))
+                append(me.msgs_info,">FUEL JETTISON");
+
+			if (getprop("/engines/engine[0]/on-fire"))
+			    append(me.msgs_alert,">L ENG FIRE");
+				
+			if (getprop("/engines/engine[1]/on-fire"))
+			    append(me.msgs_alert,">R ENG FIRE");	
+
+			if (getprop("/engines/engine[0]/extinguishing"))
+			    append(me.msgs_alert,">L ENG EXTINGUISHER");
+				
+			if (getprop("/engines/engine[1]/extinguishing"))
+			    append(me.msgs_alert,">R ENG EXTINGUISHER");
+
+			if (getprop("/aaa/fail-system/hydraulics/left-fail"))
+			    append(me.msgs_caution,">LEFT AIR HYDR FAIL");	
+				
+			if (getprop("/aaa/fail-system/hydraulics/c1-fail"))
+			    append(me.msgs_caution,">C1 AIR HYDR FAIL");
+
+			if (getprop("/aaa/fail-system/hydraulics/c2-fail"))
+			    append(me.msgs_caution,">C2 AIR HYDR FAIL");
+
+			if (getprop("/aaa/fail-system/hydraulics/right-fail"))
+			    append(me.msgs_caution,">RIGHT AIR HYDR FAIL");
+				
+			if (!getprop("/aaa/oh/adiru"))
+			    append(me.msgs_caution,">ADIRU OFF");	
+
+			if (getprop("/instrumentation/transponder/mode-switch")==0)
+			    append(me.msgs_caution,">TCAS OFF");				
+
+            if (getprop("/aaa/xfeed_progr")==1)
+                append(me.msgs_info,">FUEL X-FEED");	
+
+			if (getprop("/autopilot/autobrake/step")==-2)
+			    append(me.msgs_info,">AUTOBRAKE RTO");	
+
+            if (getprop("/aaa/no-smkg")==1)
+                append(me.msgs_info,">NO SMOKING ON");
+
+            if (getprop("/aaa/seatbelts")==1)
+                append(me.msgs_info,">SEATBELTS ON");
+
+			if (getprop("/aaa/switches/oxygenswitch")==1)
+			    append(me.msgs_alert,">OXYGEN MASKS");	
+				
+			if (getprop("/aaa/rat")==1)
+			    append(me.msgs_alert,">RAT ACTIVE");
+
+			if (getprop("/aaa/door-positions/l1/position-norm")==1 or getprop("/aaa/door-positions/r1/position-norm")==1 or getprop("/aaa/door-positions/r2/position-norm")==1 or getprop("/aaa/door-positions/r2/position-norm")==1 or getprop("/aaa/door-positions/l3/position-norm")==1 or getprop("/aaa/door-positions/r3/position-norm")==1 or getprop("/aaa/door-positions/l4/position-norm")==1 or getprop("/aaa/door-positions/r4/position-norm")==1)
+			    append(me.msgs_caution,">DOOR");				
+	
+			if (getprop("/aaa/door-positions/c1/position-norm")==1 or getprop("/aaa/door-positions/c2/position-norm")==1 or getprop("/aaa/door-positions/c3/position-norm")==1 or getprop("/aaa/door-positions/c4/position-norm")==1)
+			    append(me.msgs_caution,">CARGO DOOR");
+	
         }
 
         me.update_sounds();

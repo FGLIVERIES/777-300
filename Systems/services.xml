@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <name>Ground services</name>
+  <layout>vbox</layout>
+
+  <text>
+    <label>Ground services</label>
+  </text>
+
+  <hrule/>
+
+  <group>
+    <layout>vbox</layout>
+    <halign>center</halign>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Fuel</label>
+      <property>/aaa/animation/fuel</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/animation/fuel</property>
+      </binding>
+    </checkbox>
+
+    <checkbox>
+      <halign>left</halign>
+      <label>Technical</label>
+      <property>/aaa/animation/service-tech</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/animation/service-tech</property>
+      </binding>
+    </checkbox>
+	
+    <checkbox>
+      <halign>left</halign>
+      <label>Catering</label>
+      <property>/aaa/animation/catering</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/animation/catering</property>
+      </binding>
+    </checkbox>	
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>PAX</label>
+      <property>/aaa/animation/service-pax</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/animation/service-pax</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Cargo</label>
+      <property>/aaa/animation/service-cargo</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/animation/service-cargo</property>
+      </binding>
+    </checkbox>
+	
+	    <checkbox>
+      <halign>left</halign>
+      <label>Baggage</label>
+      <property>/aaa/animation/baggage</property>
+      <binding>
+        <command>property-toggle</command>
+        <property>/aaa/animation/baggage</property>
+      </binding>
+    </checkbox>
+	
+  </group>
+
+  <hrule/>
+
+  <group>
+    <layout>hbox</layout>
+    <empty><stretch>true</stretch></empty>
+
+    <button>
+      <legend>Close</legend>
+      <default>true</default>
+      <key>Esc</key>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+    </button>
+
+    <empty><stretch>true</stretch></empty>
+  </group>
+
+</PropertyList>

@@ -6,7 +6,25 @@ Syd Adams
 <PropertyList>
 
  <path>eicas.ac</path>
-
+ 
+	<animation>
+		<type>material</type> 
+		<object-name>belka1</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation> 
+ 
 <panel>
         <path>Aircraft/777-300/Models/Instruments/EICAS/eicas-text-panel.xml</path>
         <bottom-left>
@@ -209,8 +227,70 @@ Syd Adams
             <width type="int">32</width>
             <height type="int">32</height>
         </font-resolution>
-    </text>
+    </text>		
+	
+    <text>
+        <name>EPR</name>
+        <offsets>
+            <x-m>0.003</x-m>
+			<y-m>-0.048</y-m>
+            <z-m>-0.009</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>literal</type>
+		<text>EPR</text>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>		
 
+    <text>
+        <name>EPR0</name>
+        <offsets>
+            <x-m>0.003</x-m>
+            <y-m>-0.083</y-m>
+            <z-m>-0.009</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>number-value</type>
+        <property>engines/engine[0]/epr</property>
+		<format>%1.2f</format>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>	
+
+    <text>
+        <name>EPR1</name>
+        <offsets>
+            <x-m>0.003</x-m>
+            <y-m>-0.018</y-m>
+            <z-m>-0.009</z-m>
+        </offsets>
+        <alignment>center-center</alignment>
+        <axis-alignment>yz-plane</axis-alignment>
+        <type>number-value</type>
+        <property>engines/engine[1]/epr</property>
+		<format>%1.2f</format>
+        <font>helvetica_medium.txf</font>
+        <character-size>0.008</character-size>
+        <character-aspect-ratio type="double">1.5</character-aspect-ratio>
+        <font-resolution>
+            <width type="int">32</width>
+            <height type="int">32</height>
+        </font-resolution>
+    </text>	
+	
     <animation>
         <name>WHITE</name>
         <type>material</type>
@@ -220,6 +300,14 @@ Syd Adams
 		<object-name>tank1qty</object-name>
 		<object-name>tank2qty</object-name>
 		<object-name>tank3qty</object-name>
+		<object-name>N2L</object-name>
+		<object-name>N2R</object-name>	
+		<object-name>EPR0</object-name>
+		<object-name>EPR1</object-name>
+		<object-name>ITT0</object-name>
+		<object-name>ITT1</object-name>	
+		<object-name>FF0</object-name>	
+		<object-name>FF1</object-name>		
         <emission>
 			<red>0.9</red>
 			<green>0.9</green>
@@ -242,4 +330,33 @@ Syd Adams
 		</specular>
     </animation>
 
+    <animation>
+        <name>blueish</name>
+        <type>material</type>
+		<object-name>N2</object-name>
+		<object-name>EPR</object-name>
+		<object-name>ITT</object-name>	
+		<object-name>FF</object-name>		
+        <emission>
+			<red>0.3</red>
+			<green>0.6</green>
+			<blue>0.9</blue>
+		</emission>
+		<ambient>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</ambient>
+		<diffuse>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</diffuse>
+		<specular>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+		</specular>
+    </animation>	
+	
 </PropertyList>

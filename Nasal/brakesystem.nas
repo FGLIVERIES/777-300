@@ -63,7 +63,7 @@ var BrakeSystem =
     {
         var CurrentTime = getprop("/sim/time/elapsed-sec");
         var dt = CurrentTime - me.LastSimTime;
-
+		
         if (dt<1.0)
         {
             var OnGround = getprop("/gear/gear[1]/wow");

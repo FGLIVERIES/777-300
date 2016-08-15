@@ -12,11 +12,11 @@
             <name>SPD annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>5</point-size>
+            <point-size>3</point-size>
             <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.3</blue>
+                <red>1</red>
+                <green>0.3</green>
+                <blue>1</blue>
             </color>
             <chunks>
                 <chunk>
@@ -40,11 +40,11 @@
             <name>ROLL annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>5</point-size>
+            <point-size>3</point-size>
             <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.3</blue>
+                <red>1</red>
+                <green>0.3</green>
+                <blue>1</blue>
             </color>
             <chunks>
                 <chunk>
@@ -68,11 +68,11 @@
             <name>PITCH annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>5</point-size>
+            <point-size>3</point-size>
             <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.3</blue>
+                <red>1</red>
+                <green>0.3</green>
+                <blue>1</blue>
             </color>
             <chunks>
                 <chunk>
@@ -96,11 +96,11 @@
             <name>ROLL arm annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>5</point-size>
+            <point-size>3</point-size>
             <color>
-                <red>0.7</red>
-                <green>0.7</green>
-                <blue>0.7</blue>
+                <red>0</red>
+                <green>1</green>
+                <blue>0</blue>
             </color>
             <chunks>
                 <chunk>
@@ -124,11 +124,11 @@
             <name>PITCH arm annun</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>5</point-size>
+            <point-size>3</point-size>
             <color>
-                <red>0.7</red>
-                <green>0.7</green>
-                <blue>0.7</blue>
+                <red>0</red>
+                <green>1</green>
+                <blue>0</blue>
             </color>
             <chunks>
                 <chunk>
@@ -152,11 +152,11 @@
             <name>FD on</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>4</point-size>
             <color>
-                <red>0.3</red>
-                <green>0.8</green>
-                <blue>0.3</blue>
+                <red>1</red>
+                <green>0.3</green>
+                <blue>1</blue>
             </color>
             <chunks>
                 <chunk>

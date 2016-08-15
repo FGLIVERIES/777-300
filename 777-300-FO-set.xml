@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <nasal>
+  <dual_control_tools>
+   <file>Aircraft/Generic/DualControl/dual-control-tools.nas</file>
+  </dual_control_tools>
+  <aircraft_dual_control>
+   <file>Aircraft/777-300/DualControl/777-300-dual-control.nas</file>
+  </aircraft_dual_control>
+  <dual_control>
+   <file>Aircraft/Generic/DualControl/copilot-dual-control.nas</file>
+  </dual_control>
+ </nasal>
+
+ <sim>
+
+  <description>Boeing 777-300 (First Officer)</description>
+  <author>Wojciech Kaczmarski</author>
+  <status>Development</status>
+  <version>28122011</version>
+  <flight-model>null</flight-model>
+
+  <sound>
+   <path>Aircraft/777-300/Sounds/777-sound.xml</path>
+   <switch type = "bool"></switch>
+  </sound>
+
+  <startup>
+   <splash-texture>Aircraft/777-300/splash.png</splash-texture>
+  </startup>
+
+  <airport>
+   <runways>
+    <start-offset-m>50</start-offset-m>
+   </runways>
+  </airport>
+
+  <model>
+   <path>Aircraft/777-300/Models/777-300-FO.xml</path>
+  </model>	
+
+  <hud n="1">  
+   <enable3d>false</enable3d>
+  </hud>
+
+  <!-- VIEWS -->
+
+  <view n="0">
+   <name>CoPilot View</name>
+			<type>lookfrom</type>
+			<internal archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<default-field-of-view-deg type="double">65.0</default-field-of-view-deg>
+            <x-offset-m type="double">0.60</x-offset-m>
+            <y-offset-m type="double">0.8</y-offset-m>
+            <z-offset-m type="double">-28.0781</z-offset-m>
+			</config>
+	</view>
+
+  <view n="101">
+   <name>Captain</name>
+   <type>lookfrom</type>
+   <internal type="bool">true</internal>
+   <config>
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <ground-level-nearplane-m type="double">6f</ground-level-nearplane-m>
+                <x-offset-m type="double">-0.57</x-offset-m>
+                <y-offset-m type="double">0.8</y-offset-m>
+                <z-offset-m type="double">-28.0781</z-offset-m>
+    <pitch-offset-deg>-10</pitch-offset-deg>
+    <default-field-of-view-deg type="double">65.0</default-field-of-view-deg>
+   </config>
+   <dynamic>
+    <enabled type="bool">false</enabled>
+   </dynamic>
+  </view>
+
+	<view n="102">
+	    <name>Visitor 1 view</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">0.015</x-offset-m>
+            <y-offset-m type="double">0.8</y-offset-m>
+            <z-offset-m type="double">-27.15</z-offset-m>
+		</config>
+	</view>	
+	
+	<view n="103">
+	    <name>Visitor 2 view</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">0.85</x-offset-m>
+            <y-offset-m type="double">0.8</y-offset-m>
+            <z-offset-m type="double">-27.15</z-offset-m>
+		</config>
+	</view>	  
+  
+	<view n="104">
+	    <name>Passenger 1</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">2.52</x-offset-m>
+            <y-offset-m type="double">0.35</y-offset-m>
+            <z-offset-m type="double">-8.38</z-offset-m>
+		</config>
+	</view>		
+
+	<view n="105">
+	    <name>Passenger 2</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">-2.58</x-offset-m>
+            <y-offset-m type="double">0.33</y-offset-m>
+            <z-offset-m type="double">19.03</z-offset-m>
+		</config>
+	</view>	 
+	
+	<view n="106">
+	    <name>Passenger 3</name>
+		<type>lookfrom</type>
+		<internal type="bool">false</internal>
+		<config>
+            <default-field-of-view-deg type="double">70.0</default-field-of-view-deg>		
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+            <x-offset-m type="double">2.52</x-offset-m>
+            <y-offset-m type="double">0.35</y-offset-m>
+            <z-offset-m type="double">-0.6</z-offset-m>
+		</config>
+	</view>		
+  
+  <chase-distance-m type="double" archive="y">-90.0</chase-distance-m>
+
+  <help>
+   <title>Boeing 777-300-FO</title>
+
+<text>
+=====B777-300(ER) checklists=====
+1. Pre-start checklist
+Parking brake SET
+Throttle IDLE
+Fuel flow CUTOFF
+BATT switch ON
+APU generator switch OFF
+APU starter knob OFF
+Bleed air valves ALL OFF
+Gear lever CHECK DOWN
+Flaps UP
+Spoiler RETRACTED
+Fuel quantity CHECK
+Engine Instruments CHECK
+De-ice/Aircraft lighting OFF
+Flight controls FREE AND CORRECT
+Check Weather ATIS, Flight Services
+De-Ice TEST/CHECK
+Request Clearance
+Beacon ON
+
+2. Start-up checklist
+Thrust levers IDLE
+Engine area CLEAR
+Eng 1 starter switch START
+Fuel flow CHECK
+N1 increasing as N2 incr. CHECK
+Eng 2 starter switch START
+Fuel flow CHECK
+N1 increasing as N2 incr. CHECK
+Oil pressure CHECK
+De-ice AS REQUIRED
+
+3. Before Taxi Checklist
+Nav lights ON
+Taxi lights ON
+Altimeter SET
+Standby instruments CHECK
+Radios and avionics SET FOR DEPARTURE
+Wipers CHECK
+Autopilot SET, dont activate
+Autothrottle SET, dont activate
+F/D ON
+Autobrake RTO
+Elevator trim SET for T/O
+Request Taxi Clearance
+
+4. Taxi Checklist
+Parking brake RELEASED
+Brakes/Gyro/Turn coordinator CHECK during taxi and turns
+Taxi to assigned runway SPEED Max. 20 knots
+
+5. Before Take-off Checklist
+Brakes SET
+Throttle IDLE
+Flaps AS REQUIRED
+Spoilers RETRACTED
+Flight instruments CHECKED
+Engine instruments CHECK
+Takeoff data (V1, VR, V2) CHECK
+Nav equipment CHECK
+Landing lights ON
+Taxi lights ON
+Strobe light ON
+De-ice AS REQUIRED
+Request Takeoff Clearance
+
+6. Take-off Checklist
+Smoothly increase thrust to 60% N1 let spool up
+Takeoff thrust FULL
+Brakes RELEASE
+V1 = 155 KIAS (descision)
+Vr = 160 KIAS (rotate)
+Pitch 10 deg. nose up
+V2 = 165 KIAS (safety speed)
+At Positive Climb Rate Touch Brakes
+Landing gear RETRACT
+At 190 KIAS RETRACT flaps to 1 deg
+At 210 KIAS RETRACT flaps up
+
+7. Climb-out Checklist
+Throttle AS REQUIRED
+Speed 250 KIAS
+Autothrottle ARM and SET
+Autopilot ON and SET
+Autobrake OFF
+Below 10000ft max. speed 250 KIAS
+ATC AS REQUIRED
+Landing Lights OFF
+Above 10000ft speed 280 KIAS
+
+8. Cruise Checklist
+At Transition Altitude (FL80) set Altimeter to 29.92inHg (1013mb)
+Accelerate to cruise speed
+FL180 0.67 mach
+FL240 0.75 mach
+FL280 0.80 mach
+FL330 0.84 mach
+Engine instruments CHECK
+Fuel quantity CHECK
+Radios TUNED and SET
+Lights AS REQUIRED
+</text>
+
+  </help>
+
+  <menubar>
+   <default>
+
+    <menu n="10">
+     <label>777-300-FO</label>
+     <enabled type="bool">true</enabled>
+
+     <item>
+      <label>Select MP-pilot</label>
+      <binding>
+	 <command>nasal</command>
+	 <script>
+		aircraft_dual_control.pilot_type = "Aircraft/777-300/Models/777-300.xml";
+		dual_control_tools.copilot_dialog.show(aircraft_dual_control.pilot_type);
+	 </script>
+      </binding>
+     </item>
+	
+    </menu>
+   </default>
+  </menubar>
+
+ </sim>
+
+ <controls>
+  <flight>
+   <flaps type="double"/>
+  </flight>
+ </controls>
+
+</PropertyList>

@@ -7,9 +7,43 @@ Syd Adams
 
     <path>radio.ac</path>
 
+	<animation>
+		<type>material</type>
+		<object-name>greentext</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		</condition>
+		<emission>
+			<red>0.2</red>
+			<green>0.8</green>
+			<blue>0.2</blue>
+			<factor-prop>/aaa/flightdeck-green-norm</factor-prop>
+		</emission>
+	</animation>
+	
+ 	<animation>
+		<type>material</type>
+		<object-name>Radio</object-name>
+		<condition>
+		<greater-than-equals>
+				<property>/systems/electrical/outputs/efis</property>
+				<value>15</value>
+		</greater-than-equals>
+		<property>/controls/lighting/dome</property>
+		</condition>
+		<emission>
+			<red>0.8</red>
+			<green>0.8</green>
+			<blue>0.8</blue>
+			<factor-prop>/aaa/flightdeck-norm</factor-prop>
+		</emission>
+	</animation>		
+	
     <animation>
-        <type>select</type>
-        <object-name>Radio.pwr</object-name>
+        <name>comm1</name>
         <object-name>freq</object-name>
         <object-name>freq.001</object-name>
         <object-name>freq.002</object-name>
@@ -33,6 +67,95 @@ Syd Adams
         </condition>
     </animation>
 
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>comm1</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>comm1</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>comm2</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>comm2</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>nav1</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>nav1</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>nav2</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>nav2</object-name>
+    </animation>
+
+    <animation>
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/left-bus</property>
+                    <value>5</value>
+                </greater-than>
+                <equals>
+                    <property>instrumentation/rmu/unit/source</property>
+                    <value>adf</value>
+                </equals>
+            </and>
+        </condition>
+        <type>select</type>
+        <object-name>Radio.pwr</object-name>
+        <object-name>adf</object-name>
+    </animation>
 
 <!-- Active freq nav mode -->
 
@@ -288,6 +411,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -302,6 +426,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -317,6 +442,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -331,6 +457,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -346,6 +473,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -360,6 +488,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -375,6 +504,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>0</button>
+			<button>3</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>
@@ -389,6 +519,7 @@ Syd Adams
         <visible>false</visible>
         <action>
             <button>1</button>
+			<button>4</button>
             <repeatable>true</repeatable>
             <interval-sec>0.2</interval-sec>
              <binding>

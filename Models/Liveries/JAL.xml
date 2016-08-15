@@ -5,11 +5,21 @@
     <model>
         <livery>
             <name type="string">JAL - Japan Airlines</name>
-            <texture>JAL.png</texture>
+            <texture>/Liveries/PNG/JAL.png</texture>
         </livery>
+		
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+		</livery-door>			
+		
         <lights>
-            <texture>JAL-lights.png</texture>
+            <texture>/Liveries/PNG/JAL-lights.png</texture>
         </lights>
+		
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>		
+		
     </model>
 </sim>
 </PropertyList>

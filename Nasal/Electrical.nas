@@ -5,13 +5,16 @@ var ammeter_ave = 0.0;
 var Lbus = props.globals.initNode("/systems/electrical/left-bus",0,"DOUBLE");
 var Rbus = props.globals.initNode("/systems/electrical/right-bus",0,"DOUBLE");
 var Amps = props.globals.initNode("/systems/electrical/amps",0,"DOUBLE");
+var RAT  = props.globals.initNode("/controls/electric/ram-air-turbine",0,"DOUBLE");
 var EXT  = props.globals.initNode("/controls/electric/external-power",0,"DOUBLE");
 var XTie  = props.globals.initNode("/systems/electrical/xtie",0,"BOOL");
 var AVswitch=props.globals.initNode("controls/electric/avionics-switch",0,"BOOL");
 var APUgen=props.globals.initNode("controls/electric/APU-generator",0,"BOOL");
 var CDUswitch=props.globals.initNode("instrumentation/cdu/serviceable",0,"BOOL");
+var ratpwr=props.globals.initNode("controls/electric/ram-air-turbine",0,"BOOL");
 var lbus_volts = 0.0;
 var rbus_volts = 0.0;
+var amps_batt = 0.0;
 
 var lbus_input=[];
 var lbus_output=[];
@@ -26,9 +29,11 @@ var lights_output=[];
 var lights_load=[];
 
 var strobe_switch = props.globals.getNode("controls/lighting/strobe", 1);
-aircraft.light.new("controls/lighting/strobe-state", [0.05, 1.30], strobe_switch);
+var strobe = aircraft.light.new("controls/lighting/strobe-state", [0.001, 0.002, 0.001], strobe_switch);
+strobe.interval = 0;
 var beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
-aircraft.light.new("controls/lighting/beacon-state", [0.05, 2.0], beacon_switch);
+var beacon = aircraft.light.new("controls/lighting/beacon-state", [0.001, 0.01], beacon_switch);
+beacon.interval = 0;
 
 #var battery = Battery.new(switch-prop,volts,amps,amp_hours,charge_percent,charge_amps);
 var Battery = {
@@ -261,15 +266,24 @@ update_virtual_bus = func( dt ) {
         var battery_volts = battery.get_output_volts();
         lbus_volts = battery_volts;
         power_source = "battery";
-        if (APUgen.getValue())
+		batteryload();
+		battery.apply_load(6*getprop("/systems/electrical/amps"), dt);
+        if (ratpwr.getValue() and getprop("velocities/airspeed-kt") > 130)
+        {
+            power_source = "rat";
+            lbus_volts = 28;
+        }
+        elsif (APUgen.getValue())
         {
           power_source = "APU";
           lbus_volts=24;
+		  setprop("/systems/electrical/amps", -3);
         }
         var alternator1_volts = alternator1.get_output_volts();
         if (alternator1_volts > lbus_volts) {
             lbus_volts = alternator1_volts;
             power_source = "alternator1";
+			setprop("/systems/electrical/amps", -3);
         }
         lbus_volts *=PWR;
         Lbus.setValue(lbus_volts);
@@ -279,15 +293,19 @@ update_virtual_bus = func( dt ) {
         var battery_volts = battery.get_output_volts();
         rbus_volts = battery_volts;
         power_source = "battery";
+		batteryload();
+		battery.apply_load(6*getprop("/systems/electrical/amps"), dt);
         if (APUgen.getValue())
         {
           power_source = "APU";
           rbus_volts=24;
+		  setprop("/systems/electrical/amps", -3);
         }
         var alternator2_volts = alternator2.get_output_volts();
         if (alternator2_volts > rbus_volts) {
             rbus_volts = alternator2_volts;
             power_source = "alternator2";
+			setprop("/systems/electrical/amps", -3);
         }
         rbus_volts *=PWR;
         Rbus.setValue(rbus_volts);
@@ -348,8 +366,14 @@ return load;
 
 }
 
+batteryload = func {
+amps_batt=50;
+#if ...==1 then amps_batt+=I;
+setprop("/systems/electrical/amps", amps_batt);
+}
+
 update_electrical = func {
     var scnd = getprop("sim/time/delta-sec");
-    update_virtual_bus( scnd );
+    update_virtual_bus( scnd );		
 settimer(update_electrical, 0.2);
 }

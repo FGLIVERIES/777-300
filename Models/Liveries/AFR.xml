@@ -5,11 +5,20 @@
     <model>
         <livery>
             <name type="string">Air France</name>
-            <texture>AFR.png</texture>
+            <texture>/Liveries/PNG/AFR.png</texture>
         </livery>
+		
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+      </livery-door>
+		
         <lights>
-            <texture>AFR-lights.png</texture>
+            <texture>/Liveries/PNG/AFR-lights.png</texture>
         </lights>
+		
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>			
     </model>
 </sim>
 </PropertyList>

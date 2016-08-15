@@ -5,11 +5,21 @@
     <model>
         <livery>
             <name type="string">KLM</name>
-            <texture>KLM.png</texture>
+            <texture>/Liveries/PNG/KLM.png</texture>
         </livery>
+		
+		<livery-door>
+        <texture>/Liveries/PNG/Whiteentry.png</texture>
+		</livery-door>	
+		
         <lights>
-            <texture>KLM-lights.png</texture>
+            <texture>/Liveries/PNG/KLM-lights.png</texture>
         </lights>
+		
+		<lights-door>
+			<texture>/Liveries/PNG/Whiteentry.lights.png</texture>
+		</lights-door>				
+		
     </model>
 </sim>
 </PropertyList>

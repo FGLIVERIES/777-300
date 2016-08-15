@@ -6,6 +6,7 @@ var SndOut = props.globals.getNode("/sim/sound/Ovolume",1);
 var chronometer = aircraft.timer.new("/instrumentation/clock/ET-sec",1);
 var fuel_density =0;
 aircraft.livery.init("Aircraft/777-300/Models/Liveries");
+#Wiper=[];
 
 #EFIS specific class
 # ie: var efis = EFIS.new("instrumentation/EFIS");
@@ -228,7 +229,7 @@ var EFIS = {
             me.nd_centered.setValue(num);
             setprop("instrumentation/radar/font/size",fnt[num]);
         }
-    },
+    },	
 #### update EICAS messages ####
     update_eicas : func(alertmsgs,cautionmsgs,infomsgs) {
         var msg="";
@@ -270,12 +271,16 @@ var Engine = {
         m.n2 = m.eng.getNode("n2",1);
         m.rpm = m.eng.getNode("rpm",1);
         m.rpm.setDoubleValue(0);
+		m.rpm2 = m.eng.getNode("rpm2",1);
+        m.rpm2.setDoubleValue(0);
         m.throttle_lever = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle-lever",1);
         m.throttle_lever.setDoubleValue(0);
         m.throttle = props.globals.getNode("controls/engines/engine["~eng_num~"]/throttle",1);
         m.throttle.setDoubleValue(0);
         m.cutoff = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff",1);
         m.cutoff.setBoolValue(1);
+        m.cutoff_lever = props.globals.getNode("controls/engines/engine["~eng_num~"]/cutoff_lever",1);
+        m.cutoff_lever.setBoolValue(1);				
         m.fuel_out = props.globals.getNode("engines/engine["~eng_num~"]/out-of-fuel",1);
         m.fuel_out.setBoolValue(0);
         m.starter = props.globals.getNode("controls/engines/engine["~eng_num~"]/starter",1);
@@ -291,6 +296,7 @@ var Engine = {
         if(me.fuel_out.getBoolValue())me.cutoff.setBoolValue(1);
         if(!me.cutoff.getBoolValue()){
         me.rpm.setValue(me.n1.getValue());
+		me.rpm2.setValue(me.n2.getValue());
         me.throttle_lever.setValue(me.throttle.getValue());
         }else{
             me.throttle_lever.setValue(0);
@@ -298,10 +304,15 @@ var Engine = {
                 me.spool_up();
             }else{
                 var tmprpm = me.rpm.getValue();
+				var tmprpm2 = me.rpm2.getValue();
                 if(tmprpm > 0.0){
                     tmprpm -= getprop("sim/time/delta-realtime-sec") * 0.5;
                     me.rpm.setValue(tmprpm);
                 }
+                if(tmprpm2 > 0.0){
+                    tmprpm2 -= getprop("sim/time/delta-realtime-sec") * 1.5;
+                    me.rpm2.setValue(tmprpm2);
+                }				
             }
         }
     me.fuel_pph.setValue(me.fuel_gph.getValue()*me.fdensity);
@@ -311,18 +322,27 @@ var Engine = {
     },
 
     spool_up : func{
-        if(!me.cutoff.getBoolValue()){
+        if(me.rpm.getValue()>20.8 and me.rpm2.getValue()>68.2){	
         return;
         }else{
             var tmprpm = me.rpm.getValue();
+			var tmprpm2 = me.rpm2.getValue();
+			if(me.rpm.getValue()<=20.8){
             tmprpm += getprop("sim/time/delta-realtime-sec") * 0.5;
             me.rpm.setValue(tmprpm);
-            if(tmprpm >= me.n1.getValue())me.cutoff.setBoolValue(0);
+			}
+			if(me.rpm2.getValue()<=68.4){
+			tmprpm2 += getprop("sim/time/delta-realtime-sec") * 1.5;
+			me.rpm2.setValue(tmprpm2);
+			}			
         }
     },
 
 };
 ##########################
+#usage :     var wiper = Wiper.new(wiper property , wiper power source (separate from on off switch));
+#
+#    var wiper = Wiper.new("controls/electric/wipers","systems/electrical/left-bus");
 
 var Wiper = {
     new : func {
@@ -334,25 +354,29 @@ var Wiper = {
         m.power = props.globals.getNode(arg[1],1);
         if(m.power.getValue()==nil)m.power.setDoubleValue(0);
         m.spd = m.node.getNode("arc-sec",1);
-        if(m.spd.getValue()==nil)m.spd.setDoubleValue(1);
+        if(m.spd.getValue()==nil)m.spd.setDoubleValue(0.005);
         m.delay = m.node.getNode("delay-sec",1);
-        if(m.delay.getValue()==nil)m.delay.setDoubleValue(0);
-        m.position = m.node.getNode("position-norm", 1);
+        if(m.delay.getValue()==nil)m.delay.setDoubleValue(2);
+        m.position = m.node.getNode("degrees", 1);
         m.position.setDoubleValue(0);
-        m.switch = m.node.getNode("switch", 1);
-        if (m.switch.getValue() == nil)m.switch.setBoolValue(0);
+        m.switch = m.node.getNode("speed", 1);
+        if (m.switch.getValue() == nil)m.switch.setDoubleValue(0);
         return m;
     },
     active: func{
     if(me.power.getValue()<=5)return;
+	if(me.spd.getValue()==0){
+	me.position.setValue(0);
+	return;
+	}
     var spd_factor = 1/me.spd.getValue();
     var pos = me.position.getValue();
-    if(!me.switch.getValue()){
-        if(pos <= 0.000)return;
+    if(!me.switch.getValue()==1){
+        if(pos <= 1.000)return;
         }
-    if(pos >=1.000){
+    if(pos >=90.000){
         me.direction=-1;
-        }elsif(pos <=0.000){
+        }elsif(pos <=1.000){
         me.direction=0;
         me.delay_count+=getprop("/sim/time/delta-sec");
         if(me.delay_count >= me.delay.getValue()){
@@ -370,7 +394,10 @@ var Wiper = {
 var Efis = EFIS.new("instrumentation/efis");
 var LHeng=Engine.new(0);
 var RHeng=Engine.new(1);
-var wiper = Wiper.new("controls/electric/wipers","systems/electrical/bus-volts");
+var wiper1 = Wiper.new("aaa/lwiper","systems/electrical/left-bus");
+setprop("/aaa/lwiper/delay-sec", 2);
+var wiper2 = Wiper.new("aaa/rwiper","systems/electrical/left-bus");
+setprop("/aaa/rwiper/delay-sec", 2);
 
 setlistener("/sim/signals/fdm-initialized", func {
     SndOut.setDoubleValue(0.15);
@@ -507,43 +534,16 @@ controls.toggleLandingLights = func()
 }
 
 var Startup = func{
-setprop("sim/model/armrest",1);
-setprop("controls/electric/engine[0]/generator",1);
-setprop("controls/electric/engine[1]/generator",1);
-setprop("controls/electric/engine[0]/bus-tie",1);
-setprop("controls/electric/engine[1]/bus-tie",1);
-setprop("controls/electric/APU-generator",1);
-setprop("controls/electric/avionics-switch",1);
-setprop("controls/electric/battery-switch",1);
-setprop("controls/electric/inverter-switch",1);
-setprop("controls/lighting/instrument-norm",0.8);
-setprop("controls/lighting/nav-lights",1);
-setprop("controls/lighting/beacon",1);
-setprop("controls/lighting/strobe",1);
-setprop("controls/lighting/wing-lights",1);
-setprop("controls/lighting/taxi-lights",1);
-setprop("controls/lighting/logo-lights",1);
-setprop("controls/lighting/cabin-lights",1);
-setprop("controls/lighting/landing-light[0]",1);
-setprop("controls/lighting/landing-light[1]",1);
-setprop("controls/lighting/landing-light[2]",1);
-setprop("controls/engines/engine[0]/cutoff",0);
-setprop("controls/engines/engine[1]/cutoff",0);
-setprop("controls/fuel/tank/boost-pump",1);
-setprop("controls/fuel/tank/boost-pump[1]",1);
-setprop("controls/fuel/tank[1]/boost-pump",1);
-setprop("controls/fuel/tank[1]/boost-pump[1]",1);
-setprop("controls/fuel/tank[2]/boost-pump",1);
-setprop("controls/fuel/tank[2]/boost-pump[1]",1);
-setprop("controls/flight/elevator-trim",0);
-setprop("controls/flight/aileron-trim",0);
-setprop("controls/flight/rudder-trim",0);
-if (getprop("/sim/model/start-idling")==0) setprop("/sim/model/start-idling",1);
-setprop("instrumentation/transponder/mode-switch",4); # transponder mode: TA/RA
+screen.log.write("O nie, nie ma tak latwo! Uruchom go recznie.", 1, 0, 0);
+screen.log.write("(No way, it's not that easy! Start it up manually.)", 1, 0, 0);
 }
 
 var Shutdown = func{
+setprop("/sim/sound/music_b",0);
 setprop("/controls/gear/brake-parking",1);
+setprop("/controls/electric/APU-button",-1);
+setprop("/aaa/lwiper/degrees",0.00);
+setprop("/aaa/rwiper/degrees",0.00);
 setprop("controls/electric/engine[0]/generator",0);
 setprop("controls/electric/engine[1]/generator",0);
 setprop("controls/electric/engine[0]/bus-tie",0);
@@ -573,7 +573,309 @@ setprop("controls/fuel/tank[1]/boost-pump",0);
 setprop("controls/fuel/tank[1]/boost-pump[1]",0);
 setprop("controls/fuel/tank[2]/boost-pump",0);
 setprop("controls/fuel/tank[2]/boost-pump[1]",0);
+setprop("/consumables/fuel/tank[0]/selected",0);
+setprop("/consumables/fuel/tank[1]/selected",0);
+setprop("/consumables/fuel/tank[2]/selected",0);
 setprop("sim/model/armrest",0);
+setprop("/aaa/xfeed_progr", 0);
+setprop("/aaa/xfeed_1", 0);
+setprop("/aaa/xfeed_2", 0);
+setprop("/controls/lighting/cabin-lights", 1);
+props.globals.getNode("/aaa/bleed_air/L_PACK", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_PACK", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/L_TRIM", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_TRIM", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/L_ISLN", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/C_ISLN", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_ISLN", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/L_ENG", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/APU", 0).setBoolValue(0);
+props.globals.getNode("/aaa/bleed_air/R_ENG", 0).setBoolValue(0);
+setprop("/instrumentation/efis/mfd/mode-num", 3);
+setprop("/instrumentation/efis/mfd/display-mode", "INFORMATION");
+setprop("/instrumentation/efis/mfd2/mode-num", 3);
+setprop("/instrumentation/efis/mfd2/display-mode", "INFORMATION");
+setprop("/instrumentation/radar/switch", "off");
+setprop("/aaa/deice/di1", 0);
+setprop("/aaa/deice/di2", 0);
+setprop("/aaa/deice/di3", 0);
+setprop("/aaa/deice/di4", 0);
+setprop("/aaa/outflow/ofv1", 0);
+setprop("/aaa/outflow/ofv2", 0);
+setprop("/aaa/efb/mode", "off");
+setprop("/aaa/mfd_buttons/left", 0);
+setprop("/aaa/mfd_buttons/center", 0);
+setprop("/aaa/mfd_buttons/right", 1);
+setprop("/aaa/anti-ice/left", -1);
+setprop("/aaa/anti-ice/center", -1);
+setprop("/aaa/anti-ice/right", -1);
+setprop("/aaa/flightdeck-norm", 0.22);
+setprop("/instrumentation/efis/mfd3/display-mode", "EICAS2");
+setprop("/aaa/no-smkg", 0);
+setprop("/aaa/seatbelts", 0);
+setprop("/aaa/lheater", -1);
+setprop("/aaa/rheater", -1);
+setprop("/instrumentation/efis/inputs/range", 10);
+setprop("/aaa/hydraulic/air_l", -1);
+setprop("/aaa/hydraulic/air_c1", -1);
+setprop("/aaa/hydraulic/air_c2", -1);
+setprop("/aaa/hydraulic/air_r", -1);
+setprop("/aaa/jettison", 0);
+setprop("/aaa/rat", 0);
+props.globals.getNode("/aaa/flightdeck-norm").setDoubleValue(0.2);
+props.globals.getNode("/aaa/displays-norm").setDoubleValue(1);
+props.globals.getNode("/aaa/flightdeck-green-norm").setDoubleValue(0.8);
+props.globals.getNode("/aaa/route/show", 1).setBoolValue(0);
+props.globals.getNode("/controls/hydraulic/system[0]/electric-pump").setBoolValue(0);
+props.globals.getNode("/controls/hydraulic/system[1]/electric-pump").setBoolValue(0);
+props.globals.getNode("/controls/hydraulic/system[2]/electric-pump").setBoolValue(0);
+props.globals.getNode("/controls/hydraulic/system[3]/electric-pump").setBoolValue(0);
+setprop("/aaa/switches/switch301", 0);
+setprop("/aaa/switches/switch302", 0);
+setprop("/aaa/switches/switch401", -1);
+setprop("/aaa/switches/switch402", 0);
+setprop("/aaa/switches/switch101", 0);
+setprop("/aaa/switches/switch102", 0);
+setprop("/aaa/switches/switch201", 0);
+setprop("/aaa/switches/switch202", 0);
+setprop("/aaa/switches/switch63", 0);
+setprop("/aaa/switches/switch62", 0);
+setprop("/aaa/switches/EVAC001", 0);
+setprop("/aaa/switches/EVACHORN1", 0);
+setprop("/aaa/animation/evacuation", 0);
+setprop("/aaa/switches/switch401", 0);
+setprop("/aaa/switches/switch402", 0);
+setprop("/aaa/switches/oxygenswitch", 0);
+setprop("/aaa/oh/switches/switch10002", 0);
+setprop("/aaa/oh/switches/switch10003", 0);
+setprop("/aaa/oh/switches/switch11002", 0);
+setprop("/aaa/oh/switches/switch11003", 0);
+setprop("/aaa/oh/switches/switch12002", 0);
+setprop("/aaa/oh/switches/switch12003", 0);
+setprop("/aaa/oh/switches/switch13002", 0);
+setprop("/aaa/oh/switches/switch13003", 0);
+setprop("/aaa/oh/switches/switch14002", 0);
+setprop("/aaa/oh/switches/switch14003", 0);
+setprop("/aaa/oh/switches/switch15002", 0);
+setprop("/aaa/oh/switches/switch15003", 0);
+setprop("/aaa/oh/switches/switch16002", 0);
+setprop("/aaa/oh/switches/switch16003", 0);
+setprop("/aaa/oh/switches/switch17002", 0);
+setprop("/aaa/oh/switches/switch17003", 0);
+setprop("/aaa/oh/switches/switch18002", 0);
+setprop("/aaa/oh/switches/switch18003", 0);
+setprop("/aaa/oh/switches/switch19002", 0);
+setprop("/aaa/oh/switches/switch19003", 0);
+setprop("/aaa/oh/switches/switch20002", 0);
+setprop("/aaa/oh/switches/switch20003", 0);
+setprop("/aaa/oh/switches/switch21002", 0);
+setprop("/aaa/oh/switches/switch21003", 0);
+setprop("/aaa/oh/switches/switch22002", 0);
+setprop("/aaa/oh/switches/switch22003", 0);
+setprop("/aaa/oh/switches/rrwytoggle", 0);
+setprop("/aaa/oh/switches/lrwytoggle", 0);
+setprop("/aaa/oh/switches/indtoggle", 0);
+setprop("/aaa/oh/switches/indtoggle001", 0);
+setprop("/aaa/oh/switches/indtoggle002", 0);
+setprop("/aaa/oh/switches/audio_ent001", 0);
+setprop("/aaa/oh/switches/servintph", 0);
+setprop("/aaa/oh/switches/buttoncase001", 0);
+setprop("/aaa/oh/switches/buttoncase002", 0);
+setprop("/aaa/oh/switches/buttoncase003", 0);
+setprop("/aaa/oh/switches/buttoncase004", 0);
+setprop("/aaa/oh/switches/buttoncase005", 0);
+setprop("/aaa/oh/switches/buttoncase006", 0);
+setprop("/aaa/oh/switches/buttoncase007", 0);
+setprop("/aaa/oh/switches/buttoncase008", 0);
+setprop("/aaa/oh/switches/buttoncase009", 0);
+setprop("/aaa/oh/switches/bezpiecznik", 0);
+setprop("/aaa/oh/switches/bezpiecznik1", 0);
+setprop("/aaa/oh/switches/bezpiecznik2", 0);
+setprop("/aaa/oh/switches/bezpiecznik3", 0);
+setprop("/aaa/oh/switches/bezpiecznik4", 0);
+setprop("/aaa/oh/switches/bezpiecznik5", 0);
+setprop("/aaa/oh/switches/bezpiecznik6", 0);
+setprop("/aaa/oh/switches/bezpiecznik7", 0);
+setprop("/aaa/oh/switches/bezpiecznik8", 0);
+setprop("/aaa/oh/switches/bezpiecznik9", 0);
+setprop("/aaa/oh/switches/bezpiecznik10", 0);
+setprop("/aaa/oh/switches/bezpiecznik11", 0);
+setprop("/aaa/oh/switches/bezpiecznik12", 0);
+setprop("/aaa/oh/switches/bezpiecznik13", 0);
+setprop("/aaa/oh/switches/bezpiecznik14", 0);
+setprop("/aaa/oh/switches/bezpiecznik15", 0);
+setprop("/aaa/oh/switches/bezpiecznik16", 0);
+setprop("/aaa/oh/switches/bezpiecznik17", 0);
+setprop("/aaa/oh/switches/bezpiecznik18", 0);
+setprop("/aaa/oh/switches/bezpiecznik19", 0);
+setprop("/aaa/oh/switches/bezpiecznik20", 0);
+setprop("/aaa/oh/switches/bezpiecznik21", 0);
+setprop("/aaa/oh/switches/bezpiecznik22", 0);
+setprop("/aaa/oh/switches/bezpiecznik23", 0);
+setprop("/aaa/oh/switches/bezpiecznik24", 0);
+setprop("/aaa/oh/switches/bezpiecznik25", 0);
+setprop("/aaa/oh/switches/bezpiecznik26", 0);
+setprop("/aaa/oh/switches/bezpiecznik27", 0);
+setprop("/aaa/oh/switches/bezpiecznik28", 0);
+setprop("/aaa/oh/switches/bezpiecznik29", 0);
+setprop("/aaa/oh/switches/bezpiecznik30", 0);
+setprop("/aaa/oh/switches/bezpiecznik31", 0);
+setprop("/aaa/oh/switches/bezpiecznik32", 0);
+setprop("/aaa/oh/switches/bezpiecznik33", 0);
+setprop("/aaa/oh/switches/bezpiecznik34", 0);
+setprop("/aaa/oh/switches/bezpiecznik35", 0);
+setprop("/aaa/oh/switches/bezpiecznik36", 0);
+setprop("/aaa/oh/switches/bezpiecznik37", 0);
+setprop("/aaa/oh/switches/bezpiecznik38", 0);
+setprop("/aaa/oh/switches/bezpiecznik39", 0);
+setprop("/aaa/oh/switches/bezpiecznik40", 0);
+setprop("/aaa/oh/switches/bezpiecznik41", 0);
+setprop("/aaa/oh/switches/bezpiecznik44", 0);
+setprop("/aaa/oh/switches/bezpiecznik43", 0);
+setprop("/aaa/oh/switches/bezpiecznik44", 0);
+setprop("/aaa/oh/switches/bezpiecznik45", 0);
+setprop("/aaa/oh/switches/bezpiecznik46", 0);
+setprop("/aaa/oh/switches/bezpiecznik47", 0);
+setprop("/aaa/oh/switches/bezpiecznik48", 0);
+setprop("/aaa/oh/switches/bezpiecznik49", 0);
+setprop("/aaa/oh/switches/bezpiecznik50", 0);
+setprop("/aaa/oh/switches/bezpiecznik51", 0);
+setprop("/aaa/oh/switches/bezpiecznik52", 0);
+setprop("/aaa/oh/switches/bezpiecznik53", 0);
+setprop("/aaa/oh/switches/bezpiecznik54", 0);
+setprop("/aaa/oh/switches/bezpiecznik55", 0);
+setprop("/aaa/oh/switches/bezpiecznik56", 0);
+setprop("/aaa/oh/switches/bezpiecznik57", 0);
+setprop("/aaa/oh/switches/bezpiecznik58", 0);
+setprop("/aaa/oh/switches/bezpiecznik59", 0);
+setprop("/aaa/oh/switches/bezpiecznik60", 0);
+setprop("/aaa/oh/switches/bezpiecznik61", 0);
+setprop("/aaa/oh/switches/bezpiecznik62", 0);
+setprop("/aaa/oh/switches/bezpiecznik63", 0);
+setprop("/aaa/oh/switches/bezpiecznik64", 0);
+setprop("/aaa/oh/switches/bezpiecznik65", 0);
+setprop("/aaa/oh/switches/bezpiecznik66", 0);
+setprop("/aaa/oh/switches/bezpiecznik67", 0);
+setprop("/aaa/oh/switches/bezpiecznik68", 0);
+setprop("/aaa/oh/switches/bezpiecznik69", 0);
+setprop("/aaa/oh/switches/bezpiecznik70", 0);
+setprop("/aaa/oh/switches/bezpiecznik71", 0);
+setprop("/aaa/oh/switches/bezpiecznik74", 0);
+setprop("/aaa/oh/switches/bezpiecznik73", 0);
+setprop("/aaa/oh/switches/bezpiecznik74", 0);
+setprop("/aaa/oh/switches/bezpiecznik75", 0);
+setprop("/aaa/oh/switches/bezpiecznik76", 0);
+setprop("/aaa/oh/switches/bezpiecznik77", 0);
+setprop("/aaa/oh/switches/bezpiecznik78", 0);
+setprop("/aaa/oh/switches/bezpiecznik79", 0);
+setprop("/aaa/oh/switches/bezpiecznik80", 0);
+setprop("/aaa/oh/switches/bezpiecznik81", 0);
+setprop("/aaa/oh/switches/bezpiecznik82", 0);
+setprop("/aaa/oh/switches/bezpiecznik83", 0);
+setprop("/aaa/oh/switches/bezpiecznik84", 0);
+setprop("/aaa/oh/switches/bezpiecznik85", 0);
+setprop("/aaa/oh/switches/bezpiecznik86", 0);
+setprop("/aaa/oh/switches/bezpiecznik87", 0);
+setprop("/aaa/oh/switches/bezpiecznik88", 0);
+setprop("/aaa/oh/switches/bezpiecznik89", 0);
+setprop("/aaa/oh/switches/bezpiecznik90", 0);
+setprop("/aaa/oh/switches/bezpiecznik91", 0);
+setprop("/aaa/oh/switches/bezpiecznik92", 0);
+setprop("/aaa/oh/switches/bezpiecznik93", 0);
+setprop("/aaa/oh/switches/bezpiecznik94", 0);
+setprop("/aaa/oh/switches/bezpiecznik95", 0);
+setprop("/aaa/oh/switches/bezpiecznik96", 0);
+setprop("/aaa/oh/switches/bezpiecznik97", 0);
+setprop("/aaa/oh/switches/bezpiecznik98", 0);
+setprop("/aaa/oh/switches/bezpiecznik99", 0);
+setprop("/aaa/oh/switches/bezpiecznik100", 0);
+setprop("/aaa/oh/switches/bezpiecznik101", 0);
+setprop("/aaa/oh/switches/bezpiecznik102", 0);
+setprop("/aaa/oh/switches/bezpiecznik103", 0);
+setprop("/aaa/oh/switches/bezpiecznik104", 0);
+setprop("/aaa/oh/switches/bezpiecznik105", 0);
+setprop("/aaa/oh/switches/bezpiecznik106", 0);
+setprop("/aaa/oh/switches/bezpiecznik107", 0);
+setprop("/aaa/oh/switches/bezpiecznik108", 0);
+setprop("/aaa/oh/switches/bezpiecznik109", 0);
+setprop("/aaa/oh/switches/bezpiecznik110", 0);
+setprop("/aaa/oh/switches/bezpiecznik111", 0);
+setprop("/aaa/oh/switches/bezpiecznik112", 0);
+setprop("/aaa/oh/switches/bezpiecznik113", 0);
+setprop("/aaa/oh/switches/bezpiecznik114", 0);
+setprop("/aaa/oh/switches/bezpiecznik115", 0);
+setprop("/aaa/oh/switches/bezpiecznik116", 0);
+setprop("/aaa/oh/switches/bezpiecznik117", 0);
+setprop("/aaa/oh/switches/bezpieczniktcas", 0);
+setprop("/aaa/oh/knobs/MSTRpanel", 0);
+setprop("/aaa/oh/knobs/MSTRpanel001", 0);
+setprop("/aaa/oh/knobs/MSTRpanel002", 0);
+setprop("/aaa/oh/knobs/MSTRpanel00101", 0);
+setprop("/aaa/oh/knobs/MSTRpanel00201", 0);
+setprop("/aaa/oh/knobs/rengice001", 0);
+setprop("/aaa/oh/knobs/rengice002", 0);
+setprop("/aaa/oh/knobs/cargoaft", 0);
+setprop("/aaa/oh/knobs/cargofwd", 0);
+setprop("/aaa/pdstl/switches/buttoncase010", 0);
+props.globals.getNode("/aaa/oh/adiru", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf1", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf2", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf3", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf4", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf5", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf6", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf7", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf8", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf9", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf10", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf11", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf12", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf13", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf14", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/cf15", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac1", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac2", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac3", 1).setBoolValue(0);
+props.globals.getNode("/aaa/oh/ac4", 1).setBoolValue(0);
+props.globals.getNode("/aaa/fd/cf01", 1).setBoolValue(0);
+props.globals.getNode("/aaa/fd/cf02", 1).setBoolValue(0);
+props.globals.getNode("/aaa/fd/cf03", 1).setBoolValue(0);
+setprop("/aaa/pdstl/knobs/radio1001", 0);
+setprop("/aaa/pdstl/knobs/radio2001", 0);
+setprop("/aaa/pdstl/knobs/radio3001", 0);
+setprop("/aaa/pdstl/knobs/radio4001", -0.85);
+setprop("/aaa/pdstl/knobs/radio5001", -0.85);
+setprop("/aaa/pdstl/knobs/radio6001", -0.85);
+setprop("/aaa/pdstl/knobs/radio7001", -0.85);
+setprop("/aaa/pdstl/knobs/radio8001", 0.20);
+setprop("/aaa/pdstl/knobs/radio9001", 0.20);
+setprop("/aaa/pdstl/knobs/radio10001", -0.85);
+setprop("/aaa/pdstl/knobs/radio11001", -0.85);
+setprop("/aaa/pdstl/knobs/radio12001", -0.85);
+setprop("/aaa/pdstl/knobs/radio13001", 0);
+setprop("/aaa/pdstl/knobs/radio14001", 0);
+setprop("/aaa/pdstl/knobs/radio15001", -0.85);
+setprop("/aaa/pdstl/knobs/radio16001", -0.85);
+setprop("/aaa/pdstl/buttons/audio1001", 0);
+setprop("/aaa/pdstl/buttons/audio2001", 0);
+setprop("/aaa/pdstl/buttons/audio3001", 0);
+setprop("/aaa/pdstl/buttons/audio4001", 0);
+setprop("/aaa/pdstl/buttons/audio5001", 0);
+setprop("/aaa/pdstl/buttons/audio6001", 1);
+setprop("/aaa/pdstl/buttons/audio7001", 0);
+setprop("/aaa/pdstl/buttons/audio8001", 0);
+setprop("/aaa/pdstl/buttons/audio9001", 0);
+setprop("/aaa/pdstl/buttons/audio10001", 0);
+setprop("/aaa/pdstl/switches/audioswitch", 0);
+setprop("/aaa/pdstl/switches/floorlightswitch", 0);
+setprop("/aaa/hydraulic/air_l_knob", -1);
+setprop("/aaa/hydraulic/air_c1_knob", -1);
+setprop("/aaa/hydraulic/air_c2_knob", -1);
+setprop("/aaa/hydraulic/air_r_knob", -1);
+props.globals.getNode("/aaa/route/x1", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y1", 0).setDoubleValue(-80);
+props.globals.getNode("/aaa/route/x2", 0).setDoubleValue(0);
+props.globals.getNode("/aaa/route/y2", 0).setDoubleValue(-80);
 if (getprop("/sim/model/start-idling")) setprop("/sim/model/start-idling",0);
 setprop("instrumentation/transponder/mode-switch",0); # transponder mode: off
 }
@@ -589,13 +891,13 @@ controls.click = func(button) {
     settimer(func { click_reset(propName) },0.4);
 }
 
-
 var update_systems = func {
     Efis.calc_kpa();
     Efis.update_temp();
     LHeng.update();
     RHeng.update();
-    wiper.active();
+    wiper1.active();
+	wiper2.active();
     if(getprop("controls/gear/gear-down")){
         setprop("sim/multiplay/generic/float[0]",getprop("gear/gear[0]/compression-m"));
         setprop("sim/multiplay/generic/float[1]",getprop("gear/gear[1]/compression-m"));
@@ -607,7 +909,6 @@ var update_systems = func {
     var et_hr = int(et_min * 0.0166666666667) * 100;
     et_tmp = et_hr+et_min;
     setprop("instrumentation/clock/ET-display",et_tmp);
-    
+	
     settimer(update_systems,0);
 }
-

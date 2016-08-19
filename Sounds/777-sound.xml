@@ -33,34 +33,25 @@
     </engine>
 
     <engine>
-        <name>left n1</name>
-        <path>Aircraft/777-300/Sounds/whine.wav</path>
-        <mode>looped</mode>
-        <property>engines/engine[0]/rpm</property>
-        <pitch>
-            <property>engines/engine[0]/rpm</property>
-            <offset>0</offset>
-            <factor>0.02</factor>
-            <min>0.0</min>
-            <max>2.0</max>
-        </pitch>
-        <volume>
-            <property>engines/engine[0]/rpm</property>
-            <factor>0.1</factor>
-            <min>0.0</min>
-            <max>0.6</max>
-        </volume>
-        <volume>
-            <property>sim/sound/Ovolume</property>
-        </volume>
-        <position>
-            <x>0</x>
-            <y>9.8</y>
-            <z>-3</z>
-        </position>
-        <reference-dist>10.0</reference-dist>
-        <max-dist>30.0</max-dist>
-    </engine>
+		<name>low l out</name>
+		<mode>looped</mode>
+		<path>Aircraft/777-300/Sounds/xlow.wav</path>
+		<property>engines/engine[0]/n1</property>
+		<condition>
+			<not><property>sim/current-view/internal</property></not>
+		</condition>
+		<volume>
+			<property>engines/engine[0]/n1</property>
+			<factor>0.044</factor>
+			<max>1</max>
+		</volume>
+		<pitch>
+			<property>engines/engine[0]/n1</property>
+			<offset>0</offset>
+			<factor>0.02</factor>
+			<max>2</max>
+		</pitch>
+	</engine>
 
     <engine>
         <name>right engine</name>
@@ -88,37 +79,28 @@
         <reference-dist>200.0</reference-dist>
         <max-dist>500.0</max-dist>
     </engine>
-
+    
     <engine>
-        <name>right n1</name>
-        <path>Aircraft/777-300/Sounds/whine.wav</path>
-        <mode>looped</mode>
-        <property>engines/engine[1]/rpm</property>
-        <volume>
-            <property>engines/engine[1]/rpm</property>
-            <factor>0.1</factor>
-            <min>0.0</min>
-            <max>0.6</max>
-        </volume>
-        <volume>
-            <property>sim/sound/Ovolume</property>
-        </volume>
-        <pitch>
-            <property>engines/engine[1]/rpm</property>
-            <offset>0</offset>
-            <factor>0.02</factor>
-            <min>0.0</min>
-            <max>2.0</max>
-        </pitch>
-        <position>
-            <x>0</x>
-            <y>-9.8</y>
-            <z>-3</z>
-        </position>
-        <reference-dist>10.0</reference-dist>
-        <max-dist>30.0</max-dist>
-    </engine>
-
+		<name>low r out</name>
+		<mode>looped</mode>
+		<path>Aircraft/777-300/Sounds/xlow.wav</path>
+		<property>engines/engine[1]/n1</property>
+		<condition>
+			<not><property>sim/current-view/internal</property></not>
+		</condition>
+		<volume>
+			<property>engines/engine[1]/n1</property>
+			<factor>0.044</factor>
+			<max>1</max>
+		</volume>
+		<pitch>
+			<property>engines/engine[1]/n1</property>
+			<offset>0</offset>
+			<factor>0.02</factor>
+			<max>2</max>
+		</pitch>
+	</engine>
+	
     <rumblefront>
         <name>nose wheel rumble</name>
         <mode>looped</mode>
